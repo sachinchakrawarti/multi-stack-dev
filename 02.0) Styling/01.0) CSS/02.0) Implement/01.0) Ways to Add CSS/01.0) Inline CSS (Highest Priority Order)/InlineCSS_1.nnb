@@ -1,0 +1,77 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "<span style=\"background-color: blue ; text-align:center ; font-size: 50px; font-weight: bold;\"> Inline CSS </span>"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/html",
+                            "value": [
+                                "<span style=\"background-color: blue ; text-align:center ; font-size: 145px; font-weight: bold;\"> Inline CSS </span>"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "❓ What is Inline CSS?\r\n\r\n--> Inline CSS is CSS written <b> directly inside an HTML element </b> usinh `style` attribute\r\n\r\n\r\n👉 It applies styles to only one element."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### <span style=\"background-color:red; font-weight:bold\">Syntax</span>"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "```html\r\n<tag style=\"property: value;\">\r\n\r\n```"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### <span style=\"background-color:blue; font-weight:bold\">Example</span>"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "html",
+            "source": [
+                "<h1 style=\"color: rgb(251, 0, 155); font-size: 30px; background-color: beige;\">\r\n    Shraddhu 🫀 & Priyal 💕\r\n</h1>    "
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/html",
+                            "value": [
+                                "<h1 style=\"color: rgb(251, 0, 155); font-size: 30px; background-color: beige;\">\r",
+                                "    Shraddhu 🫀 & Priyal 💕\r",
+                                "</h1>    "
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Multiple Styles in Inline CSS\r\n\r\nUse semicolon (;) to separate properties"
+            ],
+            "outputs": []
+        }
+    ]
+}
