@@ -1,0 +1,29 @@
+{
+    "cells": [
+        {
+            "language": "javascript",
+            "source": [
+                "a = 5;  b = 6;\r\n\r\nconsole.log(a + b)\r\nconsole.log(a - b)\r\nconsole.log(a * b)\r\nconsole.log(a / b)\r\nconsole.log(a % b)\r\nconsole.log(a ** b)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "11",
+                                "-1",
+                                "30",
+                                "0.8333333333333334",
+                                "5",
+                                "15625",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Two Sum  \r\n\r\nlink\r\n\r\n(https://leetcode.com/problems/two-sum/description/)\r\n\r\n## Problem Statement\r\n\r\nGiven an array of integers `nums` and an integer `target`, return the **indices of the two numbers** such that they add up to the target.\r\n\r\n- You may assume that **each input has exactly one solution**.\r\n- You may **not use the same element twice**.\r\n- You can return the answer **in any order**.\r\n\r\n---\r\n\r\n## Examples\r\n\r\n### Example 1\r\n\r\n\r\nInput: nums = [2, 7, 11, 15], target = 9\r\nOutput: [0, 1]\r\n\r\n**Explanation:**  \r\nBecause `nums[0] + nums[1] = 2 + 7 = 9`, we return `[0, 1]`.\r\n\r\n\r\n### Example 2\r\nInput: nums = [3, 2, 4], target = 6\r\nOutput: [1, 2]\r\n\r\n\r\n\r\n---\r\n\r\n## Constraints\r\n\r\n- `2 ≤ nums.length ≤ 10⁴`\r\n- `-10⁹ ≤ nums[i] ≤ 10⁹`\r\n- `-10⁹ ≤ target ≤ 10⁹`\r\n- Only **one valid answer** exists.\r\n\r\n---\r\n\r\n## Follow-up\r\n\r\nCan you come up with an algorithm that runs in **less than O(n²)** time complexity?\r\n"
+            ],
+            "outputs": []
+        }
+    ]
+}

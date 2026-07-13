@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Variables - Master Presentation</title>
+    
+    <!-- Reveal.js via CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div id="slide-container"></div>
+        </div>
+    </div>
+
+    <!-- Export Toolbar -->
+    <div class="export-toolbar">
+        <button class="export-btn pdf-btn" onclick="exportToPDF()" title="Export to PDF">
+            <i class="fas fa-file-pdf"></i> Export PDF
+        </button>
+        <button class="export-btn pptx-btn" onclick="exportToPPTX()" title="Export to PowerPoint">
+            <i class="fas fa-file-powerpoint"></i> Export PPTX
+        </button>
+        <button class="export-btn print-btn" onclick="window.print()" title="Print / Save as PDF">
+            <i class="fas fa-print"></i> Print
+        </button>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div id="exportProgress" class="export-progress" style="display:none;">
+        <div class="progress-text">Processing...</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-status" id="progressStatus">0%</div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/zoom/zoom.js"></script>
+    
+    <!-- Export Libraries -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/PptxGenJS@3.12.0/dist/pptxgen.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/custom.js"></script>
+    <script src="js/export.js"></script>
+</body>
+</html>

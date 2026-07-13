@@ -1,0 +1,71 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "### Arrow Function"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const priyal = () => \r\n    console.log(\"i love you Sachin. i cant live without you , plz come to me\");\r\npriyal();\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "i love you Sachin. i cant live without you , plz come to me",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const Sachin = () => {\r\n    console.log(\"Sachin = i love you priyal. never feel you are alone because i am always with you\");\r\n}"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "\r\n\r\n\r\nconst priyal = () => {\r\n    console.log(\"Priyal = i love you Sachin. i cant live without you , plz come to me\");\r\n    Sachin();\r\n}\r\n\r\npriyal();\r\n\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Priyal = i love you Sachin. i cant live without you , plz come to me",
+                                "Sachin = i love you priyal. never feel you are alone because i am always with you",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

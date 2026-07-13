@@ -1,0 +1,24 @@
+{
+    "cells": [
+        {
+            "language": "typescript",
+            "source": [
+                "let god = {\r\n  name: \"Shraddha Kapoor\",\r\n\r\n \r\n};\r\n\r\nconsole.log(god); // Rahul"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ name: 'Shraddha Kapoor' }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "cells": [
+        {
+            "language": "typescript",
+            "source": [
+                "let x;\r\n\r\nconsole.log(x); // undefined"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "undefined",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,191 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "Strings can contain letters, numbers, symbols, or spaces."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let name = \"Rahul\";\r\nlet city = 'Delhi';\r\n\r\nconsole.log(name);\r\nconsole.log(city);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Rahul",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let name = \"Rahul\";\r\n\r\nlet message = `Hello ${name}`;\r\n\r\nconsole.log(message);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello Rahul",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let name = \"Priya\";\r\n\r\nlet message = `Hello ${name}`;\r\n\r\nconsole.log(message);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello Priya",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let name = \"Shraddhu ji\";\r\n\r\nlet message = `Hello ${name}`;\r\n\r\nconsole.log(message);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello Shraddhu ji",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let name = \"Sachin JI\";\r\n\r\nlet message = `Hello ${name}`;\r\n\r\nconsole.log(message);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello Sachin JI",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let name = \"Shraddhu weds sachin\";\r\n\r\nlet message = `Hello ${name}`;\r\n\r\nconsole.log(message);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello Shraddhu weds sachin",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let name = \"priyal weds sachin\";\r\n\r\nlet message = `Hello ${name}`;\r\n\r\nconsole.log(message);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello priyal weds sachin",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let wedding = \"Shraddhu & PP weds sachin \";\r\n\r\n\r\n\r\nconsole.log(wedding);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Shraddhu & PP weds sachin ",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let wedding = \"Shraddhu & PP weds sachin \";\r\n\r\n\r\n\r\nconsole.log(wedding);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Shraddhu & PP weds sachin ",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
