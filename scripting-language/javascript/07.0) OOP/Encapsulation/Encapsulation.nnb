@@ -1,0 +1,25 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "### Encapsulation (JS)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Hiding internal data and allowing access only through controlled methods.\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "class BankAccount {\r\n  constructor(owner, balance = 0) {\r\n    this.owner = owner;\r\n    this.balance = balance;\r\n  }"
+            ],
+            "outputs": []
+        }
+    ]
+}

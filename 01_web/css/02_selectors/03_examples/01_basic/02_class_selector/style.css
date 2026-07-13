@@ -1,0 +1,76 @@
+/* ====================================
+   Class Selector Example
+==================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+    padding:40px;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+}
+
+.title{
+    color:#0d47a1;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.card-title{
+    color:#1565c0;
+    margin-bottom:15px;
+}
+
+.card-text{
+    color:#444;
+    margin-bottom:25px;
+    line-height:1.7;
+}
+
+.btn{
+    border:none;
+    padding:12px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+    margin-right:10px;
+    font-size:16px;
+}
+
+.primary{
+    background:#1565c0;
+}
+
+.primary:hover{
+    background:#0d47a1;
+}
+
+.secondary{
+    background:#2e7d32;
+}
+
+.secondary:hover{
+    background:#1b5e20;
+}

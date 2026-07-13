@@ -1,0 +1,15 @@
+{
+  "name": "javascript-presentation",
+  "version": "1.0.0",
+  "scripts": {
+    "combine": "node combine-slides.js",
+    "build:html": "marp combined.md -o output/index.html --html",
+    "build:pptx": "marp combined.md -o output/slides.pptx --pptx",
+    "build:pdf": "marp combined.md -o output/slides.pdf --pdf",
+    "build": "npm run combine && npm run build:html && npm run build:pptx && npm run build:pdf",
+    "clean": "if exist output rmdir /s /q output"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^3.4.0"
+  }
+}

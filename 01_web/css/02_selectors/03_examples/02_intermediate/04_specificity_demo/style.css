@@ -1,0 +1,79 @@
+/* =====================================
+   CSS Specificity Demo
+===================================== */
+
+/* Universal Selector */
+*{
+    color:gray;
+}
+
+/* Element Selector */
+p{
+    color:green;
+}
+
+/* Class Selector */
+.text{
+    color:blue;
+}
+
+/* Descendant Selector */
+.container .text{
+    color:orange;
+}
+
+/* ID Selector */
+#intro{
+    color:red;
+}
+
+/* Button */
+
+.btn{
+    background:#1565c0;
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.primary{
+    background:#2e7d32;
+}
+
+/* !important */
+
+.warning{
+    color:crimson !important;
+}
+
+/* Layout */
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fa;
+    padding:40px;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+section{
+    margin-bottom:35px;
+}
+
+h1{
+    color:#1565c0;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+h2{
+    color:#0d47a1;
+    margin-bottom:10px;
+}

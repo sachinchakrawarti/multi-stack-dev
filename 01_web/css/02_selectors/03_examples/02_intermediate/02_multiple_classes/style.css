@@ -1,0 +1,87 @@
+/* =====================================
+   Multiple Classes Example
+===================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fa;
+    padding:40px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+h1{
+    color:#1565c0;
+    margin-bottom:15px;
+}
+
+p{
+    margin-bottom:20px;
+    color:#444;
+    line-height:1.7;
+}
+
+hr{
+    margin:30px 0;
+}
+
+/* Base Button */
+
+.btn{
+    border:none;
+    color:white;
+    padding:12px 22px;
+    cursor:pointer;
+    margin:8px;
+    font-size:16px;
+    transition:.3s;
+}
+
+/* Color Classes */
+
+.primary{
+    background:#1565c0;
+}
+
+.secondary{
+    background:#6c757d;
+}
+
+.success{
+    background:#2e7d32;
+}
+
+.danger{
+    background:#c62828;
+}
+
+/* Utility Classes */
+
+.large{
+    font-size:20px;
+    padding:18px 30px;
+}
+
+.rounded{
+    border-radius:40px;
+}
+
+.shadow{
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+/* Card */
+
+.card{
+    background:white;
+    padding:30px;
+}

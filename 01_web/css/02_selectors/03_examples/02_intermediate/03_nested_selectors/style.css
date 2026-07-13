@@ -1,0 +1,95 @@
+/* =====================================
+   Nested Selectors Example
+===================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+    color:#333;
+}
+
+.navbar{
+    background:#1565c0;
+    color:white;
+    padding:20px 40px;
+}
+
+/* Nested Selector */
+.navbar h1{
+    margin-bottom:15px;
+}
+
+/* Nested Selector */
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-right:20px;
+    font-weight:bold;
+}
+
+/* Nested Selector */
+.navbar a:hover{
+    text-decoration:underline;
+}
+
+main{
+    max-width:900px;
+    margin:40px auto;
+}
+
+.card,
+.profile{
+    background:white;
+    padding:30px;
+    margin-bottom:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+/* Only h2 inside .card */
+.card h2{
+    color:#1565c0;
+}
+
+/* Only paragraph inside .card */
+.card p{
+    margin:15px 0;
+    color:#555;
+}
+
+/* Only button inside .card */
+.card button{
+    background:#1565c0;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* Only h2 inside .profile */
+.profile h2{
+    color:#2e7d32;
+}
+
+/* Only paragraph inside .profile */
+.profile p{
+    margin:15px 0;
+    color:#666;
+}
+
+/* Only button inside .profile */
+.profile button{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:6px;
+    cursor:pointer;
+}

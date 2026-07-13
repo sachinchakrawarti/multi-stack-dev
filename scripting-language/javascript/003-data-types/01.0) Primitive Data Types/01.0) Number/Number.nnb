@@ -1,0 +1,24 @@
+{
+    "cells": [
+        {
+            "language": "javascript",
+            "source": [
+                "let length = 16;       // integer\r\nlet weight = 7.5;      // floating-point\r\nlet hex = 0xff;        // hexadecimal (255)\r\nlet binary = 0b1111;   // binary (15)\r\nlet octal = 0o17;      // octal (15)\r\nlet exp = 1.23e4;      // exponential (12300)\r\n\r\n\r\nconsole.log(length);\r\nconsole.log(weight);\r\nconsole.log(hex);\r\nconsole.log(binary);\r\nconsole.log(octal);\r\nconsole.log(exp);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "16",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

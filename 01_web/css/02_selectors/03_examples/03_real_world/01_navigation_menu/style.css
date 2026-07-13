@@ -1,0 +1,124 @@
+/* =====================================
+   Navigation Menu
+===================================== */
+
+/* CSS Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* Body */
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fa;
+    color:#333;
+}
+
+/* Navigation */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:#1565c0;
+    color:white;
+
+    padding:18px 50px;
+}
+
+/* Logo */
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+/* Navigation List */
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+/* Descendant Selector */
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+    transition:.3s;
+}
+
+/* Pseudo-class */
+
+.nav-links a:hover{
+    color:#ffeb3b;
+}
+
+/* Login Button */
+
+.btn{
+    background:white;
+    color:#1565c0;
+
+    border:none;
+
+    padding:10px 22px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#e3f2fd;
+}
+
+/* Hero */
+
+.hero{
+    text-align:center;
+    padding:120px 30px;
+}
+
+.hero h1{
+    font-size:48px;
+    color:#1565c0;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
+    margin-bottom:35px;
+}
+
+.hero-btn{
+    background:#1565c0;
+    color:white;
+
+    border:none;
+
+    padding:14px 28px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.3s;
+}
+
+.hero-btn:hover{
+    background:#0d47a1;
+}

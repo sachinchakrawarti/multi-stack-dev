@@ -1,0 +1,24 @@
+{
+    "cells": [
+        {
+            "language": "javascript",
+            "source": [
+                "let x = 20;\r\nconst y = 30;\r\nvar z = 40;\r\n\r\n\r\nconsole.log(x, y, z);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "20 30 40",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
