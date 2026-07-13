@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.4.1",
+    "markdown-it": "^14.3.0",
+    "markdown-it-include": "^2.0.0"
+  }
+}

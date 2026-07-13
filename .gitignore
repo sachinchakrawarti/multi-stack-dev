@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Lock files (optional - usually keep these in Git)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.*
+
+# Build output
+dist/
+build/
+out/
+
+# Marp output
+output/
+*.pdf
+*.pptx
+*.html
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

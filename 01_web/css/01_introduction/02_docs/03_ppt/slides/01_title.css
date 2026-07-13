@@ -1,0 +1,116 @@
+/* slides/01_title.css - Blue Theme */
+.title-slide {
+    background: linear-gradient(135deg, #0a1628 0%, #1a365d 30%, #2b6cb0 70%, #3182ce 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background particles */
+.title-slide::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(66, 153, 225, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(49, 130, 206, 0.1) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+}
+
+.title-slide * {
+    position: relative;
+    z-index: 1;
+}
+
+.title-slide h1 {
+    font-size: 4.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #63b3ed, #bee3f8, #63b3ed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.title-slide .subtitle {
+    font-size: 2em;
+    color: #90cdf4;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.title-slide .chapter-number {
+    font-size: 1.2em;
+    color: #63b3ed;
+    background: rgba(49, 130, 206, 0.3);
+    padding: 8px 25px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 20px;
+    border: 2px solid rgba(99, 179, 237, 0.3);
+}
+
+.title-slide .author {
+    font-size: 1.5em;
+    color: #bee3f8;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(99, 179, 237, 0.3);
+    display: inline-block;
+}
+
+.title-slide .role {
+    font-size: 1em;
+    color: #90cdf4;
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+.title-slide .year {
+    font-size: 0.9em;
+    color: #63b3ed;
+    margin-top: 15px;
+    opacity: 0.7;
+}
+
+/* Decorative elements */
+.title-slide .deco-line {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #63b3ed, #bee3f8);
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+.title-slide .deco-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.title-slide .deco-dots span {
+    width: 8px;
+    height: 8px;
+    background: #63b3ed;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.title-slide .deco-dots span:nth-child(2) {
+    opacity: 0.8;
+    transform: scale(1.3);
+}
