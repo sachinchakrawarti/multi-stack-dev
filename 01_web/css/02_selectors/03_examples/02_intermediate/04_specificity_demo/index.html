@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Specificity Demo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>CSS Specificity Demo</h1>
+
+    <div class="container">
+
+        <section>
+
+            <h2>Example 1 - Element vs Class vs ID</h2>
+
+            <p id="intro" class="text">
+                Which color will this paragraph become?
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>Example 2 - Multiple Classes</h2>
+
+            <button class="btn primary">
+                Primary Button
+            </button>
+
+        </section>
+
+        <section>
+
+            <h2>Example 3 - Inline Style</h2>
+
+            <p class="inline-text" style="color:purple;">
+                Inline styles have higher priority.
+            </p>
+
+        </section>
+
+        <section>
+
+            <h2>Example 4 - !important</h2>
+
+            <p class="warning">
+                This paragraph uses !important.
+            </p>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

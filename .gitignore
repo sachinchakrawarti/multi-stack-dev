@@ -12,24 +12,3 @@ pnpm-debug.log*
 # yarn.lock
 # pnpm-lock.yaml
 
-# Environment variables
-.env
-.env.*
-
-# Build output
-dist/
-build/
-out/
-
-# Marp output
-output/
-*.pdf
-*.pptx
-*.html
-
-# VS Code
-.vscode/
-
-# OS files
-.DS_Store
-Thumbs.db

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selector Priority</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>CSS Selector Priority (Specificity)</h1>
+
+    <div class="container">
+
+        <h2>Example 1</h2>
+
+        <p class="text" id="message">
+            This paragraph is targeted by multiple selectors.
+        </p>
+
+        <hr>
+
+        <h2>Example 2</h2>
+
+        <button class="btn primary">
+            Normal Button
+        </button>
+
+        <hr>
+
+        <h2>Example 3</h2>
+
+        <p class="inline-demo" style="color: purple;">
+            This text has an inline style.
+        </p>
+
+        <hr>
+
+        <h2>Example 4</h2>
+
+        <p class="important-demo">
+            This text uses !important.
+        </p>
+
+    </div>
+
+</body>
+</html>
