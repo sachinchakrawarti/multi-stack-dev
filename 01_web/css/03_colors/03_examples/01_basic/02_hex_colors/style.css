@@ -1,0 +1,70 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#F5F5F5;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#1565C0;
+}
+
+p{
+    font-size:20px;
+    margin:12px 0;
+    font-weight:bold;
+}
+
+.primary{
+    color:#1565C0;
+}
+
+.success{
+    color:#2E7D32;
+}
+
+.warning{
+    color:#F9A825;
+}
+
+.danger{
+    color:#D32F2F;
+}
+
+.box{
+    width:220px;
+    padding:18px;
+    margin:15px 0;
+    border-radius:8px;
+    color:#FFFFFF;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.blue{
+    background:#1565C0;
+}
+
+.green{
+    background:#2E7D32;
+}
+
+.yellow{
+    background:#F9A825;
+    color:#000000;
+}
+
+.red{
+    background:#D32F2F;
+}
+
+.gray{
+    background:#455A64;
+}

@@ -1,0 +1,57 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:hsl(210,80%,45%);
+    margin-bottom:20px;
+}
+
+p{
+    text-align:center;
+    font-size:18px;
+    margin-bottom:35px;
+}
+
+.box{
+    width:340px;
+    margin:18px auto;
+    padding:18px;
+    border:2px solid hsl(210,80%,45%);
+    border-radius:8px;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    color:#000;
+}
+
+.alpha100{
+    background:hsla(210,80%,45%,1);
+    color:white;
+}
+
+.alpha75{
+    background:hsla(210,80%,45%,0.75);
+    color:white;
+}
+
+.alpha50{
+    background:hsla(210,80%,45%,0.5);
+}
+
+.alpha25{
+    background:hsla(210,80%,45%,0.25);
+}
+
+.alpha10{
+    background:hsla(210,80%,45%,0.1);
+}

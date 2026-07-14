@@ -1,0 +1,57 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:rgb(21,101,192);
+    margin-bottom:25px;
+}
+
+p{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.box{
+    width:320px;
+    padding:18px;
+    margin:18px auto;
+    border:2px solid rgb(21,101,192);
+    border-radius:8px;
+    color:#000;
+    font-weight:bold;
+    text-align:center;
+    font-size:18px;
+}
+
+.alpha100{
+    background:rgba(21,101,192,1);
+    color:white;
+}
+
+.alpha75{
+    background:rgba(21,101,192,0.75);
+    color:white;
+}
+
+.alpha50{
+    background:rgba(21,101,192,0.5);
+}
+
+.alpha25{
+    background:rgba(21,101,192,0.25);
+}
+
+.alpha10{
+    background:rgba(21,101,192,0.1);
+}

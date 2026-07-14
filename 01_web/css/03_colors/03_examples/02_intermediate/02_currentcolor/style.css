@@ -1,0 +1,63 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:#1565c0;
+    margin-bottom:20px;
+}
+
+body>p{
+    text-align:center;
+    margin-bottom:35px;
+    font-size:18px;
+}
+
+.card{
+    width:420px;
+    margin:20px auto;
+    padding:20px;
+    border:3px solid currentColor;
+    border-radius:10px;
+    background:white;
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.card p{
+    margin-bottom:20px;
+    line-height:1.6;
+}
+
+.card button{
+    padding:10px 18px;
+    border:2px solid currentColor;
+    background:currentColor;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.blue{
+    color:#1565c0;
+}
+
+.green{
+    color:#2e7d32;
+}
+
+.crimson{
+    color:crimson;
+}
