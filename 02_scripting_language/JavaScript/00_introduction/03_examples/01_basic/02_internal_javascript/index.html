@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 - Internal JavaScript</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 id="heading">Internal JavaScript</h1>
+
+        <p>
+            This example demonstrates how to write JavaScript directly inside an HTML document using the
+            <code>&lt;script&gt;</code> tag.
+        </p>
+
+        <button onclick="showMessage()">
+            Click Me
+        </button>
+
+        <p class="note">
+            Open the browser console (F12 → Console) to view the output.
+        </p>
+
+    </div>
+
+    <!-- Internal JavaScript -->
+    <script>
+
+        console.log("Internal JavaScript Loaded!");
+
+        function showMessage() {
+
+            alert("Hello from Internal JavaScript!");
+
+            console.log("Button Clicked!");
+
+            document.getElementById("heading").textContent =
+                "Button Clicked Successfully!";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+/* ===================================
+   Digital Clock Example
+=================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+}
+
+.clock-container {
+    width: 420px;
+    max-width: 90%;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    padding: 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+
+#clock {
+    font-size: 52px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    color: #38bdf8;
+}
+
+#date {
+    font-size: 18px;
+    color: #d1d5db;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
