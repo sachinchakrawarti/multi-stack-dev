@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Variable Declaration - Browser Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 JavaScript Variable Declaration</h1>
+            <p>Understanding <code>var</code>, <code>let</code>, and <code>const</code></p>
+        </header>
+
+        <main>
+            <section class="demo-section" id="var-demo">
+                <h2>var <span class="badge">Function-Scoped</span></h2>
+                <div class="demo-content">
+                    <button onclick="demoVar()">Run var Demo</button>
+                    <div id="var-output" class="output"></div>
+                </div>
+            </section>
+
+            <section class="demo-section" id="let-demo">
+                <h2>let <span class="badge">Block-Scoped</span></h2>
+                <div class="demo-content">
+                    <button onclick="demoLet()">Run let Demo</button>
+                    <div id="let-output" class="output"></div>
+                </div>
+            </section>
+
+            <section class="demo-section" id="const-demo">
+                <h2>const <span class="badge">Constant</span></h2>
+                <div class="demo-content">
+                    <button onclick="demoConst()">Run const Demo</button>
+                    <div id="const-output" class="output"></div>
+                </div>
+            </section>
+
+            <section class="demo-section" id="comparison">
+                <h2>🔄 Comparison</h2>
+                <div class="demo-content">
+                    <button onclick="runComparison()">Run Comparison</button>
+                    <div id="comparison-output" class="output"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Open the console (F12) to see more details</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
