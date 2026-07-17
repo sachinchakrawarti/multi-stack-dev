@@ -9,10 +9,10 @@ const ora = require('ora');
 
 const git = simpleGit();
 
-// ============ CONFIGURATION - BATCH ALL CHANGES ============
-const DEBOUNCE_MS = 5000;            // Wait 5 seconds after last change
-const BATCH_INTERVAL_MS = 60000;     // Push every 1 minute (backup)
-const FORCE_PUSH_INTERVAL = 120000;  // Force push every 2 minutes
+// ============ CONFIGURATION ============
+const DEBOUNCE_MS = 5000;
+const BATCH_INTERVAL_MS = 60000;
+const FORCE_PUSH_INTERVAL = 120000;
 
 let timeoutId = null;
 let isPushing = false;
@@ -23,8 +23,7 @@ let startTime = new Date();
 let xpPoints = 0;
 let achievements = [];
 let pendingChanges = new Set();
-let lastPushTime = Date.now();
-let isProcessing = false; // Prevent multiple triggers
+let isProcessing = false;
 
 // Color-coded logging
 const log = {
@@ -36,6 +35,159 @@ const log = {
     dim: (msg) => console.log(chalk.dim(msg))
 };
 
+// ============ AUTO COMMIT MESSAGE GENERATOR ============
+function generateCommitMessage(files, pushNumber) {
+    const fileTypes = {
+        '.md': '📝 Update documentation',
+        '.js': '⚡ Update JavaScript code',
+        '.jsx': '⚛️ Update React component',
+        '.ts': '📘 Update TypeScript code',
+        '.tsx': '⚛️ Update TypeScript React component',
+        '.css': '🎨 Update styles',
+        '.scss': '🎨 Update SCSS styles',
+        '.html': '🌐 Update HTML',
+        '.json': '📦 Update configuration',
+        '.yml': '🔧 Update YAML config',
+        '.yaml': '🔧 Update YAML config',
+        '.py': '🐍 Update Python code',
+        '.java': '☕ Update Java code',
+        '.cpp': '⚙️ Update C++ code',
+        '.c': '⚙️ Update C code',
+        '.go': '🐹 Update Go code',
+        '.rs': '🦀 Update Rust code',
+        '.rb': '💎 Update Ruby code',
+        '.php': '🐘 Update PHP code',
+        '.sh': '🐚 Update shell script',
+        '.bat': '🪟 Update batch script',
+        '.ps1': '🖥️ Update PowerShell script',
+        '.png': '🖼️ Update image',
+        '.jpg': '🖼️ Update image',
+        '.jpeg': '🖼️ Update image',
+        '.svg': '🎨 Update SVG',
+        '.pdf': '📄 Update PDF',
+        '.txt': '📄 Update text file',
+        '.env': '🔐 Update environment variables',
+        '.gitignore': '🚫 Update gitignore',
+        'Dockerfile': '🐳 Update Dockerfile',
+        'docker-compose.yml': '🐳 Update Docker Compose',
+        'package.json': '📦 Update npm dependencies',
+        'package-lock.json': '📦 Update npm lockfile',
+        'README.md': '📖 Update README'
+    };
+
+    // Count file types
+    const types = {};
+    const fileNames = [];
+    
+    files.forEach(file => {
+        const ext = path.extname(file);
+        const base = path.basename(file);
+        const key = ext || base;
+        types[key] = (types[key] || 0) + 1;
+        fileNames.push(base);
+    });
+
+    // Find most common type
+    let maxCount = 0;
+    let mainType = '📁 Update files';
+    let mainExt = '';
+    for (const [ext, count] of Object.entries(types)) {
+        if (count > maxCount) {
+            maxCount = count;
+            mainExt = ext;
+            mainType = fileTypes[ext] || `📁 Update ${ext || 'files'}`;
+        }
+    }
+
+    // Generate message
+    const total = files.length;
+    let message = '';
+
+    if (total === 1) {
+        // Single file: detailed message
+        const singleFile = fileNames[0];
+        const ext = path.extname(singleFile);
+        const type = fileTypes[ext] || `📁 Update ${singleFile}`;
+        message = `${type}`;
+    } else {
+        // Multiple files: summary
+        const countText = ` (${total} files)`;
+        const typeText = mainType.includes('Update') ? 
+            mainType.replace('Update', `Update ${total}`) : 
+            `${mainType}${countText}`;
+        message = typeText;
+        
+        // Add emoji for variety based on file count
+        if (total >= 10) {
+            message = `📦 Bulk update ${total} files`;
+        } else if (total >= 5) {
+            message = `📚 Update ${total} files`;
+        }
+    }
+
+    // Add push number for tracking
+    return `[#${pushNumber}] ${message}`;
+}
+
+// ============ GENERATE COMMIT MESSAGE WITH EMOJIS ============
+function generateEmojiCommit(files, pushNumber) {
+    const emojis = {
+        '.md': '📝',
+        '.js': '⚡',
+        '.jsx': '⚛️',
+        '.ts': '📘',
+        '.tsx': '⚛️',
+        '.css': '🎨',
+        '.scss': '🎨',
+        '.html': '🌐',
+        '.json': '📦',
+        '.yml': '🔧',
+        '.yaml': '🔧',
+        '.py': '🐍',
+        '.java': '☕',
+        '.cpp': '⚙️',
+        '.c': '⚙️',
+        '.go': '🐹',
+        '.rs': '🦀',
+        '.rb': '💎',
+        '.php': '🐘',
+        '.sh': '🐚',
+        '.ps1': '🖥️',
+        '.png': '🖼️',
+        '.jpg': '🖼️',
+        '.svg': '🎨',
+        '.txt': '📄',
+        '.env': '🔐',
+        'package.json': '📦',
+        'README.md': '📖',
+        'Dockerfile': '🐳'
+    };
+
+    const types = {};
+    files.forEach(file => {
+        const ext = path.extname(file);
+        const base = path.basename(file);
+        const key = ext || base;
+        types[key] = (types[key] || 0) + 1;
+    });
+
+    let mainExt = '';
+    let maxCount = 0;
+    for (const [ext, count] of Object.entries(types)) {
+        if (count > maxCount) {
+            maxCount = count;
+            mainExt = ext;
+        }
+    }
+
+    const emoji = emojis[mainExt] || '📁';
+    const total = files.length;
+    const fileCount = total > 1 ? ` (${total} files)` : '';
+    const action = total > 1 ? 'Update' : 'Update';
+    
+    return `[#${pushNumber}] ${emoji} ${action} ${path.extname(files[0]) || 'files'}${fileCount}`;
+}
+
 // Achievements configuration
 const ACHIEVEMENTS = {
     FIRST_PUSH: { id: 'first_push', name: 'First Push', icon: '🏆', condition: (count) => count === 1 },
@@ -45,11 +197,9 @@ const ACHIEVEMENTS = {
     NIGHT_OWL: { id: 'night_owl', name: 'Night Owl', icon: '🦉', condition: (count, hour) => hour >= 0 && hour < 5 },
     EARLY_BIRD: { id: 'early_bird', name: 'Early Bird', icon: '🐦', condition: (count, hour) => hour >= 5 && hour < 8 },
     PRODUCTIVE_DAY: { id: 'productive_day', name: 'Productive Day', icon: '📈', condition: (count, hour, todayCount) => todayCount >= 10 },
-    STREAK_3: { id: 'streak_3', name: '3-Day Streak', icon: '🔥', condition: (count, hour, todayCount, days) => days >= 3 },
-    STREAK_7: { id: 'streak_7', name: '7-Day Streak', icon: '⚡', condition: (count, hour, todayCount, days) => days >= 7 },
 };
 
-// ============ FIX: IGNORE LOGS AND REPORTS ============
+// Ignored paths
 const IGNORED_PATHS = [
     /(^|[\/\\])\../,
     /node_modules/,
@@ -60,8 +210,8 @@ const IGNORED_PATHS = [
     /\.cache/,
     /package-lock\.json/,
     /Out-Null/,
-    /logs/,          // ← IGNORE LOGS FOLDER
-    /reports/        // ← IGNORE REPORTS FOLDER
+    /logs/,
+    /reports/
 ];
 
 // Function to get formatted date and time
@@ -96,8 +246,6 @@ function checkAchievements(count, hour, todayCount, daysActive) {
                 condition = achievement.condition(count, hour);
             } else if (key === 'PRODUCTIVE_DAY') {
                 condition = achievement.condition(count, hour, todayCount);
-            } else if (key === 'STREAK_3' || key === 'STREAK_7') {
-                condition = achievement.condition(count, hour, todayCount, daysActive);
             } else {
                 condition = achievement.condition(count);
             }
@@ -129,7 +277,7 @@ function saveToLog(data) {
         if (!fs.existsSync(logDir)) fs.mkdirSync(logDir);
         
         const logFile = path.join(logDir, `push-log-${new Date().toISOString().split('T')[0]}.txt`);
-        const logEntry = `${new Date().toISOString()} | Push #${pushCount} | ${data.filesChanged} files | ${data.commitHash}\n`;
+        const logEntry = `${new Date().toISOString()} | Push #${pushCount} | ${data.filesChanged} files | ${data.commitHash} | ${data.commitMessage}\n`;
         fs.appendFileSync(logFile, logEntry);
         
         const jsonLog = path.join(logDir, 'push-history.json');
@@ -142,6 +290,7 @@ function saveToLog(data) {
             pushNumber: pushCount,
             filesChanged: data.filesChanged || 0,
             commitHash: data.commitHash || '',
+            commitMessage: data.commitMessage || '',
             xpEarned: data.xpEarned || 0
         });
         fs.writeFileSync(jsonLog, JSON.stringify(history, null, 2));
@@ -185,7 +334,6 @@ function generateReport() {
 
 // ============ MAIN PUSH FUNCTION ============
 async function pushChanges(trigger = 'auto') {
-    // Prevent multiple simultaneous pushes
     if (isPushing || isProcessing) {
         log.warning('Already pushing, skipping...');
         return;
@@ -212,41 +360,46 @@ async function pushChanges(trigger = 'auto') {
             clearOnComplete: true
         });
 
-        // Calculate unique files
-        const uniqueFiles = pendingChanges.size || status.files.length;
+        // Get file paths from status
+        const filePaths = status.files.map(f => f.path);
+        const uniqueFiles = pendingChanges.size || filePaths.length;
         const triggerText = trigger === 'timer' ? '⏰ Scheduled' : 
                            trigger === 'force' ? '💪 Force' : '📦 Batch';
         
         pushCount++;
         todayPushes++;
-        totalFilesChanged += status.files.length;
+        totalFilesChanged += filePaths.length;
         
         const { date, time, full, hour } = getFormattedDateTime();
+        
+        // ============ GENERATE AUTO COMMIT MESSAGE ============
+        const commitMessage = generateCommitMessage(filePaths, pushCount);
+        // Alternative: const commitMessage = generateEmojiCommit(filePaths, pushCount);
         
         printSeparator('═');
         log.highlight(`📦 BATCH PUSH #${pushCount} - ${triggerText} - ${full}`);
         printSeparator('─');
-        log.info(`📄 Total files changed: ${status.files.length}`);
+        log.info(`📄 Total files changed: ${filePaths.length}`);
         log.info(`📄 Unique files: ${uniqueFiles}`);
+        log.info(`📝 Commit message: ${chalk.yellow(commitMessage)}`);
         
         // Show changed files (limit to 20)
-        if (status.files.length > 0 && status.files.length <= 20) {
-            status.files.forEach(file => {
-                // Skip logs and reports in display
-                if (!file.path.includes('logs/') && !file.path.includes('reports/')) {
-                    console.log(`   📄 ${chalk.cyan(file.path)}`);
+        if (filePaths.length > 0 && filePaths.length <= 20) {
+            filePaths.forEach(file => {
+                if (!file.includes('logs/') && !file.includes('reports/')) {
+                    console.log(`   📄 ${chalk.cyan(file)}`);
                 }
             });
-        } else if (status.files.length > 20) {
-            log.info(`Showing first 20 of ${status.files.length} files:`);
+        } else if (filePaths.length > 20) {
+            log.info(`Showing first 20 of ${filePaths.length} files:`);
             let count = 0;
-            status.files.forEach(file => {
-                if (!file.path.includes('logs/') && !file.path.includes('reports/') && count < 20) {
-                    console.log(`   📄 ${chalk.cyan(file.path)}`);
+            filePaths.forEach(file => {
+                if (!file.includes('logs/') && !file.includes('reports/') && count < 20) {
+                    console.log(`   📄 ${chalk.cyan(file)}`);
                     count++;
                 }
             });
-            log.dim(`   ... and ${status.files.length - count} more`);
+            log.dim(`   ... and ${filePaths.length - count} more`);
         }
         
         printSeparator('─');
@@ -260,7 +413,6 @@ async function pushChanges(trigger = 'auto') {
         
         progressBar.update(2);
         log.info('📝 Committing batch...');
-        const commitMessage = `📦 Batch commit #${pushCount}: ${status.files.length} files changed`;
         const commitResult = await git.commit(commitMessage);
         
         if (commitResult.commit) {
@@ -272,11 +424,12 @@ async function pushChanges(trigger = 'auto') {
             progressBar.stop();
             
             // Calculate XP
-            const xpEarned = Math.floor(status.files.length * 2) + 15;
+            const xpEarned = Math.floor(filePaths.length * 2) + 15;
             xpPoints += xpEarned;
             
             log.success(`✅ Batch push #${pushCount} successful!`);
             log.success(`✅ Committed: ${commitResult.commit.substring(0, 7)}`);
+            log.success(`✅ Message: ${chalk.yellow(commitMessage)}`);
             console.log(chalk.magenta(`⭐ +${xpEarned} XP (Total: ${xpPoints} XP)`));
             
             // Reset pending changes
@@ -304,12 +457,13 @@ async function pushChanges(trigger = 'auto') {
             
             sendNotification(
                 `✅ Batch Push #${pushCount} Successful`,
-                `${status.files.length} files pushed | ⭐ +${xpEarned} XP`
+                `${filePaths.length} files pushed | ⭐ +${xpEarned} XP`
             );
             
             saveToLog({
-                filesChanged: status.files.length,
+                filesChanged: filePaths.length,
                 commitHash: commitResult.commit.substring(0, 7),
+                commitMessage: commitMessage,
                 xpEarned: xpEarned
             });
             
@@ -370,13 +524,10 @@ const spinner = ora({
     spinner: 'dots12'
 }).start();
 
-// File change handler - COLLECT CHANGES, NO IMMEDIATE PUSH
+// File change handler
 watcher
     .on('change', (filePath) => {
-        // Skip if it's a log or report file (double-check)
-        if (filePath.includes('logs/') || filePath.includes('reports/')) {
-            return;
-        }
+        if (filePath.includes('logs/') || filePath.includes('reports/')) return;
         
         const { time } = getFormattedDateTime();
         const fileName = path.basename(filePath);
@@ -386,9 +537,7 @@ watcher
         schedulePush();
     })
     .on('add', (filePath) => {
-        if (filePath.includes('logs/') || filePath.includes('reports/')) {
-            return;
-        }
+        if (filePath.includes('logs/') || filePath.includes('reports/')) return;
         
         const { time } = getFormattedDateTime();
         const fileName = path.basename(filePath);
@@ -398,9 +547,7 @@ watcher
         schedulePush();
     })
     .on('unlink', (filePath) => {
-        if (filePath.includes('logs/') || filePath.includes('reports/')) {
-            return;
-        }
+        if (filePath.includes('logs/') || filePath.includes('reports/')) return;
         
         const { time } = getFormattedDateTime();
         const fileName = path.basename(filePath);
@@ -414,7 +561,7 @@ watcher
         spinner.color = 'red';
     });
 
-// Debounce function - waits then pushes ALL at once
+// Debounce function
 function schedulePush() {
     if (timeoutId) clearTimeout(timeoutId);
     spinner.text = `⏳ Waiting for changes to settle... (${pendingChanges.size} files collected)`;
@@ -500,6 +647,7 @@ console.log(`⏱️  Debounce: ${chalk.yellow(DEBOUNCE_MS/1000)} seconds`);
 console.log(`⏰ Scheduled Batch: ${chalk.yellow(BATCH_INTERVAL_MS/60000)} minutes`);
 console.log(`💪 Force Push: ${chalk.yellow(FORCE_PUSH_INTERVAL/60000)} minutes`);
 console.log(`📅 Started: ${chalk.green(getFormattedDateTime().full)}`);
+console.log(`🤖 Auto Commit Messages: ${chalk.magenta('ENABLED')}`);
 console.log(`🏆 Achievements: ${chalk.magenta('Enabled')}`);
 console.log(`⭐ XP System: ${chalk.magenta('Enabled')}`);
 console.log(`🔔 Notifications: ${chalk.magenta('Enabled')}`);
