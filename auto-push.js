@@ -10,9 +10,9 @@ const ora = require('ora');
 const git = simpleGit();
 
 // ============ CONFIGURATION - BATCH ALL CHANGES ============
-const DEBOUNCE_MS = 5000;            // Wait 5 seconds after last change (batch everything)
+const DEBOUNCE_MS = 5000;            // Wait 5 seconds after last change
 const BATCH_INTERVAL_MS = 60000;     // Push every 1 minute (backup)
-const FORCE_PUSH_INTERVAL = 120000;  // Force push every 2 minutes (guaranteed)
+const FORCE_PUSH_INTERVAL = 120000;  // Force push every 2 minutes
 
 let timeoutId = null;
 let isPushing = false;
@@ -24,6 +24,7 @@ let xpPoints = 0;
 let achievements = [];
 let pendingChanges = new Set();
 let lastPushTime = Date.now();
+let isProcessing = false; // Prevent multiple triggers
 
 // Color-coded logging
 const log = {
@@ -48,7 +49,7 @@ const ACHIEVEMENTS = {
     STREAK_7: { id: 'streak_7', name: '7-Day Streak', icon: '⚡', condition: (count, hour, todayCount, days) => days >= 7 },
 };
 
-// Ignored paths
+// ============ FIX: IGNORE LOGS AND REPORTS ============
 const IGNORED_PATHS = [
     /(^|[\/\\])\../,
     /node_modules/,
@@ -58,7 +59,9 @@ const IGNORED_PATHS = [
     /\.docusaurus/,
     /\.cache/,
     /package-lock\.json/,
-    /Out-Null/
+    /Out-Null/,
+    /logs/,          // ← IGNORE LOGS FOLDER
+    /reports/        // ← IGNORE REPORTS FOLDER
 ];
 
 // Function to get formatted date and time
@@ -182,19 +185,12 @@ function generateReport() {
 
 // ============ MAIN PUSH FUNCTION ============
 async function pushChanges(trigger = 'auto') {
-    if (isPushing) {
+    // Prevent multiple simultaneous pushes
+    if (isPushing || isProcessing) {
         log.warning('Already pushing, skipping...');
         return;
     }
-    isPushing = true;
-    
-    const progressBar = new cliProgress.SingleBar({
-        format: '📤 Push Progress |' + chalk.cyan('{bar}') + '| {percentage}% | {value}/{total} steps',
-        barCompleteChar: '\u2588',
-        barIncompleteChar: '\u2591',
-        hideCursor: true,
-        clearOnComplete: true
-    });
+    isProcessing = true;
     
     try {
         const status = await git.status();
@@ -202,11 +198,21 @@ async function pushChanges(trigger = 'auto') {
         if (status.files.length === 0 && status.staging.length === 0) {
             const { time } = getFormattedDateTime();
             log.warning(`No changes to commit (${time})`);
-            isPushing = false;
+            isProcessing = false;
             return;
         }
 
-        // Calculate how many unique files
+        isPushing = true;
+        
+        const progressBar = new cliProgress.SingleBar({
+            format: '📤 Push Progress |' + chalk.cyan('{bar}') + '| {percentage}% | {value}/{total} steps',
+            barCompleteChar: '\u2588',
+            barIncompleteChar: '\u2591',
+            hideCursor: true,
+            clearOnComplete: true
+        });
+
+        // Calculate unique files
         const uniqueFiles = pendingChanges.size || status.files.length;
         const triggerText = trigger === 'timer' ? '⏰ Scheduled' : 
                            trigger === 'force' ? '💪 Force' : '📦 Batch';
@@ -223,17 +229,24 @@ async function pushChanges(trigger = 'auto') {
         log.info(`📄 Total files changed: ${status.files.length}`);
         log.info(`📄 Unique files: ${uniqueFiles}`);
         
-        // Show changed files (limit to 20 for readability)
+        // Show changed files (limit to 20)
         if (status.files.length > 0 && status.files.length <= 20) {
             status.files.forEach(file => {
-                console.log(`   📄 ${chalk.cyan(file.path)}`);
+                // Skip logs and reports in display
+                if (!file.path.includes('logs/') && !file.path.includes('reports/')) {
+                    console.log(`   📄 ${chalk.cyan(file.path)}`);
+                }
             });
         } else if (status.files.length > 20) {
             log.info(`Showing first 20 of ${status.files.length} files:`);
-            status.files.slice(0, 20).forEach(file => {
-                console.log(`   📄 ${chalk.cyan(file.path)}`);
+            let count = 0;
+            status.files.forEach(file => {
+                if (!file.path.includes('logs/') && !file.path.includes('reports/') && count < 20) {
+                    console.log(`   📄 ${chalk.cyan(file.path)}`);
+                    count++;
+                }
             });
-            log.dim(`   ... and ${status.files.length - 20} more`);
+            log.dim(`   ... and ${status.files.length - count} more`);
         }
         
         printSeparator('─');
@@ -258,7 +271,7 @@ async function pushChanges(trigger = 'auto') {
             progressBar.update(4);
             progressBar.stop();
             
-            // Calculate XP (bonus for batch size)
+            // Calculate XP
             const xpEarned = Math.floor(status.files.length * 2) + 15;
             xpPoints += xpEarned;
             
@@ -291,8 +304,7 @@ async function pushChanges(trigger = 'auto') {
             
             sendNotification(
                 `✅ Batch Push #${pushCount} Successful`,
-                `${status.files.length} files pushed | ⭐ +${xpEarned} XP`,
-                null
+                `${status.files.length} files pushed | ⭐ +${xpEarned} XP`
             );
             
             saveToLog({
@@ -311,7 +323,6 @@ async function pushChanges(trigger = 'auto') {
         }
         
     } catch (error) {
-        progressBar.stop();
         log.error(`Error: ${error.message}`);
         if (error.message.includes('Authentication failed')) {
             log.warning('💡 Please check your Git credentials');
@@ -320,6 +331,7 @@ async function pushChanges(trigger = 'auto') {
         printSeparator('─');
     } finally {
         isPushing = false;
+        isProcessing = false;
     }
 }
 
@@ -358,17 +370,26 @@ const spinner = ora({
     spinner: 'dots12'
 }).start();
 
-// File change handler - JUST COLLECT CHANGES, NO IMMEDIATE PUSH
+// File change handler - COLLECT CHANGES, NO IMMEDIATE PUSH
 watcher
     .on('change', (filePath) => {
+        // Skip if it's a log or report file (double-check)
+        if (filePath.includes('logs/') || filePath.includes('reports/')) {
+            return;
+        }
+        
         const { time } = getFormattedDateTime();
         const fileName = path.basename(filePath);
         pendingChanges.add(filePath);
         spinner.text = `📝 Collecting: ${fileName} (${pendingChanges.size} files) (${time})`;
         spinner.color = 'yellow';
-        schedulePush(); // Will wait for debounce
+        schedulePush();
     })
     .on('add', (filePath) => {
+        if (filePath.includes('logs/') || filePath.includes('reports/')) {
+            return;
+        }
+        
         const { time } = getFormattedDateTime();
         const fileName = path.basename(filePath);
         pendingChanges.add(filePath);
@@ -377,6 +398,10 @@ watcher
         schedulePush();
     })
     .on('unlink', (filePath) => {
+        if (filePath.includes('logs/') || filePath.includes('reports/')) {
+            return;
+        }
+        
         const { time } = getFormattedDateTime();
         const fileName = path.basename(filePath);
         pendingChanges.add(filePath);
@@ -389,15 +414,17 @@ watcher
         spinner.color = 'red';
     });
 
-// Debounce function - waits for changes to settle then pushes ALL at once
+// Debounce function - waits then pushes ALL at once
 function schedulePush() {
     if (timeoutId) clearTimeout(timeoutId);
     spinner.text = `⏳ Waiting for changes to settle... (${pendingChanges.size} files collected)`;
     spinner.color = 'yellow';
     timeoutId = setTimeout(() => {
         spinner.stop();
-        log.info(`📦 Pushing all ${pendingChanges.size} files together...`);
-        pushChanges('batch');
+        if (pendingChanges.size > 0) {
+            log.info(`📦 Pushing all ${pendingChanges.size} files together...`);
+            pushChanges('batch');
+        }
         spinner.start();
         timeoutId = null;
     }, DEBOUNCE_MS);
@@ -412,15 +439,11 @@ setInterval(async () => {
             log.info('⏰ Scheduled batch push triggered');
             await pushChanges('timer');
             spinner.start();
-        } else {
-            log.dim(`⏰ No changes (${new Date().toLocaleTimeString()})`);
         }
-    } catch (error) {
-        // Silent
-    }
+    } catch (error) {}
 }, BATCH_INTERVAL_MS);
 
-// ============ FORCE PUSH (Guaranteed) ============
+// ============ FORCE PUSH ============
 setInterval(async () => {
     try {
         const status = await git.status();
@@ -430,9 +453,7 @@ setInterval(async () => {
             await pushChanges('force');
             spinner.start();
         }
-    } catch (error) {
-        // Silent
-    }
+    } catch (error) {}
 }, FORCE_PUSH_INTERVAL);
 
 // ============ GRACEFUL SHUTDOWN ============
@@ -447,7 +468,6 @@ process.on('SIGINT', async () => {
     log.info(`⭐ Total XP: ${xpPoints}`);
     log.info(`🏆 Achievements: ${achievements.length}`);
     
-    // Final push if there are pending changes
     try {
         const status = await git.status();
         if (status.files.length > 0) {
@@ -476,7 +496,7 @@ console.log(chalk.bold.cyan('╔════════════════
 console.log(chalk.bold.cyan('║   📦 BATCH AUTO-PUSH WATCHER STARTED                             ║'));
 console.log(chalk.bold.cyan('╚═══════════════════════════════════════════════════════════════════╝'));
 console.log(`\n📁 Root: ${chalk.cyan(process.cwd())}`);
-console.log(`⏱️  Debounce: ${chalk.yellow(DEBOUNCE_MS/1000)} seconds (batch all changes)`);
+console.log(`⏱️  Debounce: ${chalk.yellow(DEBOUNCE_MS/1000)} seconds`);
 console.log(`⏰ Scheduled Batch: ${chalk.yellow(BATCH_INTERVAL_MS/60000)} minutes`);
 console.log(`💪 Force Push: ${chalk.yellow(FORCE_PUSH_INTERVAL/60000)} minutes`);
 console.log(`📅 Started: ${chalk.green(getFormattedDateTime().full)}`);
@@ -484,6 +504,7 @@ console.log(`🏆 Achievements: ${chalk.magenta('Enabled')}`);
 console.log(`⭐ XP System: ${chalk.magenta('Enabled')}`);
 console.log(`🔔 Notifications: ${chalk.magenta('Enabled')}`);
 console.log(`📦 Batch Mode: ${chalk.magenta('ALL CHANGES BATCHED TOGETHER')}`);
+console.log(`🚫 Ignored: ${chalk.dim('logs/, reports/, node_modules/, .git/')}`);
 console.log('🔒 Press Ctrl+C to stop\n');
 printSeparator('─');
 
