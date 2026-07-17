@@ -5,12 +5,15 @@ const fs = require('fs');
 const notifier = require('node-notifier');
 const cliProgress = require('cli-progress');
 const chalk = require('chalk');
-
-// Fix for ora v5 - CommonJS compatible
 const ora = require('ora');
 
 const git = simpleGit();
-const DEBOUNCE_MS = 2000;
+
+// ============ CONFIGURATION - BATCH ALL CHANGES ============
+const DEBOUNCE_MS = 5000;            // Wait 5 seconds after last change (batch everything)
+const BATCH_INTERVAL_MS = 60000;     // Push every 1 minute (backup)
+const FORCE_PUSH_INTERVAL = 120000;  // Force push every 2 minutes (guaranteed)
+
 let timeoutId = null;
 let isPushing = false;
 let pushCount = 0;
@@ -19,7 +22,8 @@ let totalFilesChanged = 0;
 let startTime = new Date();
 let xpPoints = 0;
 let achievements = [];
-let pushHistory = [];
+let pendingChanges = new Set();
+let lastPushTime = Date.now();
 
 // Color-coded logging
 const log = {
@@ -79,23 +83,13 @@ function printSeparator(char = '═', length = 70) {
     console.log(chalk.dim(char.repeat(length)));
 }
 
-// Function to print header
-function printHeader(title, char = '═') {
-    printSeparator(char);
-    console.log(chalk.cyan(`║   ${title}`));
-    printSeparator(char);
-}
-
 // Show achievements
 function checkAchievements(count, hour, todayCount, daysActive) {
     const unlocked = [];
-    
     for (const [key, achievement] of Object.entries(ACHIEVEMENTS)) {
         if (!achievements.includes(key)) {
             let condition = false;
-            if (key === 'NIGHT_OWL') {
-                condition = achievement.condition(count, hour);
-            } else if (key === 'EARLY_BIRD') {
+            if (key === 'NIGHT_OWL' || key === 'EARLY_BIRD') {
                 condition = achievement.condition(count, hour);
             } else if (key === 'PRODUCTIVE_DAY') {
                 condition = achievement.condition(count, hour, todayCount);
@@ -104,14 +98,12 @@ function checkAchievements(count, hour, todayCount, daysActive) {
             } else {
                 condition = achievement.condition(count);
             }
-            
             if (condition) {
                 achievements.push(key);
                 unlocked.push(achievement);
             }
         }
     }
-    
     return unlocked;
 }
 
@@ -124,25 +116,19 @@ function sendNotification(title, message, icon = null) {
             sound: true,
             wait: false
         });
-        log.info(`🔔 Notification sent: ${title}`);
-    } catch (error) {
-        log.warning('Notification failed (silent mode)');
-    }
+    } catch (error) {}
 }
 
 // Save to log file
 function saveToLog(data) {
     try {
         const logDir = path.join(__dirname, 'logs');
-        if (!fs.existsSync(logDir)) {
-            fs.mkdirSync(logDir);
-        }
+        if (!fs.existsSync(logDir)) fs.mkdirSync(logDir);
         
         const logFile = path.join(logDir, `push-log-${new Date().toISOString().split('T')[0]}.txt`);
         const logEntry = `${new Date().toISOString()} | Push #${pushCount} | ${data.filesChanged} files | ${data.commitHash}\n`;
         fs.appendFileSync(logFile, logEntry);
         
-        // Also save to JSON for analytics
         const jsonLog = path.join(logDir, 'push-history.json');
         let history = [];
         if (fs.existsSync(jsonLog)) {
@@ -156,9 +142,7 @@ function saveToLog(data) {
             xpEarned: data.xpEarned || 0
         });
         fs.writeFileSync(jsonLog, JSON.stringify(history, null, 2));
-    } catch (error) {
-        // Silent fail for logging
-    }
+    } catch (error) {}
 }
 
 // Generate report
@@ -193,18 +177,17 @@ function generateReport() {
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 `;
-    
     return report;
 }
 
-async function pushChanges() {
+// ============ MAIN PUSH FUNCTION ============
+async function pushChanges(trigger = 'auto') {
     if (isPushing) {
         log.warning('Already pushing, skipping...');
         return;
     }
     isPushing = true;
     
-    // Create progress bar
     const progressBar = new cliProgress.SingleBar({
         format: '📤 Push Progress |' + chalk.cyan('{bar}') + '| {percentage}% | {value}/{total} steps',
         barCompleteChar: '\u2588',
@@ -223,7 +206,11 @@ async function pushChanges() {
             return;
         }
 
-        // Increment counters
+        // Calculate how many unique files
+        const uniqueFiles = pendingChanges.size || status.files.length;
+        const triggerText = trigger === 'timer' ? '⏰ Scheduled' : 
+                           trigger === 'force' ? '💪 Force' : '📦 Batch';
+        
         pushCount++;
         todayPushes++;
         totalFilesChanged += status.files.length;
@@ -231,21 +218,22 @@ async function pushChanges() {
         const { date, time, full, hour } = getFormattedDateTime();
         
         printSeparator('═');
-        log.highlight(`📝 PUSH #${pushCount} - ${full}`);
+        log.highlight(`📦 BATCH PUSH #${pushCount} - ${triggerText} - ${full}`);
         printSeparator('─');
-        log.info(`📄 Files changed: ${status.files.length}`);
+        log.info(`📄 Total files changed: ${status.files.length}`);
+        log.info(`📄 Unique files: ${uniqueFiles}`);
         
-        // Show changed files
-        if (status.files.length > 0 && status.files.length <= 10) {
+        // Show changed files (limit to 20 for readability)
+        if (status.files.length > 0 && status.files.length <= 20) {
             status.files.forEach(file => {
                 console.log(`   📄 ${chalk.cyan(file.path)}`);
             });
-        } else if (status.files.length > 10) {
-            log.info(`Showing first 10 of ${status.files.length} files:`);
-            status.files.slice(0, 10).forEach(file => {
+        } else if (status.files.length > 20) {
+            log.info(`Showing first 20 of ${status.files.length} files:`);
+            status.files.slice(0, 20).forEach(file => {
                 console.log(`   📄 ${chalk.cyan(file.path)}`);
             });
-            log.dim(`   ... and ${status.files.length - 10} more`);
+            log.dim(`   ... and ${status.files.length - 20} more`);
         }
         
         printSeparator('─');
@@ -253,36 +241,34 @@ async function pushChanges() {
         // Start progress
         progressBar.start(4, 0);
         
-        // Step 1: Add files
         progressBar.update(1);
-        log.info('📤 Staging files...');
+        log.info('📤 Staging all files...');
         await git.add('.');
         
-        // Step 2: Commit
         progressBar.update(2);
-        log.info('📝 Committing...');
-        const commitMessage = `🤖 Auto-commit #${pushCount}: ${new Date().toISOString().replace('T', ' ').substring(0, 19)}`;
+        log.info('📝 Committing batch...');
+        const commitMessage = `📦 Batch commit #${pushCount}: ${status.files.length} files changed`;
         const commitResult = await git.commit(commitMessage);
         
         if (commitResult.commit) {
-            // Step 3: Push
             progressBar.update(3);
-            log.info('📤 Pushing to remote...');
+            log.info('📤 Pushing batch to remote...');
             await git.push();
             
-            // Step 4: Complete
             progressBar.update(4);
             progressBar.stop();
             
-            // Calculate XP
-            const xpEarned = Math.floor(status.files.length * 2) + 5;
+            // Calculate XP (bonus for batch size)
+            const xpEarned = Math.floor(status.files.length * 2) + 15;
             xpPoints += xpEarned;
             
-            log.success(`✅ Push #${pushCount} successful!`);
+            log.success(`✅ Batch push #${pushCount} successful!`);
             log.success(`✅ Committed: ${commitResult.commit.substring(0, 7)}`);
-            
-            // Show XP earned
             console.log(chalk.magenta(`⭐ +${xpEarned} XP (Total: ${xpPoints} XP)`));
+            
+            // Reset pending changes
+            pendingChanges.clear();
+            lastPushTime = Date.now();
             
             // Calculate uptime
             const uptime = Math.floor((new Date() - startTime) / 1000);
@@ -291,32 +277,24 @@ async function pushChanges() {
             const seconds = uptime % 60;
             log.info(`⏱️  Uptime: ${hours}h ${minutes}m ${seconds}s`);
             
-            // Calculate daily streak (simplified)
-            const daysActive = 1;
-            
             // Check achievements
+            const daysActive = 1;
             const unlockedAchievements = checkAchievements(pushCount, hour, todayPushes, daysActive);
             if (unlockedAchievements.length > 0) {
                 printSeparator('─');
                 log.highlight('🏆 ACHIEVEMENT UNLOCKED! 🏆');
                 unlockedAchievements.forEach(ach => {
                     console.log(chalk.magenta(`   ${ach.icon} ${ach.name}`));
-                    sendNotification(
-                        `🏆 Achievement Unlocked!`,
-                        `${ach.icon} ${ach.name}`,
-                        null
-                    );
+                    sendNotification(`🏆 Achievement Unlocked!`, `${ach.icon} ${ach.name}`);
                 });
             }
             
-            // Send Windows notification
             sendNotification(
-                `✅ Push #${pushCount} Successful`,
+                `✅ Batch Push #${pushCount} Successful`,
                 `${status.files.length} files pushed | ⭐ +${xpEarned} XP`,
                 null
             );
             
-            // Save to log
             saveToLog({
                 filesChanged: status.files.length,
                 commitHash: commitResult.commit.substring(0, 7),
@@ -324,7 +302,7 @@ async function pushChanges() {
             });
             
             printSeparator('═');
-            log.highlight('✨ Done!\n');
+            log.highlight(`✨ Batch #${pushCount} complete!\n`);
             
         } else {
             progressBar.stop();
@@ -350,12 +328,14 @@ function showDailyStats() {
     const { date } = getFormattedDateTime();
     printSeparator('─');
     log.info(`📊 Today's Stats (${date}):`);
-    log.info(`   Pushes: ${todayPushes}`);
+    log.info(`   Batch Pushes: ${todayPushes}`);
+    log.info(`   Total Files: ${totalFilesChanged}`);
     log.info(`   XP Earned: ${xpPoints} ⭐`);
     log.info(`   Achievements: ${achievements.length}`);
     printSeparator('─');
 }
 
+// ============ FILE WATCHER ============
 const watcher = chokidar.watch('.', {
     ignored: (path) => {
         for (const pattern of IGNORED_PATHS) {
@@ -371,29 +351,36 @@ const watcher = chokidar.watch('.', {
     }
 });
 
-// Animated spinner for waiting
+// Animated spinner
 const spinner = ora({
     text: 'Watching for file changes...',
     color: 'cyan',
     spinner: 'dots12'
 }).start();
 
+// File change handler - JUST COLLECT CHANGES, NO IMMEDIATE PUSH
 watcher
     .on('change', (filePath) => {
         const { time } = getFormattedDateTime();
-        spinner.text = `🔄 Modified: ${path.basename(filePath)} (${time})`;
+        const fileName = path.basename(filePath);
+        pendingChanges.add(filePath);
+        spinner.text = `📝 Collecting: ${fileName} (${pendingChanges.size} files) (${time})`;
         spinner.color = 'yellow';
-        schedulePush();
+        schedulePush(); // Will wait for debounce
     })
     .on('add', (filePath) => {
         const { time } = getFormattedDateTime();
-        spinner.text = `➕ Added: ${path.basename(filePath)} (${time})`;
+        const fileName = path.basename(filePath);
+        pendingChanges.add(filePath);
+        spinner.text = `➕ Added: ${fileName} (${pendingChanges.size} files) (${time})`;
         spinner.color = 'green';
         schedulePush();
     })
     .on('unlink', (filePath) => {
         const { time } = getFormattedDateTime();
-        spinner.text = `➖ Deleted: ${path.basename(filePath)} (${time})`;
+        const fileName = path.basename(filePath);
+        pendingChanges.add(filePath);
+        spinner.text = `➖ Deleted: ${fileName} (${pendingChanges.size} files) (${time})`;
         spinner.color = 'red';
         schedulePush();
     })
@@ -402,71 +389,105 @@ watcher
         spinner.color = 'red';
     });
 
+// Debounce function - waits for changes to settle then pushes ALL at once
 function schedulePush() {
     if (timeoutId) clearTimeout(timeoutId);
-    spinner.text = '⏳ Waiting for changes to settle...';
+    spinner.text = `⏳ Waiting for changes to settle... (${pendingChanges.size} files collected)`;
     spinner.color = 'yellow';
     timeoutId = setTimeout(() => {
         spinner.stop();
-        pushChanges();
+        log.info(`📦 Pushing all ${pendingChanges.size} files together...`);
+        pushChanges('batch');
         spinner.start();
         timeoutId = null;
     }, DEBOUNCE_MS);
 }
 
+// ============ TIME-BASED BATCH PUSH ============
+setInterval(async () => {
+    try {
+        const status = await git.status();
+        if (status.files.length > 0) {
+            spinner.stop();
+            log.info('⏰ Scheduled batch push triggered');
+            await pushChanges('timer');
+            spinner.start();
+        } else {
+            log.dim(`⏰ No changes (${new Date().toLocaleTimeString()})`);
+        }
+    } catch (error) {
+        // Silent
+    }
+}, BATCH_INTERVAL_MS);
+
+// ============ FORCE PUSH (Guaranteed) ============
+setInterval(async () => {
+    try {
+        const status = await git.status();
+        if (status.files.length > 0) {
+            spinner.stop();
+            log.warning('💪 Force push triggered - pushing all changes');
+            await pushChanges('force');
+            spinner.start();
+        }
+    } catch (error) {
+        // Silent
+    }
+}, FORCE_PUSH_INTERVAL);
+
+// ============ GRACEFUL SHUTDOWN ============
 process.on('SIGINT', async () => {
     spinner.stop();
     printSeparator('═');
     log.info('\n👋 Shutting down auto-push...');
     const { full } = getFormattedDateTime();
     log.info(`📅 Stopped at: ${full}`);
-    log.info(`📊 Total pushes: ${pushCount}`);
+    log.info(`📊 Total batch pushes: ${pushCount}`);
+    log.info(`📊 Total files pushed: ${totalFilesChanged}`);
     log.info(`⭐ Total XP: ${xpPoints}`);
     log.info(`🏆 Achievements: ${achievements.length}`);
     
-    // Generate and save final report
+    // Final push if there are pending changes
+    try {
+        const status = await git.status();
+        if (status.files.length > 0) {
+            log.info('📤 Pushing final batch...');
+            await pushChanges('final');
+        }
+    } catch (error) {}
+    
     const report = generateReport();
     console.log(report);
     
-    // Save report to file
     const reportDir = path.join(__dirname, 'reports');
-    if (!fs.existsSync(reportDir)) {
-        fs.mkdirSync(reportDir);
-    }
+    if (!fs.existsSync(reportDir)) fs.mkdirSync(reportDir);
     const reportFile = path.join(reportDir, `report-${new Date().toISOString().split('T')[0]}.txt`);
     fs.writeFileSync(reportFile, report);
     log.info(`📊 Report saved to: ${reportFile}`);
     
-    if (timeoutId) {
-        clearTimeout(timeoutId);
-        await pushChanges();
-    }
     await watcher.close();
     log.success('✅ Auto-push stopped');
     printSeparator('═');
     process.exit(0);
 });
 
-// Display startup
+// ============ STARTUP ============
 console.log(chalk.bold.cyan('╔═══════════════════════════════════════════════════════════════════╗'));
-console.log(chalk.bold.cyan('║   🚀 AUTO-PUSH WATCHER STARTED                                   ║'));
+console.log(chalk.bold.cyan('║   📦 BATCH AUTO-PUSH WATCHER STARTED                             ║'));
 console.log(chalk.bold.cyan('╚═══════════════════════════════════════════════════════════════════╝'));
 console.log(`\n📁 Root: ${chalk.cyan(process.cwd())}`);
-console.log(`⏱️  Debounce: ${chalk.yellow(DEBOUNCE_MS/1000)} seconds`);
+console.log(`⏱️  Debounce: ${chalk.yellow(DEBOUNCE_MS/1000)} seconds (batch all changes)`);
+console.log(`⏰ Scheduled Batch: ${chalk.yellow(BATCH_INTERVAL_MS/60000)} minutes`);
+console.log(`💪 Force Push: ${chalk.yellow(FORCE_PUSH_INTERVAL/60000)} minutes`);
 console.log(`📅 Started: ${chalk.green(getFormattedDateTime().full)}`);
 console.log(`🏆 Achievements: ${chalk.magenta('Enabled')}`);
 console.log(`⭐ XP System: ${chalk.magenta('Enabled')}`);
 console.log(`🔔 Notifications: ${chalk.magenta('Enabled')}`);
+console.log(`📦 Batch Mode: ${chalk.magenta('ALL CHANGES BATCHED TOGETHER')}`);
 console.log('🔒 Press Ctrl+C to stop\n');
 printSeparator('─');
 
-// Show daily stats every hour
-setInterval(() => {
-    if (pushCount > 0) {
-        showDailyStats();
-    }
-}, 3600000);
-
+// Initial check
 setTimeout(async () => {
     try {
         const status = await git.status();
@@ -474,13 +495,11 @@ setTimeout(async () => {
             const { full } = getFormattedDateTime();
             log.info(`📄 Found ${status.files.length} uncommitted changes at ${full}`);
             spinner.stop();
-            await pushChanges();
+            await pushChanges('initial');
             spinner.start();
         } else {
             log.success('✅ Repository clean');
             printSeparator('─');
         }
-    } catch (error) {
-        // Silent initial check
-    }
+    } catch (error) {}
 }, 1000);
