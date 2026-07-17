@@ -1,0 +1,179 @@
+<Slide>
+
+<DefaultLayout title="The let Keyword">
+
+## What is `let`?
+
+`let` was introduced in **ES6 (ECMAScript 2015)** to solve many problems associated with `var`.
+
+It is the recommended keyword for variables whose values may change.
+
+---
+
+## Syntax
+
+```javascript
+let variableName = value;
+```
+
+Example
+
+```javascript
+let age = 25;
+let city = "Bhopal";
+
+console.log(age);
+console.log(city);
+```
+
+---
+
+## Characteristics of `let`
+
+- Block scoped
+- Cannot be redeclared
+- Can be reassigned
+- Hoisted
+- Has a Temporal Dead Zone (TDZ)
+
+---
+
+## Reassignment
+
+```javascript
+let score = 70;
+
+score = 95;
+
+console.log(score);
+```
+
+Output
+
+```
+95
+```
+
+---
+
+## Redeclaration
+
+```javascript
+let city = "Delhi";
+
+let city = "Mumbai";
+```
+
+Output
+
+```
+SyntaxError
+```
+
+A variable declared with `let` cannot be declared again in the same scope.
+
+---
+
+## Block Scope
+
+```javascript
+if (true) {
+
+    let language = "JavaScript";
+
+    console.log(language);
+
+}
+```
+
+Output
+
+```
+JavaScript
+```
+
+Outside the block:
+
+```javascript
+console.log(language);
+```
+
+Output
+
+```
+ReferenceError
+```
+
+---
+
+## Temporal Dead Zone (TDZ)
+
+```javascript
+console.log(age);
+
+let age = 20;
+```
+
+Output
+
+```
+ReferenceError
+```
+
+Unlike `var`, `let` cannot be accessed before its declaration.
+
+---
+
+## Real-World Example
+
+```javascript
+let counter = 0;
+
+counter++;
+
+counter++;
+
+console.log(counter);
+```
+
+Output
+
+```
+2
+```
+
+Useful for:
+
+- Counters
+- Loops
+- User input
+- Dynamic values
+
+---
+
+## When to Use `let`
+
+Use `let` whenever a variable's value needs to change.
+
+Examples:
+
+- Score
+- Counter
+- User input
+- Shopping cart quantity
+- Temperature
+
+---
+
+## Key Takeaways
+
+- Modern JavaScript keyword
+- Block scoped
+- Reassignment allowed
+- Redeclaration not allowed
+- Protected by the Temporal Dead Zone
+- Recommended for mutable variables
+
+</DefaultLayout>
+
+</Slide>

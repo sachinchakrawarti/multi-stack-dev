@@ -1,0 +1,154 @@
+<Slide>
+
+<DefaultLayout title="The const Keyword">
+
+## What is `const`?
+
+`const` was introduced in **ES6 (ECMAScript 2015)**.
+
+It is used to declare variables whose **binding cannot be reassigned** after initialization.
+
+---
+
+## Syntax
+
+```javascript
+const variableName = value;
+```
+
+Example
+
+```javascript
+const PI = 3.14159;
+const country = "India";
+
+console.log(PI);
+console.log(country);
+```
+
+Output
+
+```
+3.14159
+India
+```
+
+---
+
+## Characteristics of `const`
+
+- Block scoped
+- Cannot be redeclared
+- Cannot be reassigned
+- Must be initialized during declaration
+- Hoisted with Temporal Dead Zone (TDZ)
+
+---
+
+## Initialization is Required
+
+✅ Correct
+
+```javascript
+const city = "Bhopal";
+```
+
+❌ Incorrect
+
+```javascript
+const city;
+```
+
+Output
+
+```
+SyntaxError: Missing initializer in const declaration
+```
+
+---
+
+## Reassignment
+
+```javascript
+const age = 25;
+
+age = 30;
+```
+
+Output
+
+```
+TypeError: Assignment to constant variable.
+```
+
+---
+
+## Objects and Arrays
+
+The variable cannot be reassigned, but the contents can be modified.
+
+```javascript
+const student = {
+    name: "Sachin",
+    age: 25
+};
+
+student.age = 26;
+
+console.log(student);
+```
+
+Output
+
+```javascript
+{
+    name: "Sachin",
+    age: 26
+}
+```
+
+---
+
+## Arrays
+
+```javascript
+const colors = ["Red", "Green"];
+
+colors.push("Blue");
+
+console.log(colors);
+```
+
+Output
+
+```javascript
+["Red", "Green", "Blue"]
+```
+
+---
+
+## Best Use Cases
+
+Use `const` for:
+
+- Configuration values
+- API URLs
+- Mathematical constants
+- Objects
+- Arrays
+- Functions
+
+---
+
+## Key Takeaways
+
+- Modern JavaScript keyword
+- Block scoped
+- Must be initialized
+- Cannot be reassigned
+- Preferred by default
+- Objects and arrays remain mutable internally
+
+</DefaultLayout>
+
+</Slide>

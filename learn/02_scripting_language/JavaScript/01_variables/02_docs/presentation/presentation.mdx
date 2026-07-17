@@ -1,0 +1,32 @@
+import Deck from "./components/Deck";
+
+import Introduction from "./slides/01_introduction.mdx";
+import WhatAreVariables from "./slides/02_what_are_variables.mdx";
+import WhyUseVariables from "./slides/03_why_use_variables.mdx";
+import VariableDeclaration from "./slides/04_variable_declaration.mdx";
+import VariableInitialization from "./slides/05_variable_initialization.mdx";
+import VariableExamples from "./slides/06_variable_examples.mdx";
+import RealWorldExamples from "./slides/07_real_world_examples.mdx";
+import BestPractices from "./slides/08_best_practices.mdx";
+import CommonMistakes from "./slides/09_common_mistakes.mdx";
+import Summary from "./slides/10_summary.mdx";
+
+export const metadata = {
+  title: "JavaScript Variables",
+  subtitle: "Learn the fundamentals of variables in JavaScript",
+  author: "BookQubit",
+  totalSlides: 10,
+};
+
+<Deck metadata={metadata}>
+  <Introduction />
+  <WhatAreVariables />
+  <WhyUseVariables />
+  <VariableDeclaration />
+  <VariableInitialization />
+  <VariableExamples />
+  <RealWorldExamples />
+  <BestPractices />
+  <CommonMistakes />
+  <Summary />
+</Deck>

@@ -1,0 +1,149 @@
+<Slide>
+
+<DefaultLayout title="JavaScript Variables - Interview Questions">
+
+## Frequently Asked Interview Questions
+
+### 1. What is a variable?
+
+A variable is a named container used to store data values in memory.
+
+---
+
+### 2. What are the three ways to declare variables?
+
+- `var`
+- `let`
+- `const`
+
+---
+
+### 3. Difference between `var`, `let`, and `const`
+
+| Feature | var | let | const |
+|----------|-----|-----|-------|
+| Scope | Function | Block | Block |
+| Redeclaration | ✅ | ❌ | ❌ |
+| Reassignment | ✅ | ✅ | ❌ |
+| Hoisted | ✅ | ✅ | ✅ |
+| TDZ | ❌ | ✅ | ✅ |
+
+---
+
+### 4. What is Hoisting?
+
+Hoisting is JavaScript's behavior of processing declarations before code execution.
+
+Example:
+
+```javascript
+console.log(a);
+
+var a = 10;
+```
+
+Output
+
+```
+undefined
+```
+
+---
+
+### 5. What is the Temporal Dead Zone (TDZ)?
+
+The TDZ is the period between entering a scope and the declaration of a `let` or `const` variable, during which the variable cannot be accessed.
+
+Example
+
+```javascript
+console.log(age);
+
+let age = 20;
+```
+
+Output
+
+```
+ReferenceError
+```
+
+---
+
+### 6. Can `const` objects be modified?
+
+Yes.
+
+The object itself can be modified, but the variable cannot be reassigned.
+
+```javascript
+const user = {
+    name: "Sachin"
+};
+
+user.name = "Rahul";
+```
+
+---
+
+### 7. Which keyword should be preferred?
+
+Recommended order:
+
+1. `const`
+2. `let`
+3. Avoid `var`
+
+---
+
+### 8. What is Variable Scope?
+
+Scope defines where a variable can be accessed.
+
+Types:
+
+- Global Scope
+- Function Scope
+- Block Scope
+
+---
+
+### 9. What are Variable Naming Rules?
+
+- Begin with a letter, `_`, or `$`
+- Cannot begin with a number
+- Cannot use reserved keywords
+- JavaScript is case-sensitive
+- Use camelCase
+
+---
+
+### 10. Interview Tips
+
+✔ Prefer `const`
+
+✔ Use `let` only when needed
+
+✔ Explain hoisting clearly
+
+✔ Understand block scope
+
+✔ Know the difference between declaration and initialization
+
+✔ Practice writing small code examples
+
+---
+
+## Quick Revision
+
+- Variables store data
+- `var` is old
+- `let` is mutable
+- `const` is immutable (reference)
+- Learn scope
+- Learn hoisting
+- Follow best practices
+
+</DefaultLayout>
+
+</Slide>

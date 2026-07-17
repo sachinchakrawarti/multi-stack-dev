@@ -1,0 +1,163 @@
+<Slide>
+
+<DefaultLayout title="The var Keyword">
+
+## What is `var`?
+
+`var` is the original way to declare variables in JavaScript. It has been available since the first version of JavaScript (1995).
+
+---
+
+## Syntax
+
+```javascript
+var variableName = value;
+```
+
+Example
+
+```javascript
+var name = "Sachin";
+var age = 25;
+
+console.log(name);
+console.log(age);
+```
+
+Output
+
+```
+Sachin
+25
+```
+
+---
+
+## Characteristics of `var`
+
+- Function scoped
+- Can be redeclared
+- Can be reassigned
+- Hoisted
+- Initializes with `undefined`
+
+---
+
+## Redeclaration
+
+```javascript
+var city = "Delhi";
+var city = "Mumbai";
+
+console.log(city);
+```
+
+Output
+
+```
+Mumbai
+```
+
+---
+
+## Reassignment
+
+```javascript
+var score = 50;
+
+score = 95;
+
+console.log(score);
+```
+
+Output
+
+```
+95
+```
+
+---
+
+## Function Scope
+
+```javascript
+function demo() {
+    var message = "Hello";
+    console.log(message);
+}
+
+demo();
+```
+
+`message` is only available inside the function.
+
+---
+
+## Block Scope Problem
+
+```javascript
+if (true) {
+    var language = "JavaScript";
+}
+
+console.log(language);
+```
+
+Output
+
+```
+JavaScript
+```
+
+`var` ignores block scope, which can lead to bugs.
+
+---
+
+## Hoisting
+
+```javascript
+console.log(age);
+
+var age = 25;
+```
+
+JavaScript interprets it as:
+
+```javascript
+var age;
+
+console.log(age);
+
+age = 25;
+```
+
+Output
+
+```
+undefined
+```
+
+---
+
+## When to Use `var`
+
+- Maintaining old JavaScript projects
+- Understanding legacy code
+- Interview discussions
+
+For modern development, prefer `let` and `const`.
+
+---
+
+## Key Takeaways
+
+- Old variable keyword
+- Function scoped
+- Redeclaration allowed
+- Reassignment allowed
+- Hoisted with `undefined`
+- Avoid in modern JavaScript
+
+</DefaultLayout>
+
+</Slide>

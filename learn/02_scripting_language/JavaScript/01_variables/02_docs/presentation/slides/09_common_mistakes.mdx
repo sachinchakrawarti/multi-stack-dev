@@ -1,0 +1,132 @@
+import Slide from "../components/Slide";
+
+<Slide>
+
+# Common Mistakes
+
+## Mistakes Beginners Often Make
+
+Avoiding these mistakes will help you write cleaner and more reliable JavaScript code.
+
+---
+
+## 1. Using Variables Before Declaration
+
+❌ Incorrect
+
+```javascript
+console.log(name);
+
+let name = "Sachin";
+```
+
+Output
+
+```text
+ReferenceError
+```
+
+---
+
+## 2. Using `var` Instead of `let` or `const`
+
+❌ Avoid
+
+```javascript
+var age = 25;
+```
+
+✅ Prefer
+
+```javascript
+let age = 25;
+```
+
+or
+
+```javascript
+const age = 25;
+```
+
+---
+
+## 3. Reassigning a `const` Variable
+
+❌ Incorrect
+
+```javascript
+const PI = 3.14;
+
+PI = 3.14159;
+```
+
+Output
+
+```text
+TypeError: Assignment to constant variable.
+```
+
+---
+
+## 4. Using Meaningless Variable Names
+
+❌ Bad
+
+```javascript
+let a = "Sachin";
+let b = 25;
+```
+
+✅ Good
+
+```javascript
+let userName = "Sachin";
+let userAge = 25;
+```
+
+---
+
+## 5. Forgetting Initialization
+
+```javascript
+let score;
+
+console.log(score);
+```
+
+Output
+
+```text
+undefined
+```
+
+Always initialize variables when possible.
+
+---
+
+## 6. Redeclaring Variables
+
+❌ Incorrect
+
+```javascript
+let city = "Bhopal";
+let city = "Delhi";
+```
+
+Output
+
+```text
+SyntaxError
+```
+
+---
+
+## Tips to Avoid Mistakes
+
+- Declare variables before using them.
+- Use `const` whenever possible.
+- Use meaningful variable names.
+- Avoid `var` in modern JavaScript.
+- Initialize variables with appropriate values.
+
+</Slide>

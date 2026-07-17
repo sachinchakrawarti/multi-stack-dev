@@ -1,0 +1,74 @@
+import Slide from "../components/Slide";
+
+<Slide>
+
+# Variable Declaration
+
+## What is Declaration?
+
+Variable declaration means creating a variable.
+
+---
+
+### Syntax
+
+```javascript
+let age;
+```
+
+Here,
+
+- `let` → keyword
+- `age` → variable name
+
+---
+
+## Three Ways
+
+```javascript
+var city;
+
+let name;
+
+const PI = 3.14;
+```
+
+---
+
+## Comparison
+
+| Keyword | Redeclare | Reassign | Scope |
+|---------|-----------|----------|-------|
+| var | ✅ | ✅ | Function |
+| let | ❌ | ✅ | Block |
+| const | ❌ | ❌ | Block |
+
+---
+
+## Best Practice
+
+Use:
+
+```javascript
+const
+```
+
+by default.
+
+Use:
+
+```javascript
+let
+```
+
+when the value changes.
+
+Avoid:
+
+```javascript
+var
+```
+
+in modern JavaScript.
+
+</Slide>

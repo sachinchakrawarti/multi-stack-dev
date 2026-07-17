@@ -1,0 +1,90 @@
+import Slide from "../components/Slide";
+
+<Slide>
+
+# Variable Initialization
+
+## What is Initialization?
+
+Initialization means **assigning a value to a variable**.
+
+---
+
+## Declaration Only
+
+```javascript
+let age;
+```
+
+The variable exists, but it has no assigned value.
+
+Output:
+
+```text
+undefined
+```
+
+---
+
+## Declaration + Initialization
+
+```javascript
+let age = 24;
+```
+
+Here:
+
+- `let` → keyword
+- `age` → variable name
+- `24` → initial value
+
+---
+
+## Initialization Later
+
+```javascript
+let name;
+
+name = "Sachin";
+
+console.log(name);
+```
+
+Output
+
+```text
+Sachin
+```
+
+---
+
+## Multiple Variables
+
+```javascript
+let firstName = "Sachin";
+let lastName = "Chakrawarti";
+let country = "India";
+```
+
+---
+
+## Key Points
+
+- A variable can be declared without a value.
+- Initialization assigns the first value.
+- A variable initialized with `let` can later be updated.
+- A `const` variable **must** be initialized when declared.
+
+Example:
+
+```javascript
+const PI = 3.14159;
+```
+
+❌ Invalid:
+
+```javascript
+const PI;
+```
+
+</Slide>

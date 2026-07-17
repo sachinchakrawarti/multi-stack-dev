@@ -1,0 +1,110 @@
+import Slide from "../components/Slide";
+
+<Slide>
+
+# Best Practices
+
+## Writing Better Variables
+
+Good variable names make code easier to read and maintain.
+
+---
+
+## Use Meaningful Names
+
+✅ Good
+
+```javascript
+let studentName = "Sachin";
+let totalPrice = 1500;
+let isLoggedIn = true;
+```
+
+❌ Bad
+
+```javascript
+let a = "Sachin";
+let x = 1500;
+let y = true;
+```
+
+---
+
+## Use `const` by Default
+
+```javascript
+const PI = 3.14159;
+const country = "India";
+```
+
+Use `const` when the value should not change.
+
+---
+
+## Use `let` for Changing Values
+
+```javascript
+let score = 0;
+
+score += 10;
+score += 20;
+```
+
+---
+
+## Avoid `var`
+
+```javascript
+// Avoid
+var age = 25;
+
+// Prefer
+let age = 25;
+```
+
+`let` and `const` provide block scope and help prevent bugs.
+
+---
+
+## Follow camelCase
+
+✅ Correct
+
+```javascript
+let firstName;
+let totalAmount;
+let isAdmin;
+```
+
+❌ Incorrect
+
+```javascript
+let First_Name;
+let TOTAL_AMOUNT;
+let first-name;
+```
+
+---
+
+## One Purpose Per Variable
+
+```javascript
+let username = "Sachin";
+let email = "sachin@example.com";
+let phone = "9876543210";
+```
+
+Avoid storing different types of information in the same variable.
+
+---
+
+## Summary
+
+- Use meaningful names.
+- Prefer `const` over `let`.
+- Use `let` only when values change.
+- Avoid `var` in modern JavaScript.
+- Follow camelCase naming.
+- Keep variables simple and readable.
+
+</Slide>

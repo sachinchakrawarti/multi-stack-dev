@@ -1,0 +1,75 @@
+---
+title: "What is System Design"
+description: "An introduction to system design - the process of defining architecture, components, and data flow for scalable systems"
+published: "2026-07-17"
+author: "System Design Team"
+---
+
+
+<style>
+  @import url('/path/to/what_is_system_design.css');
+</style>
+# What is System Design
+
+<div className="hero-section">
+  <h1>🏗️ What is System Design?</h1>
+  <p className="subtitle">
+    The art and science of building scalable, reliable, and maintainable software systems
+  </p>
+</div>
+
+## Overview
+
+**System Design** is the process of defining the architecture, components, modules, interfaces, and data flow of a system to satisfy specific functional and non-functional requirements. It bridges the gap between business problems and technical solutions.
+
+<div className="info-box">
+  <strong>💡 Key Insight:</strong> Good system design is about making the right trade-offs between competing concerns like performance, cost, and complexity.
+</div>
+
+## Why System Design Matters
+
+In today's world of distributed systems, microservices, and cloud computing, system design is crucial for:
+
+<div className="grid-container">
+  <div className="grid-card">
+    <span className="emoji-icon">📈</span>
+    <h3>Scalability</h3>
+    <p>Handle millions of users without breaking</p>
+  </div>
+  <div className="grid-card">
+    <span className="emoji-icon">🟢</span>
+    <h3>High Availability</h3>
+    <p>Achieve 99.99% uptime</p>
+  </div>
+  <div className="grid-card">
+    <span className="emoji-icon">⚡</span>
+    <h3>Performance</h3>
+    <p>Maintain speed under heavy load</p>
+  </div>
+  <div className="grid-card">
+    <span className="emoji-icon">💰</span>
+    <h3>Cost Efficiency</h3>
+    <p>Optimize resource utilization</p>
+  </div>
+  <div className="grid-card">
+    <span className="emoji-icon">🤝</span>
+    <h3>Team Collaboration</h3>
+    <p>Clear architecture for everyone</p>
+  </div>
+  <div className="grid-card">
+    <span className="emoji-icon">🔒</span>
+    <h3>Security</h3>
+    <p>Protect data and prevent breaches</p>
+  </div>
+</div>
+
+## Key Design Goals
+
+### 1. Scalability 📊
+
+The ability to handle increased load by adding resources.
+
+```mermaid
+graph LR
+    A[Single Server] -->|Vertical Scaling| B[More CPU/RAM]
+    A -->|Horizontal Scaling| C[More Servers]

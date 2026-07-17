@@ -1,0 +1,215 @@
+<Slide>
+
+<DefaultLayout title="Variable Scope and Hoisting">
+
+## What is Scope?
+
+**Scope** determines where a variable can be accessed in a program.
+
+JavaScript has three main types of scope:
+
+- Global Scope
+- Function Scope
+- Block Scope
+
+---
+
+## Global Scope
+
+Variables declared outside any function or block are globally accessible.
+
+```javascript
+let language = "JavaScript";
+
+function show() {
+    console.log(language);
+}
+
+show();
+
+console.log(language);
+```
+
+Output
+
+```
+JavaScript
+JavaScript
+```
+
+---
+
+## Function Scope
+
+`var` is function scoped.
+
+```javascript
+function demo() {
+
+    var message = "Hello";
+
+    console.log(message);
+
+}
+
+demo();
+```
+
+Outside the function:
+
+```javascript
+console.log(message);
+```
+
+Output
+
+```
+ReferenceError
+```
+
+---
+
+## Block Scope
+
+`let` and `const` are block scoped.
+
+```javascript
+if (true) {
+
+    let age = 25;
+    const city = "Bhopal";
+
+    console.log(age);
+    console.log(city);
+
+}
+```
+
+Outside the block:
+
+```javascript
+console.log(age);
+console.log(city);
+```
+
+Output
+
+```
+ReferenceError
+```
+
+---
+
+## Scope Comparison
+
+| Keyword | Global | Function | Block |
+|---------|--------|----------|-------|
+| var | ✅ | ✅ | ❌ |
+| let | ✅ | ✅ | ✅ |
+| const | ✅ | ✅ | ✅ |
+
+---
+
+## What is Hoisting?
+
+Hoisting is JavaScript's behavior of moving declarations to the top of their scope before execution.
+
+---
+
+## Hoisting with `var`
+
+```javascript
+console.log(a);
+
+var a = 10;
+```
+
+Internally
+
+```javascript
+var a;
+
+console.log(a);
+
+a = 10;
+```
+
+Output
+
+```
+undefined
+```
+
+---
+
+## Hoisting with `let`
+
+```javascript
+console.log(age);
+
+let age = 25;
+```
+
+Output
+
+```
+ReferenceError
+```
+
+Reason:
+
+`let` exists in the **Temporal Dead Zone (TDZ)** until its declaration.
+
+---
+
+## Hoisting with `const`
+
+```javascript
+console.log(PI);
+
+const PI = 3.14;
+```
+
+Output
+
+```
+ReferenceError
+```
+
+`const` is also affected by the Temporal Dead Zone.
+
+---
+
+## Comparison
+
+| Feature | var | let | const |
+|---------|-----|-----|-------|
+| Scope | Function | Block | Block |
+| Redeclaration | ✅ | ❌ | ❌ |
+| Reassignment | ✅ | ✅ | ❌ |
+| Hoisted | ✅ | ✅ | ✅ |
+| TDZ | ❌ | ✅ | ✅ |
+
+---
+
+## Best Practices
+
+- Prefer `const` by default.
+- Use `let` when the value changes.
+- Avoid `var` in modern JavaScript.
+- Keep variables within the smallest possible scope.
+- Declare variables before using them.
+
+---
+
+## Key Takeaways
+
+- Scope controls variable accessibility.
+- Hoisting occurs before execution.
+- `var` is hoisted with `undefined`.
+- `let` and `const` are hoisted but remain in the TDZ.
+- Understanding scope and hoisting helps prevent bugs.
+
+</DefaultLayout>
+
+</Slide>

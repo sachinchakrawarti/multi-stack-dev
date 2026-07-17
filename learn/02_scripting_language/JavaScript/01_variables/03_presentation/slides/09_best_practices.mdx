@@ -1,0 +1,203 @@
+<Slide>
+
+<DefaultLayout title="Best Practices for JavaScript Variables">
+
+## Why Follow Best Practices?
+
+Writing clean and consistent code makes your programs:
+
+- Easier to read
+- Easier to debug
+- Easier to maintain
+- Less prone to bugs
+- More professional
+
+---
+
+## 1. Prefer `const` by Default
+
+Use `const` whenever a variable does not need to change.
+
+```javascript
+const company = "BookQubit";
+const PI = 3.14159;
+```
+
+✅ Recommended
+
+---
+
+## 2. Use `let` for Mutable Variables
+
+If the value changes later, use `let`.
+
+```javascript
+let score = 0;
+
+score++;
+
+console.log(score);
+```
+
+---
+
+## 3. Avoid Using `var`
+
+`var` can introduce unexpected behavior because it is function scoped.
+
+❌
+
+```javascript
+var age = 20;
+```
+
+✅
+
+```javascript
+let age = 20;
+```
+
+---
+
+## 4. Use Meaningful Variable Names
+
+Good names improve readability.
+
+✅ Good
+
+```javascript
+let studentName;
+let totalMarks;
+let currentUser;
+```
+
+❌ Bad
+
+```javascript
+let a;
+let x;
+let data1;
+```
+
+---
+
+## 5. Follow camelCase Naming
+
+JavaScript uses **camelCase** for variables.
+
+```javascript
+let firstName;
+let totalPrice;
+let employeeSalary;
+```
+
+Avoid
+
+```javascript
+let first_name;
+let FirstName;
+```
+
+---
+
+## 6. Keep Variable Scope Small
+
+Declare variables only where they are needed.
+
+```javascript
+function calculate() {
+
+    let total = 0;
+
+    // use total here
+
+}
+```
+
+Smaller scope reduces bugs.
+
+---
+
+## 7. Initialize Variables
+
+Avoid leaving variables uninitialized.
+
+❌
+
+```javascript
+let username;
+```
+
+✅
+
+```javascript
+let username = "";
+```
+
+---
+
+## 8. Use Descriptive Constants
+
+Constants should clearly describe their purpose.
+
+```javascript
+const MAX_USERS = 100;
+
+const API_URL = "https://api.example.com";
+
+const TAX_RATE = 0.18;
+```
+
+---
+
+## 9. Declare Before Use
+
+Always declare variables before accessing them.
+
+✅
+
+```javascript
+let age = 25;
+
+console.log(age);
+```
+
+---
+
+## 10. Keep Naming Consistent
+
+Choose one naming style throughout the project.
+
+```javascript
+let firstName;
+let lastName;
+let phoneNumber;
+```
+
+Consistency improves teamwork.
+
+---
+
+## Summary
+
+✔ Prefer `const`
+
+✔ Use `let` when values change
+
+✔ Avoid `var`
+
+✔ Use meaningful names
+
+✔ Follow camelCase
+
+✔ Keep scope small
+
+✔ Initialize variables
+
+✔ Declare before use
+
+✔ Write readable code
+
+</DefaultLayout>
+
+</Slide>
