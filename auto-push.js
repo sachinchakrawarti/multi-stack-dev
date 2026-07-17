@@ -5,6 +5,8 @@ const fs = require('fs');
 const notifier = require('node-notifier');
 const cliProgress = require('cli-progress');
 const chalk = require('chalk');
+
+// Fix for ora v5 - CommonJS compatible
 const ora = require('ora');
 
 const git = simpleGit();
@@ -119,7 +121,6 @@ function sendNotification(title, message, icon = null) {
         notifier.notify({
             title: title,
             message: message,
-            icon: icon || path.join(__dirname, 'icon.png'),
             sound: true,
             wait: false
         });
@@ -138,7 +139,7 @@ function saveToLog(data) {
         }
         
         const logFile = path.join(logDir, `push-log-${new Date().toISOString().split('T')[0]}.txt`);
-        const logEntry = `${new Date().toISOString()} | ${data}\n`;
+        const logEntry = `${new Date().toISOString()} | Push #${pushCount} | ${data.filesChanged} files | ${data.commitHash}\n`;
         fs.appendFileSync(logFile, logEntry);
         
         // Also save to JSON for analytics
@@ -290,8 +291,8 @@ async function pushChanges() {
             const seconds = uptime % 60;
             log.info(`⏱️  Uptime: ${hours}h ${minutes}m ${seconds}s`);
             
-            // Calculate daily streak
-            const daysActive = 1; // Simplified - would need to track from log
+            // Calculate daily streak (simplified)
+            const daysActive = 1;
             
             // Check achievements
             const unlockedAchievements = checkAchievements(pushCount, hour, todayPushes, daysActive);
@@ -300,7 +301,6 @@ async function pushChanges() {
                 log.highlight('🏆 ACHIEVEMENT UNLOCKED! 🏆');
                 unlockedAchievements.forEach(ach => {
                     console.log(chalk.magenta(`   ${ach.icon} ${ach.name}`));
-                    // Send notification for achievement
                     sendNotification(
                         `🏆 Achievement Unlocked!`,
                         `${ach.icon} ${ach.name}`,
