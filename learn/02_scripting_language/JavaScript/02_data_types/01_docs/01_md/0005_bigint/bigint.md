@@ -1,281 +1,335 @@
-# BigInt Data Type in JavaScript
+# String Data Type in JavaScript
 
 ## Introduction
 
-The **BigInt** data type is a primitive data type introduced in **ECMAScript 2020 (ES11)**. It is used to represent integers that are **larger than the maximum safe integer supported by the Number data type**.
+A **String** is a primitive data type used to store and manipulate **text** in JavaScript.
 
-The `Number` data type can safely represent integers only between:
+Anything enclosed within **single quotes (`'`)**, **double quotes (`"`),** or **backticks (`` ` ``)** is considered a string.
 
-- `-(2^53 - 1)`
-- `(2^53 - 1)`
-
-These values are available as:
-
-```javascript
-Number.MIN_SAFE_INTEGER
-Number.MAX_SAFE_INTEGER
-```
-
-For numbers beyond this range, JavaScript may lose precision. BigInt solves this problem.
+Strings are one of the most commonly used data types because almost every application works with text, such as names, addresses, messages, emails, and URLs.
 
 ---
 
-# What is BigInt?
+# What Is a String?
 
-A **BigInt** is a primitive data type that can store integers of **arbitrary length** without losing precision.
+A **String** is a sequence of zero or more characters.
+
+Characters can include:
+
+- Letters
+- Numbers
+- Symbols
+- Spaces
+- Special characters
+- Emojis
 
 Example:
 
 ```javascript
-const population = 1234567890123456789012345678901234567890n;
-
-console.log(population);
+let language = "JavaScript";
+let name = 'Sachin';
+let message = `Welcome`;
 ```
 
-Output
+All three variables contain string values.
 
-```text
-1234567890123456789012345678901234567890n
+---
+
+# Creating Strings
+
+JavaScript provides three ways to create strings.
+
+## Double Quotes
+
+```javascript
+let city = "Bhopal";
 ```
 
 ---
 
-# Characteristics of BigInt
-
-- Primitive data type.
-- Stores very large integers.
-- Supports arbitrary precision.
-- Cannot store decimal values.
-- Introduced in ES2020.
-- Uses the suffix `n`.
-- Supports arithmetic operations.
-- Cannot be mixed directly with the Number type.
-
----
-
-# Why BigInt?
-
-The Number type loses precision for large integers.
-
-Example
+## Single Quotes
 
 ```javascript
-console.log(Number.MAX_SAFE_INTEGER);
-```
-
-Output
-
-```text
-9007199254740991
-```
-
-Adding one works correctly.
-
-```javascript
-console.log(Number.MAX_SAFE_INTEGER + 1);
-```
-
-Output
-
-```text
-9007199254740992
-```
-
-Adding two produces an incorrect result.
-
-```javascript
-console.log(Number.MAX_SAFE_INTEGER + 2);
-```
-
-Output
-
-```text
-9007199254740992
-```
-
-This happens because the value exceeds the safe integer limit.
-
----
-
-# Creating BigInt
-
-## Using the `n` Suffix
-
-```javascript
-const num = 12345678901234567890n;
-
-console.log(num);
-```
-
-Output
-
-```text
-12345678901234567890n
+let country = 'India';
 ```
 
 ---
 
-## Using the BigInt Constructor
+## Template Literals (Backticks)
 
 ```javascript
-const value = BigInt(100);
+let course = `JavaScript`;
+```
 
-console.log(value);
+Template literals also support multi-line strings and string interpolation.
+
+---
+
+# Empty String
+
+A string can also be empty.
+
+```javascript
+let text = "";
+
+console.log(text);
 ```
 
 Output
 
 ```text
-100n
+
 ```
 
 ---
 
-## From a String
+# Checking the Data Type
+
+Use the `typeof` operator.
 
 ```javascript
-const large = BigInt("999999999999999999999999999999");
+let language = "JavaScript";
 
-console.log(large);
+console.log(typeof language);
 ```
 
 Output
 
 ```text
-999999999999999999999999999999n
+string
 ```
 
 ---
 
-# Type of BigInt
+# String Length
+
+The `length` property returns the number of characters in a string.
 
 ```javascript
-const num = 100n;
+let language = "JavaScript";
 
-console.log(typeof num);
+console.log(language.length);
 ```
 
 Output
 
 ```text
-bigint
+10
 ```
 
----
-
-# Arithmetic Operations
-
-## Addition
+Spaces are also counted.
 
 ```javascript
-const a = 100n;
-const b = 50n;
+let text = "Hello World";
 
-console.log(a + b);
+console.log(text.length);
 ```
 
 Output
 
 ```text
-150n
+11
 ```
 
 ---
 
-## Subtraction
+# Accessing Characters
+
+Each character has an index starting from **0**.
+
+```text
+J  a  v  a  S  c  r  i  p  t
+0  1  2  3  4  5  6  7  8  9
+```
+
+Example:
 
 ```javascript
-console.log(100n - 20n);
+let language = "JavaScript";
+
+console.log(language[0]);
+console.log(language[4]);
 ```
 
 Output
 
 ```text
-80n
+J
+S
 ```
 
 ---
 
-## Multiplication
+# String Concatenation
+
+Strings can be combined using the `+` operator.
 
 ```javascript
-console.log(20n * 5n);
+let firstName = "Sachin";
+let lastName = "Kumar";
+
+let fullName = firstName + " " + lastName;
+
+console.log(fullName);
 ```
 
 Output
 
 ```text
-100n
+Sachin Kumar
 ```
 
 ---
 
-## Division
+# Template Literals
 
-BigInt division removes the decimal part.
+Template literals allow embedding variables inside strings.
 
 ```javascript
-console.log(10n / 3n);
+let name = "Sachin";
+let age = 22;
+
+console.log(`My name is ${name} and I am ${age} years old.`);
 ```
 
 Output
 
 ```text
-3n
+My name is Sachin and I am 22 years old.
 ```
 
 ---
 
-## Modulus
+# Multi-Line Strings
+
+Using backticks, strings can span multiple lines.
 
 ```javascript
-console.log(10n % 3n);
+let message = `Welcome
+to
+JavaScript`;
+
+console.log(message);
 ```
 
 Output
 
 ```text
-1n
+Welcome
+to
+JavaScript
 ```
 
 ---
 
-## Exponentiation
+# Escape Characters
+
+Escape characters allow special characters inside strings.
+
+| Escape Character | Description |
+|------------------|-------------|
+| `\'` | Single quote |
+| `\"` | Double quote |
+| `\\` | Backslash |
+| `\n` | New line |
+| `\t` | Tab |
+
+Example:
 
 ```javascript
-console.log(2n ** 10n);
+let text = "He said, \"Hello!\"";
+
+console.log(text);
 ```
 
 Output
 
 ```text
-1024n
+He said, "Hello!"
 ```
 
 ---
 
-# Comparison Operators
+# Common String Methods
+
+## toUpperCase()
+
+Converts all characters to uppercase.
 
 ```javascript
-console.log(10n > 5n);
-console.log(10n < 20n);
-console.log(10n === 10n);
+let text = "javascript";
+
+console.log(text.toUpperCase());
+```
+
+Output
+
+```text
+JAVASCRIPT
+```
+
+---
+
+## toLowerCase()
+
+Converts all characters to lowercase.
+
+```javascript
+let text = "JAVASCRIPT";
+
+console.log(text.toLowerCase());
+```
+
+Output
+
+```text
+javascript
+```
+
+---
+
+## trim()
+
+Removes spaces from both ends.
+
+```javascript
+let text = "  Hello  ";
+
+console.log(text.trim());
+```
+
+Output
+
+```text
+Hello
+```
+
+---
+
+## includes()
+
+Checks whether a string contains another string.
+
+```javascript
+let language = "JavaScript";
+
+console.log(language.includes("Script"));
 ```
 
 Output
 
 ```text
 true
-true
-true
 ```
 
 ---
 
-# Comparing Number and BigInt
+## startsWith()
+
+Checks whether a string starts with specific characters.
 
 ```javascript
-console.log(10n == 10);
+console.log("JavaScript".startsWith("Java"));
 ```
 
 Output
@@ -286,8 +340,130 @@ true
 
 ---
 
+## endsWith()
+
+Checks whether a string ends with specific characters.
+
 ```javascript
-console.log(10n === 10);
+console.log("JavaScript".endsWith("Script"));
+```
+
+Output
+
+```text
+true
+```
+
+---
+
+## indexOf()
+
+Returns the index of the first occurrence.
+
+```javascript
+let language = "JavaScript";
+
+console.log(language.indexOf("S"));
+```
+
+Output
+
+```text
+4
+```
+
+---
+
+## slice()
+
+Extracts part of a string.
+
+```javascript
+let language = "JavaScript";
+
+console.log(language.slice(0, 4));
+```
+
+Output
+
+```text
+Java
+```
+
+---
+
+## replace()
+
+Replaces part of a string.
+
+```javascript
+let text = "I like Java";
+
+console.log(text.replace("Java", "JavaScript"));
+```
+
+Output
+
+```text
+I like JavaScript
+```
+
+---
+
+## split()
+
+Splits a string into an array.
+
+```javascript
+let colors = "Red,Green,Blue";
+
+console.log(colors.split(","));
+```
+
+Output
+
+```text
+["Red", "Green", "Blue"]
+```
+
+---
+
+# String Immutability
+
+Strings are **immutable**, meaning they cannot be changed after creation.
+
+```javascript
+let language = "JavaScript";
+
+language[0] = "P";
+
+console.log(language);
+```
+
+Output
+
+```text
+JavaScript
+```
+
+Instead, JavaScript creates a new string whenever modifications are made.
+
+---
+
+# Comparing Strings
+
+```javascript
+console.log("Apple" === "Apple");
+```
+
+Output
+
+```text
+true
+```
+
+```javascript
+console.log("Apple" === "apple");
 ```
 
 Output
@@ -296,231 +472,123 @@ Output
 false
 ```
 
-Strict equality checks both value and type.
+String comparison is **case-sensitive**.
 
 ---
 
-# Mixing Number and BigInt
-
-This causes an error.
+# Real-World Example
 
 ```javascript
-const a = 10n;
-const b = 5;
+const firstName = "Sachin";
+const lastName = "Kumar";
 
-console.log(a + b);
+const fullName = `${firstName} ${lastName}`;
+
+console.log(fullName);
 ```
 
 Output
 
 ```text
-TypeError
+Sachin Kumar
 ```
-
-Convert one type before performing arithmetic.
-
-```javascript
-console.log(a + BigInt(b));
-```
-
-Output
-
-```text
-15n
-```
-
----
-
-# Converting BigInt to Number
-
-```javascript
-const big = 500n;
-
-console.log(Number(big));
-```
-
-Output
-
-```text
-500
-```
-
----
-
-# Converting Number to BigInt
-
-```javascript
-const num = 500;
-
-console.log(BigInt(num));
-```
-
-Output
-
-```text
-500n
-```
-
----
-
-# BigInt Cannot Store Decimals
-
-```javascript
-BigInt(10.5);
-```
-
-Output
-
-```text
-RangeError
-```
-
-BigInt only supports whole numbers.
-
----
-
-# BigInt in Objects
-
-```javascript
-const account = {
-    id: 12345678901234567890n,
-    balance: 999999999999999999n
-};
-
-console.log(account);
-```
-
-Output
-
-```text
-{
-  id: 12345678901234567890n,
-  balance: 999999999999999999n
-}
-```
-
----
-
-# Real-World Examples
-
-## Banking Systems
-
-```javascript
-const totalMoney = 999999999999999999999999n;
-
-console.log(totalMoney);
-```
-
----
-
-## Blockchain
-
-```javascript
-const walletBalance = 1000000000000000000000n;
-
-console.log(walletBalance);
-```
-
----
-
-## Scientific Computation
-
-```javascript
-const stars = 98765432109876543210987654321n;
-
-console.log(stars);
-```
-
----
-
-# BigInt vs Number
-
-| Feature | Number | BigInt |
-|---------|---------|---------|
-| Primitive | Yes | Yes |
-| Decimal Support | Yes | No |
-| Large Integers | Limited | Unlimited |
-| Precision | Limited | Exact |
-| Type | number | bigint |
-| Suffix | None | n |
 
 ---
 
 # Best Practices
 
-- Use `Number` for normal calculations.
-- Use `BigInt` only for very large integers.
-- Avoid mixing `Number` and `BigInt`.
-- Convert types explicitly.
-- Use BigInt for financial, blockchain, and scientific applications requiring very large integers.
+- Use meaningful variable names.
+- Prefer template literals for string interpolation.
+- Use `trim()` to remove unwanted spaces.
+- Use string methods instead of manual processing.
+- Keep strings readable and properly formatted.
 
 ---
 
 # Common Mistakes
 
-## Mixing Types
+## Forgetting Quotes
+
+Incorrect:
 
 ```javascript
-10n + 5;
+let name = Sachin;
 ```
-
-Produces a `TypeError`.
-
----
-
-## Using Decimals
-
-```javascript
-BigInt(5.8);
-```
-
-Produces a `RangeError`.
-
----
-
-## Forgetting the `n`
-
-```javascript
-const num = 99999999999999999999;
-```
-
-This creates a Number and may lose precision.
 
 Correct:
 
 ```javascript
-const num = 99999999999999999999n;
+let name = "Sachin";
 ```
+
+---
+
+## Using `+` Instead of Template Literals
+
+Less readable:
+
+```javascript
+let message = "Hello " + name;
+```
+
+Better:
+
+```javascript
+let message = `Hello ${name}`;
+```
+
+---
+
+## Assuming Strings Are Mutable
+
+Incorrect:
+
+```javascript
+let text = "Hello";
+
+text[0] = "Y";
+```
+
+The string remains unchanged.
 
 ---
 
 # Interview Questions
 
-1. What is BigInt in JavaScript?
-2. Why was BigInt introduced?
-3. What is the maximum safe integer in JavaScript?
-4. How do you create a BigInt?
-5. Can BigInt store decimal values?
-6. What happens when you mix Number and BigInt?
-7. What is the difference between `==` and `===` with BigInt?
-8. How do you convert Number to BigInt?
-9. How do you convert BigInt to Number?
-10. When should BigInt be used?
+1. What is a string in JavaScript?
+2. Is a string a primitive or reference data type?
+3. What is string immutability?
+4. What is the difference between single quotes, double quotes, and backticks?
+5. What are template literals?
+6. What does the `length` property do?
+7. How do you access individual characters?
+8. What is the difference between `slice()` and `substring()`?
+9. How does `split()` work?
+10. Which string methods are commonly used?
 
 ---
 
 # Summary
 
-- BigInt is a primitive data type introduced in ES2020.
-- It stores integers of arbitrary size without losing precision.
-- BigInt values end with the `n` suffix.
-- BigInt does not support decimal numbers.
-- Arithmetic operations are supported between BigInt values.
-- Number and BigInt cannot be mixed directly.
-- BigInt is useful for blockchain, finance, cryptography, and scientific computing.
+- A String stores textual data.
+- Strings are primitive and immutable.
+- Strings can be created using single quotes, double quotes, or backticks.
+- JavaScript provides many built-in methods for working with strings.
+- Template literals make string formatting easier and more readable.
+
+---
+
+# Key Points
+
+- String is a primitive data type.
+- `typeof "Hello"` returns `"string"`.
+- Strings are immutable.
+- Indexing starts at `0`.
+- Use template literals for dynamic strings.
+- JavaScript provides many useful string methods.
 
 ---
 
 # Next Topic
 
-**0006_string**
+# `Boolean`

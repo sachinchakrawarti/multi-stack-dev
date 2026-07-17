@@ -2,183 +2,137 @@
 
 ## Introduction
 
-The **Number** data type is one of JavaScript's primitive data types. It is used to represent both **integers** and **floating-point (decimal)** numbers.
+The **Number** data type is used to represent numeric values in JavaScript.
 
-Unlike many programming languages that have separate data types such as `int`, `float`, `double`, or `long`, JavaScript uses a single **Number** type for almost all numeric values.
+Unlike many programming languages that have separate data types for integers and floating-point numbers, JavaScript uses a single **Number** type for both.
 
-Numbers are commonly used for:
-
-- Mathematical calculations
-- Counting values
-- Measurements
-- Financial calculations
-- Scientific computations
-- Storing IDs
-- Game scores
-- Coordinates
-
----
-
-# What is the Number Data Type?
-
-A **Number** is a primitive data type that represents numeric values.
-
-Example:
+Examples:
 
 ```javascript
-let age = 22;
-let temperature = 36.5;
-let price = 999.99;
-
-console.log(age);
-console.log(temperature);
-console.log(price);
+let age = 25;
+let price = 99.99;
+let temperature = -10;
 ```
 
-Output
-
-```text
-22
-36.5
-999.99
-```
+All of these values are of type `number`.
 
 ---
 
-# Characteristics of Number
+# What Is a Number?
 
-- Primitive data type.
-- Stores integers and floating-point numbers.
-- Uses IEEE 754 double-precision floating-point format.
-- Supports positive and negative values.
-- Supports arithmetic operations.
-- Can represent special values like `Infinity` and `NaN`.
+A **Number** represents numeric data that can be used in mathematical calculations.
+
+Examples:
+
+```javascript
+let marks = 95;
+let salary = 45000;
+let pi = 3.14159;
+```
+
+Numbers can be:
+
+- Positive
+- Negative
+- Whole numbers
+- Decimal numbers
+- Scientific notation values
 
 ---
 
 # Creating Numbers
 
-Numbers can be created using literals.
+## Integer Numbers
 
 ```javascript
-let a = 10;
-let b = 15.75;
-let c = -50;
-let d = 0;
-
-console.log(a);
-console.log(b);
-console.log(c);
-console.log(d);
-```
-
-Output
-
-```text
-10
-15.75
--50
-0
+let age = 22;
+let score = 100;
 ```
 
 ---
 
-# Integer Numbers
-
-Integers are whole numbers without decimal points.
+## Floating-Point Numbers
 
 ```javascript
-let students = 120;
-let marks = 95;
-let year = 2026;
-
-console.log(students);
-console.log(marks);
-console.log(year);
-```
-
-Output
-
-```text
-120
-95
-2026
+let price = 99.99;
+let height = 5.8;
 ```
 
 ---
 
-# Floating-Point Numbers
-
-Floating-point numbers contain decimal values.
+## Negative Numbers
 
 ```javascript
-let pi = 3.14159;
-let salary = 15250.75;
-
-console.log(pi);
-console.log(salary);
-```
-
-Output
-
-```text
-3.14159
-15250.75
+let temperature = -15;
+let balance = -500;
 ```
 
 ---
 
-# Scientific Notation
+## Scientific Notation
 
 JavaScript supports scientific notation.
 
 ```javascript
-let large = 5e6;
-let small = 2e-5;
+let distance = 1.5e6;
 
-console.log(large);
-console.log(small);
+console.log(distance);
 ```
 
 Output
 
 ```text
-5000000
-0.00002
+1500000
 ```
 
----
-
-# Number Constructor
-
-Numbers can also be created using the `Number()` constructor.
+Example:
 
 ```javascript
-let num = Number(150);
+let smallNumber = 2.5e-3;
 
-console.log(num);
+console.log(smallNumber);
 ```
 
 Output
 
 ```text
-150
+0.0025
 ```
 
 ---
 
-# Arithmetic Operations
+# Checking Number Type
+
+Use the `typeof` operator.
+
+```javascript
+let age = 25;
+
+console.log(typeof age);
+```
+
+Output
+
+```text
+number
+```
+
+---
+
+# Number Operations
+
+JavaScript supports standard arithmetic operations.
 
 ## Addition
 
 ```javascript
-console.log(20 + 10);
+console.log(10 + 5);
 ```
 
 Output
 
 ```text
-30
+15
 ```
 
 ---
@@ -186,13 +140,13 @@ Output
 ## Subtraction
 
 ```javascript
-console.log(20 - 10);
+console.log(10 - 5);
 ```
 
 Output
 
 ```text
-10
+5
 ```
 
 ---
@@ -200,203 +154,7 @@ Output
 ## Multiplication
 
 ```javascript
-console.log(20 * 10);
-```
-
-Output
-
-```text
-200
-```
-
----
-
-## Division
-
-```javascript
-console.log(20 / 10);
-```
-
-Output
-
-```text
-2
-```
-
----
-
-## Modulus
-
-```javascript
-console.log(20 % 3);
-```
-
-Output
-
-```text
-2
-```
-
----
-
-## Exponentiation
-
-```javascript
-console.log(2 ** 5);
-```
-
-Output
-
-```text
-32
-```
-
----
-
-# Increment Operator
-
-```javascript
-let x = 10;
-
-x++;
-
-console.log(x);
-```
-
-Output
-
-```text
-11
-```
-
----
-
-# Decrement Operator
-
-```javascript
-let x = 10;
-
-x--;
-
-console.log(x);
-```
-
-Output
-
-```text
-9
-```
-
----
-
-# Special Number Values
-
-## Infinity
-
-```javascript
-console.log(10 / 0);
-```
-
-Output
-
-```text
-Infinity
-```
-
----
-
-## Negative Infinity
-
-```javascript
-console.log(-10 / 0);
-```
-
-Output
-
-```text
--Infinity
-```
-
----
-
-## NaN (Not a Number)
-
-```javascript
-console.log("Hello" * 5);
-```
-
-Output
-
-```text
-NaN
-```
-
----
-
-# Number Methods
-
-## toFixed()
-
-Rounds a number to a fixed number of decimal places.
-
-```javascript
-let pi = 3.141592;
-
-console.log(pi.toFixed(2));
-```
-
-Output
-
-```text
-3.14
-```
-
----
-
-## toPrecision()
-
-Formats a number to the specified precision.
-
-```javascript
-let num = 123.4567;
-
-console.log(num.toPrecision(5));
-```
-
-Output
-
-```text
-123.46
-```
-
----
-
-## toString()
-
-Converts a number into a string.
-
-```javascript
-let num = 100;
-
-console.log(num.toString());
-```
-
-Output
-
-```text
-100
-```
-
----
-
-## valueOf()
-
-Returns the primitive value.
-
-```javascript
-let num = 50;
-
-console.log(num.valueOf());
+console.log(10 * 5);
 ```
 
 Output
@@ -407,23 +165,73 @@ Output
 
 ---
 
-# Number Properties
-
-## Maximum Value
+## Division
 
 ```javascript
-console.log(Number.MAX_VALUE);
+console.log(10 / 5);
+```
+
+Output
+
+```text
+2
 ```
 
 ---
 
-## Minimum Value
+## Modulus (Remainder)
 
 ```javascript
-console.log(Number.MIN_VALUE);
+console.log(10 % 3);
+```
+
+Output
+
+```text
+1
 ```
 
 ---
+
+## Exponentiation
+
+```javascript
+console.log(2 ** 3);
+```
+
+Output
+
+```text
+8
+```
+
+---
+
+# Number Precision
+
+JavaScript uses the IEEE 754 floating-point standard.
+
+Because of this, some decimal calculations may produce unexpected results.
+
+Example:
+
+```javascript
+console.log(0.1 + 0.2);
+```
+
+Output
+
+```text
+0.30000000000000004
+```
+
+This is a common floating-point precision issue.
+
+---
+
+# Number Limits
+
+JavaScript numbers have maximum and minimum safe values.
 
 ## Maximum Safe Integer
 
@@ -451,72 +259,118 @@ Output
 -9007199254740991
 ```
 
----
-
-## EPSILON
-
-```javascript
-console.log(Number.EPSILON);
-```
+For larger integers, use **BigInt**.
 
 ---
 
-# Checking Numbers
+# Special Number Values
 
-## Number.isInteger()
+JavaScript provides several special numeric values.
+
+## NaN (Not a Number)
+
+Represents an invalid numerical operation.
 
 ```javascript
-console.log(Number.isInteger(25));
-console.log(Number.isInteger(5.5));
+console.log("Hello" / 2);
 ```
 
 Output
 
 ```text
-true
-false
+NaN
 ```
 
----
-
-## Number.isFinite()
-
-```javascript
-console.log(Number.isFinite(100));
-console.log(Number.isFinite(Infinity));
-```
-
-Output
-
-```text
-true
-false
-```
-
----
-
-## Number.isNaN()
+Check for NaN:
 
 ```javascript
 console.log(Number.isNaN(NaN));
-console.log(Number.isNaN(100));
 ```
 
 Output
 
 ```text
 true
-false
 ```
 
 ---
 
-# Parsing Numbers
+## Infinity
 
-## Number()
+Represents a value larger than any finite number.
 
 ```javascript
-console.log(Number("100"));
+console.log(1 / 0);
+```
+
+Output
+
+```text
+Infinity
+```
+
+---
+
+## Negative Infinity
+
+```javascript
+console.log(-1 / 0);
+```
+
+Output
+
+```text
+-Infinity
+```
+
+---
+
+# Number Methods
+
+## toFixed()
+
+Formats a number to a fixed number of decimal places.
+
+```javascript
+let price = 99.4567;
+
+console.log(price.toFixed(2));
+```
+
+Output
+
+```text
+99.46
+```
+
+---
+
+## toString()
+
+Converts a number into a string.
+
+```javascript
+let age = 25;
+
+console.log(age.toString());
+```
+
+Output
+
+```text
+"25"
+```
+
+---
+
+## valueOf()
+
+Returns the primitive value of a Number object.
+
+```javascript
+let num = 100;
+
+console.log(num.valueOf());
 ```
 
 Output
@@ -527,35 +381,222 @@ Output
 
 ---
 
-## parseInt()
+# Number Conversion
+
+## String to Number
+
+Using `Number()`:
 
 ```javascript
-console.log(parseInt("150px"));
+let age = "25";
+
+console.log(Number(age));
 ```
 
 Output
 
 ```text
-150
+25
 ```
 
 ---
 
-## parseFloat()
+## Using parseInt()
 
 ```javascript
-console.log(parseFloat("12.75kg"));
+console.log(parseInt("100px"));
 ```
 
 Output
 
 ```text
-12.75
+100
 ```
 
 ---
 
-# Floating Point Precision
+## Using parseFloat()
+
+```javascript
+console.log(parseFloat("99.99"));
+```
+
+Output
+
+```text
+99.99
+```
+
+---
+
+# Useful Number Methods
+
+## Number.isInteger()
+
+Checks whether a value is an integer.
+
+```javascript
+console.log(Number.isInteger(10));
+```
+
+Output
+
+```text
+true
+```
+
+---
+
+## Number.isFinite()
+
+Checks whether a value is finite.
+
+```javascript
+console.log(Number.isFinite(100));
+```
+
+Output
+
+```text
+true
+```
+
+---
+
+## Number.isNaN()
+
+Checks whether a value is NaN.
+
+```javascript
+console.log(Number.isNaN(NaN));
+```
+
+Output
+
+```text
+true
+```
+
+---
+
+# Math Object
+
+JavaScript provides the `Math` object for mathematical operations.
+
+## Square Root
+
+```javascript
+console.log(Math.sqrt(25));
+```
+
+Output
+
+```text
+5
+```
+
+---
+
+## Random Number
+
+```javascript
+console.log(Math.random());
+```
+
+Output
+
+```text
+0.583421
+```
+
+(Random value)
+
+---
+
+## Rounding
+
+```javascript
+console.log(Math.round(4.6));
+```
+
+Output
+
+```text
+5
+```
+
+---
+
+# Real-World Example
+
+```javascript
+const productPrice = 799.99;
+const taxRate = 0.18;
+
+const totalPrice = productPrice + (productPrice * taxRate);
+
+console.log(totalPrice);
+```
+
+Output
+
+```text
+943.9882
+```
+
+Rounded:
+
+```javascript
+console.log(totalPrice.toFixed(2));
+```
+
+Output
+
+```text
+943.99
+```
+
+---
+
+# Best Practices
+
+- Use numbers for calculations only.
+- Use `Number.isNaN()` instead of `isNaN()`.
+- Use `toFixed()` when displaying currency values.
+- Use `BigInt` for very large integers.
+- Be careful with floating-point calculations.
+
+---
+
+# Common Mistakes
+
+## Treating Numbers as Strings
+
+```javascript
+console.log("10" + "5");
+```
+
+Output
+
+```text
+105
+```
+
+Instead of:
+
+```javascript
+console.log(10 + 5);
+```
+
+Output
+
+```text
+15
+```
+
+---
+
+## Ignoring Floating-Point Precision
 
 ```javascript
 console.log(0.1 + 0.2);
@@ -567,95 +608,15 @@ Output
 0.30000000000000004
 ```
 
-This happens because floating-point numbers are stored using the IEEE 754 standard.
-
 ---
 
-# Real-World Example
+## Exceeding Safe Integer Limits
 
 ```javascript
-const productPrice = 799.99;
-const quantity = 3;
-
-const total = productPrice * quantity;
-
-console.log(total);
+let large = 9007199254740992;
 ```
 
-Output
-
-```text
-2399.97
-```
-
----
-
-# Best Practices
-
-- Use descriptive variable names.
-- Use `Number.isNaN()` instead of the global `isNaN()`.
-- Avoid floating-point comparisons using `==`.
-- Use `Number.isInteger()` when integers are required.
-- Use `parseInt()` and `parseFloat()` carefully.
-- Use `BigInt` for integers larger than `Number.MAX_SAFE_INTEGER`.
-
----
-
-# Common Mistakes
-
-## Dividing by Zero
-
-```javascript
-console.log(10 / 0);
-```
-
-Output
-
-```text
-Infinity
-```
-
----
-
-## Invalid Mathematical Operations
-
-```javascript
-console.log("JavaScript" * 5);
-```
-
-Output
-
-```text
-NaN
-```
-
----
-
-## Floating Point Precision Errors
-
-```javascript
-console.log(0.1 + 0.2 === 0.3);
-```
-
-Output
-
-```text
-false
-```
-
----
-
-## Forgetting String Conversion
-
-```javascript
-console.log("10" + 5);
-```
-
-Output
-
-```text
-105
-```
+Use `BigInt` when dealing with extremely large integers.
 
 ---
 
@@ -663,29 +624,38 @@ Output
 
 1. What is the Number data type in JavaScript?
 2. Does JavaScript have separate integer and float types?
-3. What is IEEE 754?
-4. What is `NaN`?
+3. What is `NaN`?
+4. What is the difference between `parseInt()` and `parseFloat()`?
 5. What is `Infinity`?
-6. What is `Number.MAX_SAFE_INTEGER`?
-7. What is the difference between `Number()` and `parseInt()`?
-8. What is `Number.isNaN()`?
-9. Why does `0.1 + 0.2` not equal `0.3`?
-10. When should you use `BigInt` instead of `Number`?
+6. Why does `0.1 + 0.2` not equal exactly `0.3`?
+7. What is `Number.MAX_SAFE_INTEGER`?
+8. When should you use BigInt instead of Number?
+9. What does `toFixed()` do?
+10. How do you check whether a value is a number?
 
 ---
 
 # Summary
 
+- JavaScript uses a single `Number` type for all numeric values.
+- Numbers can be integers, decimals, negative values, or scientific notation.
+- JavaScript follows the IEEE 754 floating-point standard.
+- Special numeric values include `NaN`, `Infinity`, and `-Infinity`.
+- Number methods help with formatting and validation.
+- Use `BigInt` for integers larger than the safe integer range.
+
+---
+
+# Key Points
+
 - Number is a primitive data type.
-- It represents both integers and floating-point values.
-- JavaScript uses IEEE 754 double-precision floating-point numbers.
-- Numbers support arithmetic operations and built-in methods.
-- Special values include `Infinity`, `-Infinity`, and `NaN`.
-- `Number` provides useful methods and properties for working with numeric values.
-- Use `BigInt` when dealing with very large integers.
+- Integers and decimals use the same type.
+- `typeof 100` returns `"number"`.
+- JavaScript numbers can experience floating-point precision issues.
+- Use Number methods and the Math object for calculations.
 
 ---
 
 # Next Topic
 
-**0005_bigint**
+# `Bigint`

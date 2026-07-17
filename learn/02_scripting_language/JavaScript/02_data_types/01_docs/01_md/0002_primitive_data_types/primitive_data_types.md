@@ -2,31 +2,28 @@
 
 ## Introduction
 
-Primitive data types are the most basic types of values in JavaScript. They represent a **single, immutable value**, meaning the value itself cannot be changed after it is created. When you modify a primitive value, JavaScript creates a new value instead of changing the existing one.
+Primitive data types are the **basic building blocks** of JavaScript. They represent single, immutable values and are used to store simple pieces of data such as numbers, text, and boolean values.
 
-Primitive values are stored directly in memory and are copied by **value**, not by reference.
-
-JavaScript has **seven primitive data types**:
-
-1. Number
-2. BigInt
-3. String
-4. Boolean
-5. Undefined
-6. Null
-7. Symbol
+JavaScript provides **seven primitive data types**. These data types are predefined by the language and form the foundation of every JavaScript program.
 
 ---
 
 # What Are Primitive Data Types?
 
-A primitive data type stores a single value and does not contain methods or properties of its own (although JavaScript temporarily wraps primitives with objects when needed).
+A **primitive data type** stores a **single value** instead of a collection of values.
+
+Primitive values are:
+
+- Immutable
+- Stored by value
+- Compared by value
+- Fast and memory efficient
 
 Example:
 
 ```javascript
-let age = 22;
-let name = "Sachin";
+let age = 25;
+let language = "JavaScript";
 let isStudent = true;
 ```
 
@@ -36,11 +33,13 @@ Each variable stores a single primitive value.
 
 # Characteristics of Primitive Data Types
 
-- Store a single value.
-- Immutable.
-- Stored directly in stack memory.
-- Compared by value.
-- Copied by value.
+Primitive values have the following characteristics:
+
+- Store only one value.
+- Cannot contain properties or methods directly.
+- Immutable (cannot be changed after creation).
+- Assigned and copied by value.
+- Compared using their actual values.
 
 Example:
 
@@ -61,61 +60,56 @@ Output
 20
 ```
 
-Changing `b` does not affect `a`.
+Changing `b` does not affect `a` because primitive values are copied by value.
+
+---
+
+# JavaScript Primitive Data Types
+
+JavaScript has **seven primitive data types**.
+
+| Data Type | Description | Example |
+|-----------|-------------|---------|
+| Number | Integer and floating-point numbers | `100` |
+| BigInt | Very large integers | `100n` |
+| String | Text data | `"Hello"` |
+| Boolean | Logical values | `true` |
+| Undefined | Variable declared but not assigned | `undefined` |
+| Null | Intentional absence of a value | `null` |
+| Symbol | Unique identifier | `Symbol()` |
 
 ---
 
 # 1. Number
 
-The `Number` type stores both integers and floating-point numbers.
-
-Examples:
-
-```javascript
-let age = 25;
-let marks = 98.5;
-let temperature = -12;
-```
-
-Output
-
-```text
-25
-98.5
--12
-```
-
----
-
-## Special Number Values
-
-```javascript
-Infinity
--Infinity
-NaN
-```
+The **Number** data type represents both integers and decimal numbers.
 
 Example:
 
 ```javascript
-console.log(10 / 0);
-console.log(-10 / 0);
-console.log("Hello" / 2);
+let age = 25;
+let price = 99.99;
+```
+
+Numbers can be used for arithmetic operations.
+
+```javascript
+let total = 50 + 25;
+
+console.log(total);
 ```
 
 Output
 
 ```text
-Infinity
--Infinity
-NaN
+75
 ```
 
 ---
 
 # 2. BigInt
 
-`BigInt` is used to represent integers larger than the maximum safe integer supported by `Number`.
+The **BigInt** data type is used for integers that are too large for the Number type.
 
 Example:
 
@@ -123,132 +117,77 @@ Example:
 let bigNumber = 123456789012345678901234567890n;
 ```
 
-Notice the **`n`** at the end.
-
-Example:
-
-```javascript
-console.log(bigNumber);
-```
-
-Output
-
-```text
-123456789012345678901234567890n
-```
+Notice the `n` suffix.
 
 ---
 
 # 3. String
 
-A `String` stores textual data.
+A **String** stores text.
 
-Strings can use:
+Strings can be enclosed in:
 
-- Single quotes
-- Double quotes
-- Backticks
+- Double quotes (`" "`)
+- Single quotes (`' '`)
+- Backticks (`` ` ` ``)
 
 Example:
 
 ```javascript
 let firstName = "Sachin";
-let city = 'Bhopal';
+let lastName = 'Kumar';
 let language = `JavaScript`;
 ```
 
-Output
-
-```text
-Sachin
-Bhopal
-JavaScript
-```
-
----
-
-# String Example
+Strings can be concatenated.
 
 ```javascript
-let greeting = "Hello";
-let name = "Sachin";
+let fullName = firstName + " " + lastName;
 
-console.log(greeting + " " + name);
+console.log(fullName);
 ```
 
 Output
 
 ```text
-Hello Sachin
-```
-
----
-
-# Template Literals
-
-Backticks allow string interpolation.
-
-Example:
-
-```javascript
-let name = "Sachin";
-let age = 22;
-
-console.log(`My name is ${name} and I am ${age} years old.`);
-```
-
-Output
-
-```text
-My name is Sachin and I am 22 years old.
+Sachin Kumar
 ```
 
 ---
 
 # 4. Boolean
 
-A Boolean stores either:
+A **Boolean** has only two possible values.
 
-```text
-true
-false
-```
+- `true`
+- `false`
 
 Example:
 
 ```javascript
-let isOnline = true;
-let hasLicense = false;
+let isLoggedIn = true;
+let hasPermission = false;
 ```
 
-Output
-
-```text
-true
-false
-```
-
----
-
-# Boolean Example
+Booleans are commonly used in conditions.
 
 ```javascript
-let age = 18;
-
-console.log(age >= 18);
+if (isLoggedIn) {
+    console.log("Welcome");
+}
 ```
 
 Output
 
 ```text
-true
+Welcome
 ```
 
 ---
 
 # 5. Undefined
 
-A variable that has been declared but has not yet been assigned a value has the value `undefined`.
+A variable that has been declared but has not been assigned a value contains `undefined`.
 
 Example:
 
@@ -266,75 +205,31 @@ undefined
 
 ---
 
-# Undefined Example
-
-```javascript
-let student;
-
-console.log(typeof student);
-```
-
-Output
-
-```text
-undefined
-```
-
----
-
 # 6. Null
 
-`null` represents an intentional absence of a value.
+The **null** value represents an intentional absence of a value.
 
 Example:
 
 ```javascript
-let user = null;
+let selectedUser = null;
 ```
 
-Output
-
-```text
-null
-```
-
----
-
-# Null vs Undefined
-
-```javascript
-let a;
-let b = null;
-
-console.log(a);
-console.log(b);
-```
-
-Output
-
-```text
-undefined
-null
-```
-
-Difference:
-
-- `undefined` → value not assigned
-- `null` → value intentionally empty
+Unlike `undefined`, `null` is assigned intentionally.
 
 ---
 
 # 7. Symbol
 
-A `Symbol` creates a unique identifier.
+A **Symbol** creates a unique identifier.
 
 Example:
 
 ```javascript
-const id1 = Symbol("id");
-const id2 = Symbol("id");
+const id = Symbol("id");
+const anotherId = Symbol("id");
 
-console.log(id1 === id2);
+console.log(id === anotherId);
 ```
 
 Output
@@ -343,71 +238,98 @@ Output
 false
 ```
 
-Even though both have the same description, each Symbol is unique.
+Even symbols with the same description are unique.
 
 ---
 
-# Checking Primitive Types
+# Primitive Values Are Immutable
 
-Use the `typeof` operator.
+Primitive values cannot be changed after they are created.
+
+Example:
+
+```javascript
+let language = "JavaScript";
+
+language[0] = "P";
+
+console.log(language);
+```
+
+Output
+
+```text
+JavaScript
+```
+
+The original string remains unchanged.
+
+---
+
+# Primitive Values Are Copied by Value
+
+When one primitive variable is assigned to another, JavaScript copies the actual value.
+
+Example:
+
+```javascript
+let x = 100;
+let y = x;
+
+y = 200;
+
+console.log(x);
+console.log(y);
+```
+
+Output
+
+```text
+100
+200
+```
+
+---
+
+# Checking Primitive Data Types
+
+The `typeof` operator returns the type of most primitive values.
 
 Example:
 
 ```javascript
 console.log(typeof 100);
-console.log(typeof "Hello");
+console.log(typeof 100n);
+console.log(typeof "JavaScript");
 console.log(typeof true);
 console.log(typeof undefined);
-console.log(typeof null);
 console.log(typeof Symbol());
-console.log(typeof 100n);
 ```
 
 Output
 
 ```text
 number
+bigint
 string
 boolean
 undefined
-object
 symbol
-bigint
 ```
 
-**Note:**
+Special case:
 
-`typeof null` returns `"object"` due to a historical JavaScript bug.
+```javascript
+console.log(typeof null);
+```
 
----
+Output
 
-# Primitive Data Types Summary
+```text
+object
+```
 
-| Data Type | Example |
-|-----------|---------|
-| Number | `25` |
-| BigInt | `100n` |
-| String | `"Hello"` |
-| Boolean | `true` |
-| Undefined | `undefined` |
-| Null | `null` |
-| Symbol | `Symbol("id")` |
-
----
-
-# Primitive vs Reference Types
-
-| Primitive | Reference |
-|-----------|-----------|
-| Number | Object |
-| String | Array |
-| Boolean | Function |
-| Null | Date |
-| Undefined | Map |
-| Symbol | Set |
-| BigInt | Custom Objects |
-
-Primitive values are copied by value, while reference values are copied by reference.
+This is a well-known historical behavior in JavaScript.
 
 ---
 
@@ -415,29 +337,44 @@ Primitive values are copied by value, while reference values are copied by refer
 
 ```javascript
 let productName = "Laptop";
-let price = 59999;
-let available = true;
+let price = 65000;
+let isAvailable = true;
 let discount = null;
-let serialNumber = 98765432101234567890n;
-```
+let serialNumber = 987654321234567890n;
 
-Each variable uses an appropriate primitive data type.
+console.log(productName);
+console.log(price);
+console.log(isAvailable);
+console.log(discount);
+console.log(serialNumber);
+```
 
 ---
 
 # Best Practices
 
 - Use meaningful variable names.
-- Choose the correct data type for each value.
-- Use `const` whenever the value does not change.
-- Use template literals instead of string concatenation when appropriate.
-- Avoid unnecessary type conversions.
+- Prefer `const` when values do not change.
+- Use `null` intentionally.
+- Avoid changing variable types unnecessarily.
+- Use `typeof` to inspect unknown values.
 
 ---
 
 # Common Mistakes
 
-Using quotes around numbers:
+## Confusing `null` and `undefined`
+
+```javascript
+let a;
+let b = null;
+```
+
+These values have different meanings.
+
+---
+
+## Using Numbers as Strings
 
 ```javascript
 let age = "25";
@@ -451,34 +388,18 @@ let age = 25;
 
 ---
 
-Confusing `null` and `undefined`.
+## Forgetting the `n` in BigInt
 
----
-
-Expecting `typeof null` to return `"null"`.
+Incorrect:
 
 ```javascript
-typeof null
+let big = 123456789012345678901234567890;
 ```
 
-Output
-
-```text
-object
-```
-
----
-
-Comparing Symbols.
+Correct:
 
 ```javascript
-Symbol("id") === Symbol("id")
-```
-
-Output
-
-```text
-false
+let big = 123456789012345678901234567890n;
 ```
 
 ---
@@ -486,34 +407,41 @@ false
 # Interview Questions
 
 1. What are primitive data types?
-2. How many primitive data types are there in JavaScript?
+2. How many primitive data types does JavaScript have?
 3. What is the difference between `null` and `undefined`?
-4. What is `BigInt`?
-5. Why does `typeof null` return `"object"`?
-6. What are Symbols used for?
-7. What is the difference between primitive and reference data types?
-8. How are primitive values stored in memory?
-9. What does immutable mean?
-10. What is the difference between `Number` and `BigInt`?
+4. Why are primitive values immutable?
+5. What does `typeof` return for each primitive data type?
+6. What is BigInt used for?
+7. Why is `typeof null` equal to `"object"`?
+8. What is a Symbol?
+9. How are primitive values copied?
+10. Why are primitive data types faster than reference types?
 
 ---
 
 # Summary
 
-- JavaScript has **seven primitive data types**.
-- Primitive values store a single immutable value.
-- They are copied by value.
-- `Number` stores numeric values.
-- `BigInt` stores very large integers.
-- `String` stores text.
-- `Boolean` stores `true` or `false`.
-- `Undefined` means no value has been assigned.
-- `Null` represents an intentional empty value.
-- `Symbol` creates unique identifiers.
-- Use `typeof` to identify most primitive data types.
+- Primitive data types store single values.
+- JavaScript has **7 primitive data types**.
+- Primitive values are immutable.
+- Primitive values are copied by value.
+- The `typeof` operator identifies most primitive data types.
+- `null` is a special case because `typeof null` returns `"object"`.
+
+---
+
+# Key Points
+
+- Number stores numeric values.
+- BigInt stores very large integers.
+- String stores text.
+- Boolean stores `true` or `false`.
+- Undefined means no value has been assigned.
+- Null represents an intentional empty value.
+- Symbol creates unique identifiers.
 
 ---
 
 # Next Topic
 
-**0003_non_primitive_data_types**
+# `Non Primitive Data Types`

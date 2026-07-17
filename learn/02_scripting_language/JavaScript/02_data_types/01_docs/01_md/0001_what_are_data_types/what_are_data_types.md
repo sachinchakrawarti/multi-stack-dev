@@ -2,80 +2,124 @@
 
 ## Introduction
 
-In JavaScript, every value has a **data type**. A data type tells JavaScript what kind of data a variable stores and what operations can be performed on it.
+Every value in JavaScript has a **data type**. A data type defines the kind of value stored in a variable and determines the operations that can be performed on that value.
 
-Examples of data include:
+For example, JavaScript can store:
 
 - Numbers
-- Text
-- True/False values
+- Strings (Text)
+- Boolean values (`true` or `false`)
 - Objects
 - Arrays
 - Functions
 
-Understanding data types is one of the most important concepts in JavaScript because almost every program works with different kinds of data.
+Understanding data types is one of the most fundamental concepts in JavaScript because every program works with different kinds of data.
 
 ---
 
-# Why Do We Need Data Types?
+# What Is a Data Type?
 
-Imagine a calculator.
+A **data type** is a classification that tells JavaScript what type of value a variable contains.
 
-A calculator can perform mathematical operations on numbers:
-
-```javascript
-10 + 20
-```
-
-Output:
-
-```text
-30
-```
-
-But if we try to add two names:
-
-```javascript
-"John" + "Doe"
-```
-
-Output:
-
-```text
-JohnDoe
-```
-
-JavaScript behaves differently because numbers and strings are different data types.
-
----
-
-# Definition
-
-A **data type** is a classification that specifies what type of value a variable holds.
-
-Example:
+For example:
 
 ```javascript
 let age = 25;
 ```
 
-Here,
+Here:
 
 - Variable → `age`
 - Value → `25`
-- Data Type → Number
+- Data Type → `Number`
 
-Example:
+Another example:
 
 ```javascript
 let name = "Sachin";
 ```
 
-Here,
+Here:
 
 - Variable → `name`
 - Value → `"Sachin"`
-- Data Type → String
+- Data Type → `String`
+
+---
+
+# Why Do We Need Data Types?
+
+Different kinds of data require different operations.
+
+For example, numbers can be added mathematically.
+
+```javascript
+10 + 20;
+```
+
+Output
+
+```text
+30
+```
+
+Strings are combined (concatenated).
+
+```javascript
+"John" + " Doe";
+```
+
+Output
+
+```text
+John Doe
+```
+
+Because JavaScript knows the data type of each value, it performs the correct operation automatically.
+
+Without data types, JavaScript would not know whether to perform addition, comparison, concatenation, or some other operation.
+
+---
+
+# JavaScript Is Dynamically Typed
+
+JavaScript is a **dynamically typed language**.
+
+This means you do **not** need to declare the data type of a variable. JavaScript automatically determines the type based on the assigned value.
+
+Example:
+
+```javascript
+let value = 100;
+
+console.log(typeof value);
+```
+
+Output
+
+```text
+number
+```
+
+The same variable can later store another data type.
+
+```javascript
+let value = 100;
+
+value = "JavaScript";
+
+value = true;
+
+console.log(value);
+```
+
+Output
+
+```text
+true
+```
+
+Although JavaScript allows changing data types, it is considered good practice to avoid changing a variable's type unnecessarily because it reduces code readability.
 
 ---
 
@@ -103,35 +147,66 @@ true
 
 # JavaScript Data Types
 
-JavaScript has **two main categories** of data types.
+JavaScript data types are divided into **two main categories**.
 
-## 1. Primitive Data Types
-
-Primitive data types store a single value.
-
-They are:
-
-- Number
-- BigInt
-- String
-- Boolean
-- Undefined
-- Null
-- Symbol
-
-Example:
-
-```javascript
-let age = 22;
+```text
+JavaScript Data Types
+│
+├── Primitive Data Types
+│   ├── Number
+│   ├── BigInt
+│   ├── String
+│   ├── Boolean
+│   ├── Undefined
+│   ├── Null
+│   └── Symbol
+│
+└── Non-Primitive (Reference) Data Types
+    ├── Object
+    ├── Array
+    ├── Function
+    ├── Date
+    ├── Map
+    └── Set
 ```
 
 ---
 
-## 2. Non-Primitive (Reference) Data Types
+# Primitive Data Types
 
-Reference data types can store collections of values or more complex entities.
+Primitive data types store **a single, immutable value**.
 
-Examples:
+Whenever a primitive value is assigned to another variable, its actual value is copied.
+
+JavaScript has **7 primitive data types**.
+
+| Data Type | Description | Example |
+|-----------|-------------|---------|
+| Number | Integer or decimal numbers | `100` |
+| BigInt | Very large integers | `100n` |
+| String | Text | `"JavaScript"` |
+| Boolean | `true` or `false` | `true` |
+| Undefined | Variable declared but not assigned | `undefined` |
+| Null | Intentional empty value | `null` |
+| Symbol | Unique identifier | `Symbol()` |
+
+Example:
+
+```javascript
+let age = 25;
+```
+
+Here, `25` is a primitive value.
+
+---
+
+# Non-Primitive (Reference) Data Types
+
+Reference data types store **references** to objects rather than the actual value itself.
+
+They are used to represent more complex data structures.
+
+Common reference types include:
 
 - Object
 - Array
@@ -140,7 +215,7 @@ Examples:
 - Map
 - Set
 
-Example:
+Example
 
 ```javascript
 const person = {
@@ -149,308 +224,96 @@ const person = {
 };
 ```
 
----
-
-# Primitive Data Types
-
-## Number
-
-Stores integers and decimal numbers.
-
-```javascript
-let marks = 95;
-let price = 99.99;
-```
+Unlike primitive values, objects are stored by reference.
 
 ---
 
-## BigInt
+# Primitive vs Reference Types
 
-Stores very large integers.
+| Primitive | Reference |
+|------------|-----------|
+| Stores a single value | Stores collections or complex data |
+| Copied by value | Copied by reference |
+| Immutable | Mutable |
+| Faster | Slightly slower |
+| Stored directly | Stored as references |
 
-```javascript
-let big = 12345678901234567890n;
-```
-
----
-
-## String
-
-Stores text.
+Example
 
 ```javascript
-let language = "JavaScript";
-```
+let a = 10;
+let b = a;
 
----
+b = 20;
 
-## Boolean
-
-Stores either `true` or `false`.
-
-```javascript
-let isLoggedIn = true;
-```
-
----
-
-## Undefined
-
-A variable that has been declared but not assigned a value.
-
-```javascript
-let city;
-
-console.log(city);
+console.log(a);
+console.log(b);
 ```
 
 Output
 
 ```text
-undefined
+10
+20
 ```
 
----
-
-## Null
-
-Represents an intentional empty value.
+Example
 
 ```javascript
-let data = null;
-```
-
----
-
-## Symbol
-
-Creates a unique identifier.
-
-```javascript
-const id = Symbol("id");
-```
-
----
-
-# Reference Data Types
-
-## Object
-
-```javascript
-const student = {
-    name: "Sachin",
-    age: 22
+const person1 = {
+    name: "Sachin"
 };
-```
 
----
+const person2 = person1;
 
-## Array
+person2.name = "Rahul";
 
-```javascript
-const colors = [
-    "Red",
-    "Green",
-    "Blue"
-];
-```
-
----
-
-## Function
-
-```javascript
-function greet() {
-    console.log("Hello");
-}
-```
-
----
-
-# typeof Operator
-
-The `typeof` operator returns the data type of a value.
-
-Example:
-
-```javascript
-console.log(typeof 25);
+console.log(person1.name);
 ```
 
 Output
 
 ```text
-number
+Rahul
 ```
 
-Example:
+Both variables refer to the same object.
 
-```javascript
-console.log(typeof "Hello");
-```
+---
 
-Output
+# Memory Overview
+
+Primitive values are copied.
 
 ```text
-string
+a → 10
+
+b → 10
 ```
 
-Example:
-
-```javascript
-console.log(typeof true);
-```
-
-Output
+Reference values store a memory reference.
 
 ```text
-boolean
+person1 ─┐
+          ├──► Object
+person2 ─┘
 ```
+
+Changing the object through one reference affects the other.
 
 ---
 
-# Example
-
-```javascript
-console.log(typeof 100);
-console.log(typeof "JavaScript");
-console.log(typeof false);
-console.log(typeof undefined);
-console.log(typeof {});
-console.log(typeof []);
-console.log(typeof function(){});
-```
-
-Output
-
-```text
-number
-string
-boolean
-undefined
-object
-object
-function
-```
-
----
-
-# Why Data Types Matter
-
-Data types help JavaScript:
-
-- Store data correctly
-- Perform valid operations
-- Prevent logical errors
-- Improve code readability
-- Optimize memory usage
-
----
-
-# Real-World Example
-
-A shopping website may store:
-
-```javascript
-let productName = "Laptop";
-let price = 65000;
-let inStock = true;
-let discount = null;
-```
-
-Each variable has a different data type based on the information it represents.
-
----
-
-# Best Practices
-
-- Use meaningful variable names.
-- Understand the difference between primitive and reference types.
-- Use `const` whenever possible.
-- Use `typeof` to inspect values.
-- Avoid relying on automatic type conversion.
-
----
-
-# Common Mistakes
-
-Using a number as a string:
-
-```javascript
-let age = "25";
-```
-
-Instead of:
-
-```javascript
-let age = 25;
-```
-
----
-
-Confusing `null` and `undefined`.
-
-```javascript
-let a;
-let b = null;
-```
-
-These are different values with different meanings.
-
----
-
-Thinking arrays have their own `typeof` result.
-
-```javascript
-typeof []
-```
-
-Output
-
-```text
-object
-```
-
-Use:
-
-```javascript
-Array.isArray([])
-```
-
-Output
-
-```text
-true
-```
-
----
-
-# Interview Questions
-
-1. What is a data type?
-2. How many primitive data types are there in JavaScript?
-3. What is the difference between primitive and reference data types?
-4. What does the `typeof` operator do?
-5. What is the difference between `null` and `undefined`?
-6. Why does `typeof []` return `"object"`?
-7. What is a Symbol?
-8. What is BigInt?
-9. How are objects stored in memory?
-10. Why are data types important?
-
----
-
-# Summary
+# Key Points
 
 - Every value in JavaScript has a data type.
-- JavaScript data types are divided into Primitive and Non-Primitive.
+- JavaScript automatically determines a variable's data type.
+- JavaScript is dynamically typed.
+- Data types are divided into Primitive and Reference types.
 - Primitive values store a single value.
-- Reference values store objects and collections.
-- The `typeof` operator identifies most data types.
-- Understanding data types is essential for writing reliable JavaScript programs.
+- Reference types store objects and collections.
 
 ---
 
 # Next Topic
 
-**0002_primitive_data_types**
+# `Primitive Data Types`

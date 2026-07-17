@@ -2,124 +2,48 @@
 
 ## Introduction
 
-The **Boolean** data type is one of JavaScript's **primitive data types**. It represents only two possible values:
+The **Boolean** data type represents one of two possible values:
 
 - `true`
 - `false`
 
-Booleans are primarily used for **decision making**, **comparisons**, **logical operations**, **loops**, and **conditional statements**.
+Booleans are primarily used to make decisions in a program. They determine whether a condition is true or false and are commonly used with conditional statements, loops, and comparison operators.
 
 ---
 
-# What is a Boolean?
+# What Is a Boolean?
 
-A Boolean is a data type that represents a logical value.
+A **Boolean** is a primitive data type that represents a logical value.
+
+It can only have one of two values:
+
+- `true`
+- `false`
 
 Example:
 
 ```javascript
 let isStudent = true;
-let isLoggedIn = false;
-
-console.log(isStudent);
-console.log(isLoggedIn);
-```
-
-Output
-
-```text
-true
-false
+let hasLicense = false;
 ```
 
 ---
 
-# Creating Boolean Values
+# Why Use Booleans?
 
-## Using Boolean Literals
+Booleans help JavaScript make decisions.
 
-```javascript
-const hasLicense = true;
-const isAdmin = false;
+For example:
 
-console.log(hasLicense);
-console.log(isAdmin);
-```
+- Is a user logged in?
+- Is a product in stock?
+- Has a payment been completed?
+- Is a number greater than another?
 
-Output
-
-```text
-true
-false
-```
-
----
-
-## Using the Boolean Constructor
+Example:
 
 ```javascript
-const a = Boolean(true);
-const b = Boolean(false);
-
-console.log(a);
-console.log(b);
-```
-
-Output
-
-```text
-true
-false
-```
-
-Although valid, using Boolean literals is generally preferred.
-
----
-
-# typeof Boolean
-
-Use the `typeof` operator to determine the data type.
-
-```javascript
-const isOnline = true;
-
-console.log(typeof isOnline);
-```
-
-Output
-
-```text
-boolean
-```
-
----
-
-# Boolean from Comparisons
-
-Comparison operators always return Boolean values.
-
-```javascript
-console.log(10 > 5);
-console.log(10 < 5);
-console.log(10 === 10);
-console.log(10 !== 10);
-```
-
-Output
-
-```text
-true
-false
-true
-false
-```
-
----
-
-# Boolean in Conditional Statements
-
-```javascript
-const isLoggedIn = true;
+let isLoggedIn = true;
 
 if (isLoggedIn) {
     console.log("Welcome!");
@@ -134,58 +58,101 @@ Welcome!
 
 ---
 
-# Boolean with if...else
+# Creating Boolean Values
+
+Boolean values can be assigned directly.
 
 ```javascript
-const age = 18;
+let isOnline = true;
+let isAdmin = false;
 
-if (age >= 18) {
-    console.log("Eligible to vote");
-} else {
-    console.log("Not eligible");
-}
+console.log(isOnline);
+console.log(isAdmin);
 ```
 
 Output
 
 ```text
-Eligible to vote
+true
+false
 ```
 
 ---
 
-# Boolean in Loops
+# Checking the Data Type
+
+Use the `typeof` operator.
 
 ```javascript
-let running = true;
-let count = 1;
+let isStudent = true;
 
-while (running) {
-    console.log(count);
-
-    if (count === 3) {
-        running = false;
-    }
-
-    count++;
-}
+console.log(typeof isStudent);
 ```
 
 Output
 
 ```text
-1
-2
-3
+boolean
+```
+
+---
+
+# Boolean Expressions
+
+Comparison operators return Boolean values.
+
+```javascript
+console.log(10 > 5);
+console.log(10 < 5);
+console.log(10 === 10);
+console.log(10 !== 5);
+```
+
+Output
+
+```text
+true
+false
+true
+true
+```
+
+---
+
+# Comparison Operators
+
+| Operator | Description | Example |
+|----------|-------------|---------|
+| `==` | Equal | `10 == "10"` |
+| `===` | Strict Equal | `10 === 10` |
+| `!=` | Not Equal | `10 != 5` |
+| `!==` | Strict Not Equal | `10 !== "10"` |
+| `>` | Greater Than | `10 > 5` |
+| `<` | Less Than | `5 < 10` |
+| `>=` | Greater Than or Equal | `10 >= 10` |
+| `<=` | Less Than or Equal | `5 <= 10` |
+
+Example:
+
+```javascript
+console.log(20 >= 15);
+```
+
+Output
+
+```text
+true
 ```
 
 ---
 
 # Logical Operators
 
+Logical operators combine Boolean values.
+
 ## AND (`&&`)
 
-Returns `true` only if both values are true.
+Returns `true` only if both conditions are true.
 
 ```javascript
 console.log(true && true);
@@ -203,7 +170,7 @@ false
 
 ## OR (`||`)
 
-Returns `true` if at least one value is true.
+Returns `true` if at least one condition is true.
 
 ```javascript
 console.log(true || false);
@@ -237,6 +204,45 @@ true
 
 ---
 
+# Boolean in Conditional Statements
+
+Booleans are commonly used with `if` statements.
+
+```javascript
+let isMember = true;
+
+if (isMember) {
+    console.log("Discount Applied");
+}
+```
+
+Output
+
+```text
+Discount Applied
+```
+
+---
+
+# Boolean in Loops
+
+```javascript
+let isRunning = true;
+
+while (isRunning) {
+    console.log("Program Running");
+    isRunning = false;
+}
+```
+
+Output
+
+```text
+Program Running
+```
+
+---
+
 # Boolean Conversion
 
 The `Boolean()` function converts values into Boolean values.
@@ -259,41 +265,34 @@ false
 
 ---
 
-# Truthy Values
+# Truthy and Falsy Values
 
-The following values are converted to `true`.
+Some values automatically convert to `true` or `false`.
 
-```javascript
-Boolean(1);
-Boolean(100);
-Boolean(-5);
-Boolean("JavaScript");
-Boolean([]);
-Boolean({});
-Boolean(function(){});
-Boolean(Infinity);
-```
+## Falsy Values
 
-All produce:
-
-```text
-true
-```
-
----
-
-# Falsy Values
-
-JavaScript has only a few falsy values.
+JavaScript has **only 8 falsy values**:
 
 ```javascript
-Boolean(false);
-Boolean(0);
-Boolean(-0);
-Boolean("");
-Boolean(null);
-Boolean(undefined);
-Boolean(NaN);
+false
+0
+-0
+0n
+""
+null
+undefined
+NaN
+```
+
+Everything else is considered **truthy**.
+
+Examples:
+
+```javascript
+console.log(Boolean(false));
+console.log(Boolean(0));
+console.log(Boolean(""));
+console.log(Boolean(null));
 ```
 
 Output
@@ -303,70 +302,32 @@ false
 false
 false
 false
-false
-false
-false
 ```
 
 ---
 
-# Boolean with Comparison Operators
+## Truthy Values
+
+Examples of truthy values:
 
 ```javascript
-const x = 10;
-const y = 20;
-
-console.log(x < y);
-console.log(x > y);
-console.log(x == y);
-console.log(x != y);
+Boolean(1)
+Boolean(-5)
+Boolean("Hello")
+Boolean([])
+Boolean({})
+Boolean(function(){})
 ```
 
 Output
 
 ```text
 true
-false
-false
 true
-```
-
----
-
-# Boolean with Strict Equality
-
-```javascript
-console.log(10 == "10");
-console.log(10 === "10");
-```
-
-Output
-
-```text
 true
-false
-```
-
-Use `===` to compare both value and type.
-
----
-
-# Boolean in Ternary Operator
-
-```javascript
-const age = 20;
-
-const result = age >= 18
-    ? "Adult"
-    : "Minor";
-
-console.log(result);
-```
-
-Output
-
-```text
-Adult
+true
+true
+true
 ```
 
 ---
@@ -374,61 +335,32 @@ Adult
 # Real-World Example
 
 ```javascript
-const user = {
-    username: "Sachin",
-    isPremium: true,
-    isVerified: false
-};
+const isLoggedIn = true;
+const hasSubscription = false;
 
-if (user.isPremium) {
-    console.log("Premium features enabled");
+if (isLoggedIn && hasSubscription) {
+    console.log("Access Granted");
+} else {
+    console.log("Access Denied");
 }
 ```
 
 Output
 
 ```text
-Premium features enabled
+Access Denied
 ```
-
----
-
-# typeof Examples
-
-```javascript
-console.log(typeof true);
-console.log(typeof false);
-```
-
-Output
-
-```text
-boolean
-boolean
-```
-
----
-
-# Boolean vs Number
-
-| Boolean | Number |
-|----------|--------|
-| `true` | `1` (when converted) |
-| `false` | `0` (when converted) |
-| Logical values | Numeric values |
-| Used in conditions | Used in calculations |
 
 ---
 
 # Best Practices
 
-- Use Boolean values for conditions.
-- Use meaningful variable names like `isLoggedIn`, `hasPermission`, and `isAvailable`.
-- Prefer strict equality (`===`) over loose equality (`==`).
-- Keep Boolean expressions simple and readable.
+- Use descriptive Boolean variable names.
+- Prefer names that start with `is`, `has`, `can`, or `should`.
+- Use strict equality (`===`) whenever possible.
 - Avoid comparing Boolean values with `true` or `false` unnecessarily.
 
-Example:
+Good:
 
 ```javascript
 if (isLoggedIn) {
@@ -436,7 +368,7 @@ if (isLoggedIn) {
 }
 ```
 
-Instead of:
+Less Preferred:
 
 ```javascript
 if (isLoggedIn === true) {
@@ -450,27 +382,27 @@ if (isLoggedIn === true) {
 
 ## Using Assignment Instead of Comparison
 
-Incorrect
+Incorrect:
 
 ```javascript
-if (isAdmin = true) {
-    console.log("Admin");
+if (isLoggedIn = true) {
+    console.log("Welcome");
 }
 ```
 
-Correct
+Correct:
 
 ```javascript
-if (isAdmin === true) {
-    console.log("Admin");
+if (isLoggedIn === true) {
+    console.log("Welcome");
 }
 ```
 
 Or simply:
 
 ```javascript
-if (isAdmin) {
-    console.log("Admin");
+if (isLoggedIn) {
+    console.log("Welcome");
 }
 ```
 
@@ -479,65 +411,55 @@ if (isAdmin) {
 ## Confusing `==` and `===`
 
 ```javascript
-console.log(true == 1);
-console.log(true === 1);
+console.log(10 == "10");
 ```
 
 Output
 
 ```text
 true
+```
+
+```javascript
+console.log(10 === "10");
+```
+
+Output
+
+```text
 false
 ```
 
----
-
-## Assuming Every Value is False
-
-```javascript
-if ("Hello") {
-    console.log("Runs");
-}
-```
-
-Output
-
-```text
-Runs
-```
-
-Non-empty strings are truthy.
+Always prefer `===`.
 
 ---
 
-## Ignoring Falsy Values
+## Forgetting Truthy and Falsy Values
 
 ```javascript
-if (0) {
-    console.log("Never runs");
+let username = "";
+
+if (username) {
+    console.log("Valid");
 }
 ```
 
-Output
-
-```text
-No output
-```
+Nothing is printed because an empty string is falsy.
 
 ---
 
 # Interview Questions
 
-1. What is the Boolean data type in JavaScript?
-2. How many Boolean values exist?
-3. What is the difference between `==` and `===`?
-4. What are truthy and falsy values?
-5. What does `Boolean()` do?
-6. What is the result of `Boolean("")`?
-7. What does `typeof true` return?
-8. Why should `===` be preferred over `==`?
+1. What is a Boolean data type?
+2. How many values can a Boolean have?
+3. What does the `Boolean()` function do?
+4. What is the difference between `==` and `===`?
+5. What are logical operators?
+6. What are truthy and falsy values?
+7. Name all JavaScript falsy values.
+8. Why should you use strict equality?
 9. How are Booleans used in conditional statements?
-10. What are logical operators in JavaScript?
+10. What is the `!` operator?
 
 ---
 
@@ -545,15 +467,24 @@ No output
 
 - Boolean is a primitive data type.
 - It has only two values: `true` and `false`.
-- Used for conditions, comparisons, loops, and logical operations.
 - Comparison operators return Boolean values.
-- `Boolean()` converts values into Boolean.
-- JavaScript has truthy and falsy values.
-- Use strict equality (`===`) for safer comparisons.
-- Booleans are fundamental to decision-making in JavaScript.
+- Logical operators combine Boolean expressions.
+- JavaScript automatically converts values to Boolean in many situations.
+- Understanding truthy and falsy values is essential for writing reliable code.
+
+---
+
+# Key Points
+
+- Boolean stores logical values.
+- `typeof true` returns `"boolean"`.
+- Use `===` instead of `==`.
+- Use meaningful Boolean variable names.
+- Learn JavaScript's truthy and falsy values.
+- Booleans are heavily used in conditions and loops.
 
 ---
 
 # Next Topic
 
-**0008_undefined**
+# `Undefined`

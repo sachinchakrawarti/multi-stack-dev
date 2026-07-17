@@ -2,49 +2,67 @@
 
 ## Introduction
 
-Non-Primitive Data Types, also known as **Reference Data Types**, are used to store **collections of values** or **more complex data**.
+Non-Primitive Data Types, also known as **Reference Data Types**, are used to store collections of data and more complex entities. Unlike primitive data types, which store a single value, non-primitive data types can contain multiple values, properties, and methods.
 
-Unlike primitive data types, which store a single value, non-primitive data types can contain multiple values, properties, and methods.
-
-Examples include:
-
-- Objects
-- Arrays
-- Functions
-- Dates
-- Maps
-- Sets
-- WeakMaps
-- WeakSets
-
-These values are stored **by reference**, meaning variables store the memory address of the value rather than the value itself.
+Most real-world JavaScript applications rely heavily on non-primitive data types to represent users, products, orders, lists, configurations, and much more.
 
 ---
 
 # What Are Non-Primitive Data Types?
 
-A non-primitive data type is a data structure that can hold multiple related values and behaviors.
+A **Non-Primitive Data Type** is a data type that stores a **reference (memory address)** to an object instead of storing the actual value directly.
+
+Unlike primitive values, reference values can:
+
+- Store multiple values.
+- Store properties.
+- Store methods.
+- Be modified after creation.
+- Be shared between variables.
 
 Example:
 
 ```javascript
-const person = {
+const student = {
     name: "Sachin",
     age: 22
 };
 ```
 
-The variable `person` stores a reference to the object in memory.
+Here, `student` refers to an object stored in memory.
 
 ---
 
 # Characteristics of Non-Primitive Data Types
 
-- Can store multiple values.
-- Mutable (their contents can be changed).
-- Stored in heap memory.
-- Variables store references (memory addresses).
-- Compared by reference, not by value.
+Reference data types have the following characteristics:
+
+- Store multiple values.
+- Stored by reference.
+- Mutable (can be changed).
+- Can contain properties and methods.
+- Compared by reference.
+- Usually consume more memory than primitive values.
+
+Example:
+
+```javascript
+const person = {
+    name: "Rahul"
+};
+
+person.name = "Amit";
+
+console.log(person.name);
+```
+
+Output
+
+```text
+Amit
+```
+
+The object is modified without creating a new object.
 
 ---
 
@@ -52,20 +70,21 @@ The variable `person` stores a reference to the object in memory.
 
 JavaScript provides several built-in reference types.
 
-- Object
-- Array
-- Function
-- Date
-- Map
-- Set
-- WeakMap
-- WeakSet
+| Data Type | Description |
+|-----------|-------------|
+| Object | Stores key-value pairs |
+| Array | Stores ordered collections |
+| Function | Represents reusable code |
+| Date | Represents dates and times |
+| Map | Stores key-value pairs with any data type as keys |
+| Set | Stores unique values |
+| RegExp | Represents regular expressions |
 
 ---
 
 # 1. Object
 
-An object stores data as **key-value pairs**.
+An **Object** stores related data using **key-value pairs**.
 
 Example:
 
@@ -73,7 +92,7 @@ Example:
 const student = {
     name: "Sachin",
     age: 22,
-    course: "M.Tech"
+    course: "JavaScript"
 };
 
 console.log(student);
@@ -82,12 +101,14 @@ console.log(student);
 Output
 
 ```text
-{ name: 'Sachin', age: 22, course: 'M.Tech' }
+{
+  name: "Sachin",
+  age: 22,
+  course: "JavaScript"
+}
 ```
 
----
-
-## Accessing Object Properties
+Accessing properties:
 
 ```javascript
 console.log(student.name);
@@ -103,32 +124,18 @@ Sachin
 
 ---
 
-## Modifying Objects
-
-```javascript
-student.age = 23;
-
-console.log(student.age);
-```
-
-Output
-
-```text
-23
-```
-
-Even though the object was declared using `const`, its properties can still be modified.
-
----
-
 # 2. Array
 
-An array stores multiple values in a single variable.
+An **Array** stores multiple values in a single variable.
 
 Example:
 
 ```javascript
-const colors = ["Red", "Green", "Blue"];
+const colors = [
+    "Red",
+    "Green",
+    "Blue"
+];
 
 console.log(colors);
 ```
@@ -139,9 +146,7 @@ Output
 ["Red", "Green", "Blue"]
 ```
 
----
-
-## Accessing Array Elements
+Accessing elements:
 
 ```javascript
 console.log(colors[0]);
@@ -155,35 +160,41 @@ Red
 Blue
 ```
 
----
-
-## Modifying Arrays
+Arrays are actually special types of objects.
 
 ```javascript
-colors.push("Yellow");
-
-console.log(colors);
+console.log(typeof []);
 ```
 
 Output
 
 ```text
-["Red", "Green", "Blue", "Yellow"]
+object
 ```
 
-Arrays declared with `const` can still be modified.
+To check if a value is an array:
+
+```javascript
+console.log(Array.isArray(colors));
+```
+
+Output
+
+```text
+true
+```
 
 ---
 
 # 3. Function
 
-Functions are also objects in JavaScript.
+Functions are reusable blocks of code.
 
 Example:
 
 ```javascript
 function greet() {
-    console.log("Hello!");
+    console.log("Hello");
 }
 
 greet();
@@ -192,32 +203,26 @@ greet();
 Output
 
 ```text
-Hello!
+Hello
 ```
 
----
-
-## Function Expression
+Functions are objects in JavaScript.
 
 ```javascript
-const add = function(a, b) {
-    return a + b;
-};
-
-console.log(add(10, 20));
+console.log(typeof greet);
 ```
 
 Output
 
 ```text
-30
+function
 ```
 
 ---
 
 # 4. Date
 
-The `Date` object represents dates and times.
+The **Date** object represents dates and times.
 
 Example:
 
@@ -230,14 +235,16 @@ console.log(today);
 Example Output
 
 ```text
-2026-07-16T10:30:45.123Z
+2026-07-17T12:30:45.000Z
 ```
 
 ---
 
 # 5. Map
 
-A `Map` stores key-value pairs where keys can be of any data type.
+A **Map** stores key-value pairs.
+
+Unlike objects, keys can be of any data type.
 
 Example:
 
@@ -260,12 +267,17 @@ Sachin
 
 # 6. Set
 
-A `Set` stores unique values.
+A **Set** stores only unique values.
 
 Example:
 
 ```javascript
-const numbers = new Set([1, 2, 3, 3, 2]);
+const numbers = new Set([
+    10,
+    20,
+    20,
+    30
+]);
 
 console.log(numbers);
 ```
@@ -273,54 +285,43 @@ console.log(numbers);
 Output
 
 ```text
-Set(3) {1, 2, 3}
+Set(3) {10, 20, 30}
 ```
 
 Duplicate values are automatically removed.
 
 ---
 
-# 7. WeakMap
+# Memory Representation
 
-A `WeakMap` stores key-value pairs where keys must be objects.
+Primitive values store the actual value.
 
-Example:
-
-```javascript
-const weakMap = new WeakMap();
-
-const obj = {};
-
-weakMap.set(obj, "Hello");
+```text
+age
+ │
+ ▼
+25
 ```
 
-WeakMaps allow objects to be garbage collected when no longer referenced.
+Reference values store a memory reference.
+
+```text
+student
+    │
+    ▼
++----------------+
+| name : Sachin  |
+| age  : 22      |
++----------------+
+```
+
+The variable points to the object stored elsewhere in memory.
 
 ---
 
-# 8. WeakSet
+# Reference Assignment
 
-A `WeakSet` stores unique objects.
-
-Example:
-
-```javascript
-const weakSet = new WeakSet();
-
-const person = {};
-
-weakSet.add(person);
-```
-
-Like WeakMap, it supports garbage collection.
-
----
-
-# Reference Behavior
-
-Reference types are copied by reference.
-
-Example:
+Objects are assigned by reference.
 
 ```javascript
 const person1 = {
@@ -340,58 +341,34 @@ Output
 Rahul
 ```
 
-Both variables point to the same object.
+Both variables refer to the same object.
 
 ---
 
-# Primitive vs Reference Copy
+# Comparing Objects
 
-Primitive
+Primitive values compare their contents.
 
 ```javascript
-let a = 10;
-let b = a;
-
-b = 20;
-
-console.log(a);
+console.log(10 === 10);
 ```
 
 Output
 
 ```text
-10
+true
 ```
 
-Reference
+Objects compare references.
 
 ```javascript
-const obj1 = {
-    age: 22
+const a = {
+    value: 10
 };
 
-const obj2 = obj1;
-
-obj2.age = 30;
-
-console.log(obj1.age);
-```
-
-Output
-
-```text
-30
-```
-
----
-
-# Comparing Reference Types
-
-Example
-
-```javascript
-const a = {};
-const b = {};
+const b = {
+    value: 10
+};
 
 console.log(a === b);
 ```
@@ -402,16 +379,38 @@ Output
 false
 ```
 
-Even though both objects are empty, they occupy different memory locations.
+Although both objects contain the same data, they occupy different memory locations.
 
 ---
 
-# typeof Results
+# Mutable Nature
+
+Objects can be modified after creation.
+
+```javascript
+const car = {
+    brand: "Toyota"
+};
+
+car.brand = "Honda";
+
+console.log(car.brand);
+```
+
+Output
+
+```text
+Honda
+```
+
+---
+
+# typeof with Reference Types
 
 ```javascript
 console.log(typeof {});
 console.log(typeof []);
-console.log(typeof function(){});
+console.log(typeof function () {});
 console.log(typeof new Date());
 console.log(typeof new Map());
 console.log(typeof new Set());
@@ -428,76 +427,56 @@ object
 object
 ```
 
----
-
-# Primitive vs Non-Primitive
-
-| Primitive | Non-Primitive |
-|------------|---------------|
-| Stores one value | Stores multiple values |
-| Immutable | Mutable |
-| Stored by value | Stored by reference |
-| Stack memory | Heap memory |
-| Compared by value | Compared by reference |
+Notice that only functions return `"function"`.
 
 ---
 
 # Real-World Example
 
 ```javascript
-const employee = {
+const product = {
     id: 101,
-    name: "Sachin",
-    skills: ["JavaScript", "React", "Node.js"],
-    isActive: true
+    name: "Laptop",
+    price: 65000,
+    inStock: true,
+    colors: [
+        "Silver",
+        "Black"
+    ]
 };
 
-console.log(employee);
+console.log(product);
 ```
 
-The object contains:
-
-- Primitive values
-- An array
-- Multiple properties
+This object contains different data types to represent a real product.
 
 ---
 
 # Best Practices
 
-- Use objects for related data.
+- Use `const` for objects and arrays whenever possible.
+- Use meaningful property names.
+- Prefer objects for structured data.
 - Use arrays for ordered collections.
-- Prefer `Map` when keys are dynamic.
-- Use `Set` when values must be unique.
-- Avoid unnecessary mutation.
-- Use `const` for objects and arrays unless reassignment is needed.
+- Use `Map` when keys are dynamic.
+- Use `Set` to store unique values.
 
 ---
 
 # Common Mistakes
 
-## Assuming Objects Are Copied by Value
-
-Incorrect assumption:
+## Comparing Objects
 
 ```javascript
 const a = {
     x: 1
 };
 
-const b = a;
+const b = {
+    x: 1
+};
 
-b.x = 5;
-```
-
-`a.x` also becomes `5`.
-
----
-
-## Comparing Objects Directly
-
-```javascript
-{} === {}
+console.log(a === b);
 ```
 
 Output
@@ -506,12 +485,14 @@ Output
 false
 ```
 
+Objects are compared by reference, not by their contents.
+
 ---
 
-## Thinking Arrays Are a Separate Type
+## Using `typeof` for Arrays
 
 ```javascript
-typeof []
+typeof [];
 ```
 
 Output
@@ -520,7 +501,7 @@ Output
 object
 ```
 
-Use:
+Correct way:
 
 ```javascript
 Array.isArray([]);
@@ -534,47 +515,58 @@ true
 
 ---
 
-## Forgetting Objects Are Mutable
+## Assuming Objects Are Copied
 
 ```javascript
-const car = {
-    brand: "Toyota"
+const obj1 = {
+    name: "Sachin"
 };
 
-car.brand = "Honda";
+const obj2 = obj1;
 ```
 
-This is valid because only the reference is constant.
+Both variables point to the same object.
 
 ---
 
 # Interview Questions
 
 1. What are non-primitive data types?
-2. Why are they called reference data types?
-3. What is the difference between primitive and non-primitive data types?
-4. Why does modifying one object affect another reference?
-5. Why does `typeof []` return `"object"`?
+2. Why are they called reference types?
+3. What is the difference between primitive and reference types?
+4. Why does `typeof []` return `"object"`?
+5. How are objects stored in memory?
 6. What is the difference between `Map` and `Object`?
-7. What is the difference between `Set` and `Array`?
-8. What are WeakMap and WeakSet?
-9. How are objects stored in memory?
-10. Why are functions considered objects in JavaScript?
+7. What is a `Set`?
+8. Why are functions considered objects?
+9. Why does comparing two objects with identical data return `false`?
+10. How do you check whether a value is an array?
 
 ---
 
 # Summary
 
-- Non-primitive data types store collections of data or complex structures.
-- They are stored by reference in heap memory.
-- Objects, Arrays, Functions, Dates, Maps, and Sets are common reference types.
-- Objects and arrays are mutable.
-- Variables referencing the same object share the same memory location.
-- Objects are compared by reference, not by value.
-- Understanding reference behavior is essential for writing reliable JavaScript applications.
+- Non-Primitive Data Types are also called Reference Data Types.
+- They store references to objects in memory.
+- Objects are mutable and can be modified after creation.
+- Arrays are special types of objects.
+- Functions are also objects.
+- Objects are copied and compared by reference.
+- JavaScript provides several built-in reference types such as Object, Array, Function, Date, Map, and Set.
+
+---
+
+# Key Points
+
+- Store multiple values.
+- Stored by reference.
+- Mutable.
+- Can contain properties and methods.
+- Compared by reference.
+- Essential for building real-world applications.
 
 ---
 
 # Next Topic
 
-**0004_number**
+# `Number`
