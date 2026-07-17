@@ -10,14 +10,14 @@
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.4.1",
+    "chalk": "^4.1.2",
     "chokidar": "^5.0.0",
+    "cli-progress": "^3.12.0",
     "markdown-it": "^14.3.0",
     "markdown-it-include": "^2.0.0",
-    "simple-git": "^3.36.0",
     "node-notifier": "^10.0.1",
-    "cli-progress": "^3.12.0",
-    "chalk": "^4.1.2",
-    "ora": "^5.4.1"
+    "ora": "^5.4.1",
+    "simple-git": "^3.36.0"
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.1.1"
