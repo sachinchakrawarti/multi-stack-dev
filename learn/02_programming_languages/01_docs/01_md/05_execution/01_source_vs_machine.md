@@ -369,6 +369,3 @@ Output
 
 ---
 
-# Next Topic
-
-**0016_compilation_vs_interpretation**

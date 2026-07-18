@@ -483,6 +483,3 @@ Waiting         │
 
 ---
 
-# Next Topic
-
-**0020_errors_in_programming**

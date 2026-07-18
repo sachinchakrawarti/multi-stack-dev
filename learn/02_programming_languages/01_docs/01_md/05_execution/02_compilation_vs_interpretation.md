@@ -325,6 +325,3 @@ Interpretation is preferred for:
 
 ---
 
-# Next Topic
-
-**0017_programming_tools_and_ide**

@@ -427,6 +427,3 @@ Imagine publishing a book.
 
 ---
 
-# Next Topic
-
-**0019_program_execution_process**
