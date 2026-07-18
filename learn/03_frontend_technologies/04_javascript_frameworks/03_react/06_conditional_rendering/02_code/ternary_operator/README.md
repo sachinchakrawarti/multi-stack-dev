@@ -1,0 +1,1 @@
+﻿// ternary_operator example

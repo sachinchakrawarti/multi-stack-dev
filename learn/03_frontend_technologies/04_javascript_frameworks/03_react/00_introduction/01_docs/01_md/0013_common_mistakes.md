@@ -1,0 +1,3 @@
+﻿# Common Mistakes
+
+Common mistakes beginners make with React...

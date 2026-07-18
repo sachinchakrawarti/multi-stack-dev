@@ -1,0 +1,3 @@
+﻿# Common Mistakes
+
+Common JSX mistakes...

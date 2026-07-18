@@ -1,0 +1,1 @@
+﻿// state_objects example

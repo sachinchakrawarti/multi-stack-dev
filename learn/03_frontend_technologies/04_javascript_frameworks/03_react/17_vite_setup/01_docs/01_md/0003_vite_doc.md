@@ -1,0 +1,3 @@
+﻿# Vite - Document 0003
+
+Content for Vite documentation...

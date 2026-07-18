@@ -1,0 +1,3 @@
+﻿# What is JSX?
+
+JSX is a syntax extension for JavaScript...
