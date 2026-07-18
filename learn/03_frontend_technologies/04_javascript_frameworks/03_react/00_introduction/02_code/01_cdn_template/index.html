@@ -6,8 +6,6 @@
     
     <!-- React CDN -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    
-    <!-- ReactDOM CDN -->
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     
     <!-- Babel Standalone for JSX -->
@@ -52,13 +50,18 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #58a6ff;
         }
+        
+        /* Smooth transitions */
+        button {
+            transition: all 0.2s ease;
+        }
     </style>
 </head>
 <body>
 
     <div id="root"></div>
 
-    <!-- React App -->
+    <!-- React App - ALL code in one file -->
     <script type="text/babel" src="./app.jsx"></script>
 
 </body>
