@@ -16,6 +16,7 @@
     "markdown-it": "^14.3.0",
     "markdown-it-include": "^2.0.0",
     "node-notifier": "^10.0.1",
+    "nodemon": "^3.1.14",
     "ora": "^5.4.1",
     "simple-git": "^3.36.0"
   },
