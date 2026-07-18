@@ -1,0 +1,383 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# What Are Data Types in JavaScript?\r\n\r\n## Overview\r\n\r\nIn JavaScript, every value has a **data type**. Data types determine the kind of data a variable can store and the operations that can be performed on that data.\r\n\r\nIn this notebook, you will learn:\r\n\r\n- What data types are\r\n- Why data types are important\r\n- Primitive and non-primitive data types\r\n- How to identify data types using `typeof`\r\n- Practical examples\r\n\r\n---"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Different Types of Values`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const age = 25;\r\nconst name = \"Sachin\";\r\nconst isStudent = true;\r\n\r\nconsole.log(age);\r\nconsole.log(name);\r\nconsole.log(isStudent);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "25",
+                                "Sachin",
+                                "true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Check Data Types`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(typeof age);\r\nconsole.log(typeof name);\r\nconsole.log(typeof isStudent);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "number",
+                                "string",
+                                "boolean",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Number`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const marks = 95;\r\nconst price = 99.99;\r\n\r\nconsole.log(marks);\r\nconsole.log(price);\r\n\r\nconsole.log(typeof marks);\r\nconsole.log(typeof price);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "95",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `BigInt`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const population = 12345678901234567890n;\r\n\r\nconsole.log(population);\r\nconsole.log(typeof population);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "12345678901234567890n",
+                                "bigint",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `String`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const language = \"JavaScript\";\r\n\r\nconsole.log(language);\r\nconsole.log(typeof language);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "JavaScript",
+                                "string",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Boolean`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const isLoggedIn = true;\r\n\r\nconsole.log(isLoggedIn);\r\nconsole.log(typeof isLoggedIn);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "true",
+                                "boolean",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Undefined`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let city;\r\n\r\nconsole.log(city);\r\nconsole.log(typeof city);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "undefined",
+                                "undefined",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Null`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const address = null;\r\n\r\nconsole.log(address);\r\nconsole.log(typeof address);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "null",
+                                "object",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Symbol`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const id = Symbol(\"id\");\r\n\r\nconsole.log(id);\r\nconsole.log(typeof id);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Symbol(id)",
+                                "symbol",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Object`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const student = {\r\n    name: \"Sachin\",\r\n    age: 22\r\n};\r\n\r\nconsole.log(student);\r\nconsole.log(typeof student);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ name: 'Sachin', age: 22 }",
+                                "object",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Array`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const colors = [\"Red\", \"Green\", \"Blue\"];\r\n\r\nconsole.log(colors);\r\nconsole.log(typeof colors);\r\nconsole.log(Array.isArray(colors));"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 'Red', 'Green', 'Blue' ]",
+                                "object",
+                                "true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Function`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function greet() {\r\n    return \"Hello\";\r\n}\r\n\r\nconsole.log(greet());\r\nconsole.log(typeof greet);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Summary`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(typeof 100);\r\nconsole.log(typeof \"JavaScript\");\r\nconsole.log(typeof true);\r\nconsole.log(typeof undefined);\r\nconsole.log(typeof null);\r\nconsole.log(typeof Symbol(\"id\"));\r\nconsole.log(typeof {});\r\nconsole.log(typeof []);\r\nconsole.log(typeof function () {});"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "number",
+                                "string",
+                                "boolean",
+                                "undefined",
+                                "object",
+                                "symbol",
+                                "object",
+                                "object",
+                                "function",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

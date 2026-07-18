@@ -1,0 +1,434 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Non-Primitive (Reference) Data Types"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Object`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const student = {\r\n    id: 101,\r\n    name: \"Sachin\",\r\n    age: 22\r\n};\r\n\r\nconsole.log(student);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ id: 101, name: 'Sachin', age: 22 }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Array`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const colors = [\"Red\", \"Green\", \"Blue\"];\r\n\r\nconsole.log(colors);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 'Red', 'Green', 'Blue' ]",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Function`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function greet(name) {\r\n    return `Hello, ${name}!`;\r\n}\r\n\r\nconsole.log(greet(\"Sachin\"));"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello, Sachin!",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Date`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const today = new Date();\r\n\r\nconsole.log(today);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "2026-07-18T04:17:27.643Z",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Map`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const studentMarks = new Map();\r\n\r\nstudentMarks.set(\"Math\", 95);\r\nstudentMarks.set(\"Science\", 90);\r\n\r\nconsole.log(studentMarks);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Map(2) { 'Math' => 95, 'Science' => 90 }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Set`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const numbers = new Set([10, 20, 20, 30, 40]);\r\n\r\nconsole.log(numbers);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Set(4) { 10, 20, 30, 40 }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `typeof Non-Primitive Values`\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const person = {\r\n    name: \"Sachin\"\r\n};\r\n\r\nconst fruits = [\"Apple\", \"Banana\"];\r\n\r\nfunction greet() {}\r\n\r\nconsole.log(typeof person);\r\nconsole.log(typeof fruits);\r\nconsole.log(typeof greet);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "object",
+                                "object",
+                                "function",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Objects Are Mutable`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const student = {\r\n    name: \"Sachin\"\r\n};\r\n\r\nconsole.log(student);\r\n\r\nstudent.name = \"Rahul\";\r\n\r\nconsole.log(student);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ name: 'Sachin' }",
+                                "{ name: 'Rahul' }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Arrays Are Mutable`\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const colors = [\"Red\", \"Green\"];\r\n\r\nconsole.log(colors);\r\n\r\ncolors.push(\"Blue\");\r\n\r\nconsole.log(colors);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 'Red', 'Green' ]",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Objects Are Compared by Reference`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const object1 = {\r\n    id: 1\r\n};\r\n\r\nconst object2 = {\r\n    id: 1\r\n};\r\n\r\nconsole.log(object1 === object2);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "false",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Same Reference`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const object1 = {\r\n    id: 1\r\n};\r\n\r\nconst object2 = object1;\r\n\r\nconsole.log(object1 === object2);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Reference Behavior`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const person1 = {\r\n    name: \"Sachin\"\r\n};\r\n\r\nconst person2 = person1;\r\n\r\nperson2.name = \"Rahul\";\r\n\r\nconsole.log(person1);\r\nconsole.log(person2);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ name: 'Rahul' }",
+                                "{ name: 'Rahul' }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Nested Object`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const employee = {\r\n    id: 101,\r\n    name: \"Sachin\",\r\n    address: {\r\n        city: \"Bhopal\",\r\n        state: \"Madhya Pradesh\"\r\n    }\r\n};\r\n\r\nconsole.log(employee);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{",
+                                "  id: 101,",
+                                "  name: 'Sachin',",
+                                "  address: { city: 'Bhopal', state: 'Madhya Pradesh' }",
+                                "}",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Array of Objects`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const students = [\r\n    {\r\n        id: 1,\r\n        name: \"Sachin\"\r\n    },\r\n    {\r\n        id: 2,\r\n        name: \"Rahul\"\r\n    }\r\n];\r\n\r\nconsole.log(students);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ { id: 1, name: 'Sachin' }, { id: 2, name: 'Rahul' } ]",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Summary`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(\"Non-Primitive Data Types\");\r\n\r\nconsole.log(\"- Object\");\r\nconsole.log(\"- Array\");\r\nconsole.log(\"- Function\");\r\nconsole.log(\"- Date\");\r\nconsole.log(\"- Map\");\r\nconsole.log(\"- Set\");\r\n\r\nconsole.log(\"Objects are mutable.\");\r\nconsole.log(\"Objects are compared by reference.\");\r\nconsole.log(\"Arrays are objects.\");\r\nconsole.log(\"Functions are also objects.\");"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Non-Primitive Data Types",
+                                "- Object",
+                                "- Array",
+                                "- Function",
+                                "- Date",
+                                "- Map",
+                                "- Set",
+                                "Objects are mutable.",
+                                "Objects are compared by reference.",
+                                "Arrays are objects.",
+                                "Functions are also objects.",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

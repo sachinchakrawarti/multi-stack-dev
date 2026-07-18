@@ -1,0 +1,392 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Primitive Data Types in JavaScript"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Number`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const age = 25;\r\nconst price = 99.99;\r\nconst temperature = -10;\r\n\r\nconsole.log(age);\r\nconsole.log(price);\r\nconsole.log(temperature);\r\n\r\nconsole.log(typeof age);\r\nconsole.log(typeof price);\r\nconsole.log(typeof temperature);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "25",
+                                "99.99",
+                                "-10",
+                                "number",
+                                "number",
+                                "number",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# `BigInt`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const population = 123456789012345678901234567890n;\r\n\r\nconsole.log(population);\r\nconsole.log(typeof population);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "123456789012345678901234567890n",
+                                "bigint",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# `String`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const firstName = \"Sachin\";\r\nconst lastName = 'Chakrawarti';\r\nconst language = `JavaScript`;\r\n\r\nconsole.log(firstName);\r\nconsole.log(lastName);\r\nconsole.log(language);\r\n\r\nconsole.log(typeof firstName);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Sachin",
+                                "Chakrawarti",
+                                "JavaScript",
+                                "string",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Boolean`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const isStudent = true;\r\nconst isLoggedIn = false;\r\n\r\nconsole.log(isStudent);\r\nconsole.log(isLoggedIn);\r\n\r\nconsole.log(typeof isStudent);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "true",
+                                "false",
+                                "boolean",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Undefined`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let city;\r\n\r\nconsole.log(city);\r\nconsole.log(typeof city);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "undefined",
+                                "undefined",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Null`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const address = null;\r\n\r\nconsole.log(address);\r\nconsole.log(typeof address);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "null",
+                                "object",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Symbol`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const id = Symbol(\"id\");\r\nconst token = Symbol(\"id\");\r\n\r\nconsole.log(id);\r\nconsole.log(token);\r\n\r\nconsole.log(id === token);\r\n\r\nconsole.log(typeof id);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Symbol(id)",
+                                "Symbol(id)",
+                                "false",
+                                "symbol",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Primitive Values Are Immutable\r\n\r\nIn JavaScript, **primitive values are immutable**, which means **their actual value cannot be changed after it is created**.\r\n\r\nIf you assign a new value to a variable holding a primitive, JavaScript **creates a new value** and updates the variable to reference that new value. The original value remains unchanged.\r\n\r\nAll primitive data types are immutable:\r\n\r\n- Number\r\n- BigInt\r\n- String\r\n- Boolean\r\n- Undefined\r\n- Null\r\n- Symbol\r\n\r\n> **Note:** String methods such as `toUpperCase()` and `replace()` do not modify the original string. They return a new string instead.\r\n\r\n---\r\n\r\n## Immutable vs Mutable\r\n\r\n| Immutable | Mutable |\r\n|------------|----------|\r\n| Cannot be changed after creation | Can be changed after creation |\r\n| Assigning a new value creates a new value | Existing value is modified |\r\n| Primitive data types are immutable | Objects, Arrays, Maps, and Sets are mutable |\r\n| Safer and more predictable | Can be modified through references |\r\n\r\n---\r\n\r\n### Key Difference\r\n\r\n- **Immutable:** The value itself never changes. A new value is created whenever an update is needed.\r\n- **Mutable:** The existing value can be modified without creating a new one."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// Primitive values are immutable.\r\n// The string \"Hello\" cannot be modified.\r\n// When a new value is assigned, JavaScript creates a new string\r\n// and the variable 'message' points to that new value.\r\n// The original string \"Hello\" remains unchanged.\r\n// Strings are immutable.\r\n// JavaScript does NOT change \"Hello\" into \"Hello JavaScript\".\r\n// Instead, it creates a NEW string and stores it in the variable.\r\n\r\nlet message = \"Hello\";\r\n\r\nmessage = \"Hello JavaScript\";\r\n\r\nconsole.log(message);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello JavaScript",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let message = \"Hello\";\r\n\r\nlet upperCaseMessage = message.toUpperCase();\r\n\r\nconsole.log(message);           // Hello\r\nconsole.log(upperCaseMessage);  // HELLO"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello",
+                                "HELLO",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Primitive Values Are Compared by Value`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const x = 100;\r\nconst y = 100;\r\n\r\nconsole.log(x === y);\r\n\r\nconst first = \"JavaScript\";\r\nconst second = \"JavaScript\";\r\n\r\nconsole.log(first === second);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "true",
+                                "true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Store Different Primitive Values`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const number = 50;\r\nconst text = \"Learning JavaScript\";\r\nconst available = true;\r\nlet state;\r\nconst data = null;\r\nconst uniqueId = Symbol(\"user\");\r\nconst largeValue = 999999999999999999999999999999n;\r\n\r\nconsole.log(number);\r\nconsole.log(text);\r\nconsole.log(available);\r\nconsole.log(state);\r\nconsole.log(data);\r\nconsole.log(uniqueId);\r\nconsole.log(largeValue);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "50",
+                                "Learning JavaScript",
+                                "true",
+                                "undefined",
+                                "null",
+                                "Symbol(user)",
+                                "999999999999999999999999999999n",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Check All Primitive Data Types`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(typeof 100);\r\nconsole.log(typeof 12345678901234567890n);\r\nconsole.log(typeof \"JavaScript\");\r\nconsole.log(typeof true);\r\nconsole.log(typeof undefined);\r\nconsole.log(typeof null);\r\nconsole.log(typeof Symbol(\"id\"));"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "number",
+                                "bigint",
+                                "string",
+                                "boolean",
+                                "undefined",
+                                "object",
+                                "symbol",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## `Summary`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(\"Primitive Data Types:\");\r\nconsole.log(\"1. Number\");\r\nconsole.log(\"2. BigInt\");\r\nconsole.log(\"3. String\");\r\nconsole.log(\"4. Boolean\");\r\nconsole.log(\"5. Undefined\");\r\nconsole.log(\"6. Null\");\r\nconsole.log(\"7. Symbol\");"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Primitive Data Types:",
+                                "1. Number",
+                                "2. BigInt",
+                                "3. String",
+                                "4. Boolean",
+                                "5. Undefined",
+                                "6. Null",
+                                "7. Symbol",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

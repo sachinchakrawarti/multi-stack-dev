@@ -1,0 +1,404 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Why Are Primitive Data Types Immutable?"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "```javascript\r\nconsole.log(\"Primitive values cannot be changed after they are created.\");\r\n```\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Example 1: Reassigning a String"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let message = \"Hello\";\r\n\r\nconsole.log(\"Before:\", message);\r\n\r\nmessage = \"Hello JavaScript\";\r\n\r\nconsole.log(\"After :\", message);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Before: Hello",
+                                "After : Hello JavaScript",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Explanation"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "- The original string `\"Hello\"` is **not modified**.\r\n- JavaScript creates a **new string** `\"Hello JavaScript\"`.\r\n- The variable `message` now points to the new string."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Example 2: String Methods Do Not Change the Original String (Proof)\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let text = \"javascript\";\r\n\r\nconsole.log(\"Original :\", text);\r\n\r\nlet upperText = text.toUpperCase();\r\n\r\nconsole.log(\"Original After toUpperCase():\", text);\r\nconsole.log(\"New Value :\", upperText);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Original : javascript",
+                                "Original After toUpperCase(): javascript",
+                                "New Value : JAVASCRIPT",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "If strings were mutable, `text` would become `\"JAVASCRIPT\"`.\r\n\r\nInstead:\r\n\r\n- Original string remains the same.\r\n- `toUpperCase()` returns a **new string**.\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Example 3: replace() Returns a New String\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let language = \"JavaScript\";\r\n\r\nlet newLanguage = language.replace(\"Java\", \"Type\");\r\n\r\nconsole.log(language);\r\nconsole.log(newLanguage);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "JavaScript",
+                                "TypeScript",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The original string never changes."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Example 4: slice() Returns a New String"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let company = \"OpenAI\";\r\n\r\nlet shortName = company.slice(0, 4);\r\n\r\nconsole.log(company);\r\nconsole.log(shortName);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "OpenAI",
+                                "Open",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Example 5: Number Is Immutable"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let age = 20;\r\n\r\nconsole.log(\"Before:\", age);\r\n\r\nage = age + 5;\r\n\r\nconsole.log(\"After :\", age);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Before: 20",
+                                "After : 25",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Explanation\r\n\r\nThe number `20` was **not modified**.\r\n\r\nJavaScript created a **new number** (`25`) and assigned it to `age`.\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Example 6: Boolean Is Immutable"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let isLoggedIn = false;\r\n\r\nconsole.log(isLoggedIn);\r\n\r\nisLoggedIn = true;\r\n\r\nconsole.log(isLoggedIn);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "false",
+                                "true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The value `false` never changed into `true`.\r\n\r\nA new Boolean value was assigned.\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Real-Time Example 1: User Name\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let userName = \"Sachin\";\r\n\r\nconsole.log(\"Before Update:\", userName);\r\n\r\nuserName = \"Rahul\";\r\n\r\nconsole.log(\"After Update :\", userName);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Before Update: Sachin",
+                                "After Update : Rahul",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Real-World Scenario\r\n\r\nSuppose a user changes their profile name.\r\n\r\nJavaScript **does not edit** the old string `\"Sachin\"`.\r\n\r\nIt creates a **new string** `\"Rahul\"` and stores it in the variable."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Real-Time Example 2: Product Price"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let price = 500;\r\n\r\nconsole.log(\"Old Price:\", price);\r\n\r\nprice = 650;\r\n\r\nconsole.log(\"New Price:\", price);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Old Price: 500",
+                                "New Price: 650",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Real-World Scenario\r\n\r\nAn online store updates a product's price.\r\n\r\nThe old number (`500`) is not modified.\r\n\r\nA new number (`650`) is assigned.\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Real-Time Example 3: Order Status\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let orderStatus = \"Pending\";\r\n\r\nconsole.log(orderStatus);\r\n\r\norderStatus = \"Delivered\";\r\n\r\nconsole.log(orderStatus);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Pending",
+                                "Delivered",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The original string `\"Pending\"` is unchanged.\r\n\r\nA new string `\"Delivered\"` is created."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Compare with Mutable Objects"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const student = {\r\n    name: \"Sachin\"\r\n};\r\n\r\nconsole.log(student);\r\n\r\nstudent.name = \"Rahul\";\r\n\r\nconsole.log(student);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ name: 'Sachin' }",
+                                "{ name: 'Rahul' }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Objects are **mutable**.\r\n\r\nThe existing object is modified instead of creating a new object."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Summary"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(\"Primitive Data Types\");\r\nconsole.log(\"- Immutable\");\r\nconsole.log(\"- Cannot be modified\");\r\nconsole.log(\"- Reassigning creates a new value\");\r\nconsole.log(\"\");\r\nconsole.log(\"Objects & Arrays\");\r\nconsole.log(\"- Mutable\");\r\nconsole.log(\"- Existing value can be modified\");"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Primitive Data Types",
+                                "- Immutable",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Why Do We Need Immutability?\r\n\r\nImmutability makes JavaScript programs **safer, more predictable, and easier to maintain**. Since primitive values cannot be changed after they are created, accidental modifications are prevented.\r\n\r\nWhen a primitive value appears to change, JavaScript actually creates a **new value** and assigns it to the variable. The original value remains unchanged.\r\n\r\n---\r\n\r\n## Benefits of Immutability\r\n\r\n### 1. Prevents Accidental Changes\r\n\r\nSince primitive values cannot be modified, one part of a program cannot accidentally change data that another part is using.\r\n\r\n---\r\n\r\n### 2. Makes Programs More Predictable\r\n\r\nThe same primitive value always represents the same data. This makes code easier to understand and debug.\r\n\r\n---\r\n\r\n### 3. Improves Reliability\r\n\r\nBecause primitive values never change, functions can safely use them without worrying that the original value will be modified elsewhere.\r\n\r\n---\r\n\r\n### 4. Simplifies Debugging\r\n\r\nImmutable values reduce unexpected side effects, making it easier to locate and fix bugs.\r\n\r\n---\r\n\r\n### 5. Enables Safe Value Sharing\r\n\r\nMultiple variables can safely use the same primitive value because it cannot be modified.\r\n\r\n---\r\n\r\n### 6. Optimizes Memory Usage\r\n\r\nJavaScript engines can efficiently reuse immutable primitive values instead of creating unnecessary copies, improving performance and memory management.\r\n\r\n---\r\n\r\n## Real-World Analogy\r\n\r\nThink of a **printed passport**.\r\n\r\nOnce a passport is issued, you cannot erase or edit the information printed on it. If your information changes, a **new passport** is issued instead of modifying the old one.\r\n\r\nPrimitive values work in a similar way—they are never modified. When a new value is needed, JavaScript creates a new value rather than changing the existing one.\r\n\r\n---\r\n\r\n## Key Takeaways\r\n\r\n- Primitive values are immutable.\r\n- They cannot be modified after creation.\r\n- Updating a primitive creates a new value.\r\n- Immutability prevents accidental changes.\r\n- It makes code safer, more predictable, and easier to maintain."
+            ],
+            "outputs": []
+        }
+    ]
+}
