@@ -301,6 +301,3 @@ For beginners:
 
 ---
 
-# Next Topic
-
-**0008_language_translators**

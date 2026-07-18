@@ -324,6 +324,3 @@ Although 1GL and 2GL are still used in specialized areas like embedded systems a
 
 ---
 
-# Next Topic
-
-**0007_language_levels**

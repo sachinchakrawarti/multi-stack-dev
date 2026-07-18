@@ -286,7 +286,3 @@ Programming languages have evolved to:
 - Understanding the history of programming provides a strong foundation for learning modern software development.
 
 ---
-
-# Next Topic
-
-**0003_why_programming**

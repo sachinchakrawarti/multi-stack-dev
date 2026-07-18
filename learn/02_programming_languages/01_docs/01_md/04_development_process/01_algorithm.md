@@ -345,6 +345,3 @@ Examples:
 
 ---
 
-# Next Topic
-
-**0013_flowchart**

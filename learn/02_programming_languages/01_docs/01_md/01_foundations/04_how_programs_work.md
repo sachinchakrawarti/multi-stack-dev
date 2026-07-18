@@ -375,7 +375,3 @@ Different languages use different execution models, such as compilation, interpr
 - Understanding how programs work is a fundamental concept for every programmer.
 
 ---
-
-# Next Topic
-
-**0005_programming_languages**

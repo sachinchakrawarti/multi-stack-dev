@@ -288,6 +288,3 @@ JavaScript is a **programming language** used to add behavior and functionality.
 
 ---
 
-# Next Topic
-
-**0010_types_of_programming**

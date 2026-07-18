@@ -304,6 +304,3 @@ Programming requires practice and patience. With consistent learning, anyone can
 
 ---
 
-# Next Topic
-
-**0004_how_programs_work**

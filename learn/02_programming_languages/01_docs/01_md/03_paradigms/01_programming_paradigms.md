@@ -348,6 +348,3 @@ As your experience grows, explore Declarative and Logic Programming.
 
 ---
 
-# Next Topic
-
-**0090_programming_languages_vs_markup_languages**

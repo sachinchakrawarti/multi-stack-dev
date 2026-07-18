@@ -372,7 +372,3 @@ Flowcharts are widely used in:
 - Every flowchart should have a clear Start, logical flow, and Stop.
 
 ---
-
-# Next Topic
-
-**0014_pseudocode**

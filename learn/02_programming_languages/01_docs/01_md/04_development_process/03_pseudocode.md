@@ -289,6 +289,3 @@ Pseudocode is widely used in:
 
 ---
 
-# Next Topic
-
-**0015_source_code_vs_machine_code**

@@ -360,6 +360,3 @@ Languages:
 
 ---
 
-# Next Topic
-
-**0012_classification_of_programming**

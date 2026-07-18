@@ -312,6 +312,3 @@ No single language is best for every task.
 
 ---
 
-# Next Topic
-
-**0006_generations_of_languages**

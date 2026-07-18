@@ -343,6 +343,3 @@ These technologies improve performance while maintaining portability.
 
 ---
 
-# Next Topic
-
-**0009_programming_paradigms**

@@ -255,6 +255,3 @@ A good programmer should have:
 
 ---
 
-# Next Topic
-
-**0002_history_of_programming**
