@@ -406,6 +406,3 @@ These practices make the application easier to maintain and scale.
 
 ---
 
-# Next Topic
-
-**03_common_mistakes**
