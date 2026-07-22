@@ -1,30 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Objects · MCQ challenge</title>
+  <style>
+    /* ----- quiz.css (embedded) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
 
-<meta charset="UTF-8">
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #0b1120 0%, #19233c 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
 
-<title>Objects Quiz 01</title>
+    .quiz-wrapper {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(4px);
+      border-radius: 3rem;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      transition: all 0.2s ease;
+    }
 
-<link rel="stylesheet" href="quiz.css">
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #eef5ff;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+      margin-bottom: 2rem;
+    }
 
+    h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      background: #2d3b5a;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      color: #b6cbf0;
+      margin-left: auto;
+      letter-spacing: 0.3px;
+    }
+
+    /* question card */
+    .question-card {
+      background: rgba(18, 28, 48, 0.7);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 1.8rem 2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+      transition: 0.15s;
+    }
+
+    .question-card:hover {
+      border-color: rgba(120, 180, 255, 0.15);
+    }
+
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.9rem;
+    }
+
+    .q-number {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #7f9bda;
+      background: #1f2c47;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+    }
+
+    .q-text {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #e3edff;
+      line-height: 1.4;
+      margin-bottom: 1.4rem;
+    }
+
+    /* options */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 0.7rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: 0.15s;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      background: rgba(70, 110, 200, 0.08);
+      border-color: rgba(100, 160, 255, 0.2);
+    }
+
+    .option input[type="radio"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #4e6390;
+      border-radius: 50%;
+      outline: none;
+      transition: 0.12s;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .option input[type="radio"]:checked {
+      border: 6px solid #7aa5ff;
+      background: #1a2744;
+      box-shadow: 0 0 0 2px #3a5f9e;
+    }
+
+    .option label {
+      font-size: 1.05rem;
+      color: #d3e0fd;
+      cursor: pointer;
+      flex: 1;
+      padding: 0.2rem 0;
+      letter-spacing: 0.2px;
+    }
+
+    /* feedback & status */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.8rem 0 1.2rem;
+    }
+
+    .score-badge {
+      background: #1c2b4a;
+      padding: 0.4rem 1.5rem;
+      border-radius: 80px;
+      color: #b3ccff;
+      font-weight: 500;
+      font-size: 1rem;
+      border: 1px solid #2b3d64;
+    }
+
+    .score-badge span {
+      font-weight: 700;
+      color: #d6e5ff;
+      margin: 0 0.2rem;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: transparent;
+      border: 1px solid #3c5080;
+      padding: 0.5rem 1.6rem;
+      border-radius: 60px;
+      color: #c7daff;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      backdrop-filter: blur(2px);
+      background: rgba(20, 35, 70, 0.3);
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary {
+      background: #4b7bec;
+      border: 1px solid #5f8cff;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(50, 100, 255, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #3f6ee0;
+      transform: scale(1.02);
+      box-shadow: 0 6px 16px rgba(50, 100, 255, 0.3);
+      border-color: #7aa3ff;
+    }
+
+    .btn-secondary {
+      border-color: #4a5f88;
+    }
+
+    .btn-secondary:hover {
+      background: #2f4068;
+      border-color: #6c89c0;
+      color: white;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .message-box {
+      background: #17223b;
+      border-radius: 60px;
+      padding: 0.6rem 1.8rem;
+      text-align: center;
+      color: #b3ceff;
+      font-size: 0.95rem;
+      border-left: 4px solid #4b7bec;
+      margin-top: 1.2rem;
+      border: 1px solid #2a3e66;
+      font-weight: 400;
+    }
+
+    .message-box strong {
+      color: #d6e8ff;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .quiz-wrapper {
+        padding: 1.5rem 1rem;
+        border-radius: 2rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+        flex-wrap: wrap;
+      }
+      .q-text {
+        font-size: 1.1rem;
+      }
+      .option {
+        padding: 0.6rem 1rem;
+      }
+      .status-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .action-group {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+<div class="quiz-wrapper">
+  <h1>
+    📘 JS Objects
+    <small>10 mcq</small>
+  </h1>
 
-<h1>JavaScript Objects Quiz</h1>
+  <!-- dynamic questions will be injected here -->
+  <div id="questionsContainer"></div>
 
-<div id="quiz"></div>
-
+  <!-- status & controls -->
+  <div class="status-bar">
+    <div class="score-badge">
+      🎯 <span id="scoreDisplay">0</span> / 10
+    </div>
+    <div class="action-group">
+      <button class="btn btn-secondary" id="resetBtn">⟳ reset</button>
+      <button class="btn btn-primary" id="submitBtn">✓ submit</button>
+    </div>
+  </div>
+  <div id="feedbackMessage" class="message-box">
+    ⚡ choose an option for each question
+  </div>
 </div>
 
-<script src="quiz.js"></script>
+<script>
+  // ----- mcq_01.js (questions) -----
+  const questionsData = [
+    {
+      id: 1,
+      question: "Which syntax correctly creates an empty object literal?",
+      options: ["Object.create()", "new Object()", "{}", "[]"],
+      correct: 2  // 0-indexed
+    },
+    {
+      id: 2,
+      question: "How do you access the property 'age' from an object 'person'?",
+      options: ["person.age", "person['age']", "Both A and B", "person->age"],
+      correct: 2
+    },
+    {
+      id: 3,
+      question: "What does 'this' refer to inside a method of an object?",
+      options: ["The global object", "The object itself", "The function scope", "Undefined"],
+      correct: 1
+    },
+    {
+      id: 4,
+      question: "Which method adds a new property to an object?",
+      options: ["obj.add()", "obj.set()", "Direct assignment obj.prop = value", "obj.push()"],
+      correct: 2
+    },
+    {
+      id: 5,
+      question: "What will `Object.keys({name: 'Alex', age: 25})` return?",
+      options: ["['name', 'age']", "['Alex', 25]", "[object Keys]", "undefined"],
+      correct: 0
+    },
+    {
+      id: 6,
+      question: "How to check if an object has a property 'id'?",
+      options: ["obj.has('id')", "'id' in obj", "obj.contains('id')", "obj.id !== undefined"],
+      correct: 1
+    },
+    {
+      id: 7,
+      question: "Which statement is true about objects in JavaScript?",
+      options: ["Objects are primitive", "Objects are reference types", "Objects are immutable", "All objects are arrays"],
+      correct: 1
+    },
+    {
+      id: 8,
+      question: "What does `Object.assign({}, {a:1}, {b:2})` return?",
+      options: ["{a:1, b:2}", "{a:1}", "{b:2}", "undefined"],
+      correct: 0
+    },
+    {
+      id: 9,
+      question: "Which loop iterates over object properties?",
+      options: ["for...of", "for...in", "while", "do...while"],
+      correct: 1
+    },
+    {
+      id: 10,
+      question: "What is the result of `typeof null` ?",
+      options: ["'null'", "'object'", "'undefined'", "'number'"],
+      correct: 1
+    }
+  ];
 
-<script src="questions/mcq_01.js"></script>
+  // ----- quiz.js (controller) -----
+  (function() {
+    const container = document.getElementById('questionsContainer');
+    const scoreSpan = document.getElementById('scoreDisplay');
+    const feedbackEl = document.getElementById('feedbackMessage');
+    const resetBtn = document.getElementById('resetBtn');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // store selected answers (index per question)
+    let selectedAnswers = new Array(questionsData.length).fill(null);
+    let score = 0;
+    let submitted = false; // track if submit was pressed (show feedback)
+
+    // render all questions
+    function renderQuestions() {
+      let html = '';
+      questionsData.forEach((q, idx) => {
+        const qNum = idx + 1;
+        const selectedVal = selectedAnswers[idx] !== null ? selectedAnswers[idx] : '';
+        html += `
+          <div class="question-card" data-qindex="${idx}">
+            <div class="q-header">
+              <span class="q-number">Q${qNum}</span>
+            </div>
+            <div class="q-text">${q.question}</div>
+            <div class="options">
+              ${q.options.map((opt, optIdx) => {
+                const isChecked = (selectedAnswers[idx] === optIdx) ? 'checked' : '';
+                return `
+                  <div class="option">
+                    <input type="radio" name="q${idx}" value="${optIdx}" id="q${idx}_opt${optIdx}" ${isChecked}>
+                    <label for="q${idx}_opt${optIdx}">${opt}</label>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+
+      // attach event listeners to radio buttons (update selectedAnswers)
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function(e) {
+          const name = this.name; // "q0", "q1", ...
+          const qIndex = parseInt(name.substring(1), 10);
+          const value = parseInt(this.value, 10);
+          if (!isNaN(qIndex) && !isNaN(value)) {
+            selectedAnswers[qIndex] = value;
+            // if we had submitted, re-calc score on change? better to reset submitted state
+            if (submitted) {
+              submitted = false;
+              feedbackEl.innerHTML = '✏️ answers updated — press submit again';
+              feedbackEl.style.borderLeftColor = '#f0b34b';
+            }
+            // update score live? we'll do on submit only (but we can show partial)
+            updateScoreDisplay();
+          }
+        });
+      });
+    }
+
+    // compute score based on selectedAnswers
+    function computeScore() {
+      let correctCount = 0;
+      for (let i = 0; i < questionsData.length; i++) {
+        const selected = selectedAnswers[i];
+        if (selected !== null && selected === questionsData[i].correct) {
+          correctCount++;
+        }
+      }
+      return correctCount;
+    }
+
+    function updateScoreDisplay() {
+      const currentScore = computeScore();
+      scoreSpan.textContent = currentScore;
+      return currentScore;
+    }
+
+    // show feedback after submit
+    function showSubmitFeedback() {
+      const currentScore = computeScore();
+      const total = questionsData.length;
+      let message = '';
+      let borderColor = '#4b7bec';
+
+      // check if all answered
+      const allAnswered = selectedAnswers.every(ans => ans !== null);
+      if (!allAnswered) {
+        const missing = selectedAnswers.filter(ans => ans === null).length;
+        message = `⚠️ ${missing} question(s) left unanswered. Please complete all.`;
+        borderColor = '#e68a4a';
+        feedbackEl.style.borderLeftColor = borderColor;
+        feedbackEl.innerHTML = message;
+        submitted = false; // not fully submitted
+        return;
+      }
+
+      // all answered
+      submitted = true;
+      if (currentScore === total) {
+        message = `🎉 Perfect! ${currentScore}/${total} — you're a JS Objects master!`;
+        borderColor = '#6fcf97';
+      } else if (currentScore >= total * 0.7) {
+        message = `👍 Great! ${currentScore}/${total} correct. Keep practicing!`;
+        borderColor = '#f2c94a';
+      } else {
+        message = `📘 ${currentScore}/${total} correct. Review object fundamentals.`;
+        borderColor = '#eb5757';
+      }
+      feedbackEl.style.borderLeftColor = borderColor;
+      feedbackEl.innerHTML = message;
+      scoreSpan.textContent = currentScore;
+    }
+
+    // reset everything
+    function resetQuiz() {
+      selectedAnswers = new Array(questionsData.length).fill(null);
+      submitted = false;
+      // uncheck all radios
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.checked = false;
+      });
+      // re-render to clear states (or just update UI)
+      renderQuestions(); // fresh render
+      feedbackEl.style.borderLeftColor = '#4b7bec';
+      feedbackEl.innerHTML = '🔄 reset — choose your answers';
+      scoreSpan.textContent = '0';
+    }
+
+    // submit handler
+    function handleSubmit() {
+      // gather current selected from UI (just in case)
+      document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+        const name = radio.name;
+        const qIndex = parseInt(name.substring(1), 10);
+        const value = parseInt(radio.value, 10);
+        if (!isNaN(qIndex) && !isNaN(value)) {
+          selectedAnswers[qIndex] = value;
+        }
+      });
+      // update display
+      updateScoreDisplay();
+      showSubmitFeedback();
+    }
+
+    // initial render
+    renderQuestions();
+    updateScoreDisplay();
+    feedbackEl.innerHTML = '✨ select an option for each question';
+
+    // event listeners
+    submitBtn.addEventListener('click', handleSubmit);
+    resetBtn.addEventListener('click', resetQuiz);
+
+    // optional: if user clicks reset, also reset any 'submitted' flag
+    // additional: if user changes radio after submit, we already handle in change event
+  })();
+</script>
 
 </body>
-
 </html>
