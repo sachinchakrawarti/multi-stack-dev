@@ -310,7 +310,7 @@ Keep practicing by building projects and solving coding challenges. The more fun
 # Next Module
 
 <h2>
-➡️ <a href="../../06_objects/README.md" style="color:#1E90FF; text-decoration:none;">
-<strong>Module 06 – JavaScript Objects</strong>
+➡️ <a href="../0038_faq/faq.md" style="color:#1E90FF; text-decoration:none;">
+<strong>faqs</strong>
 </a>
 </h2>
