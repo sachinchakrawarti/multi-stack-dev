@@ -448,7 +448,7 @@ Although Named Function Expressions are less common, they are a valuable tool fo
 # Next Lesson
 
 <h2>
-➡️ <a href="../0008_anonymous_function_expression/anonymous_function_expression.md" style="color:#1E90FF; text-decoration:none;">
-<strong>Anonymous Function Expression</strong>
+➡️ <a href="../0008_anonymous_functions/anonymous_functions.md" style="color:#1E90FF; text-decoration:none;">
+<strong>Anonymous Function</strong>
 </a>
 </h2>
