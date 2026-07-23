@@ -41,3 +41,7 @@
 
 
  24_advanced_functions/
+
+
+
+ 25_prototypes_and_prototype_chain/
