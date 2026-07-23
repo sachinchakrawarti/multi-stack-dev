@@ -34,3 +34,10 @@
 
 
 22_regular_expressions/
+
+
+
+ 23_es6_features/
+
+
+ 24_advanced_functions/
