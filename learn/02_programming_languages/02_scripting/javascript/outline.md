@@ -51,3 +51,11 @@
 
 
  27_design_patterns_basics/
+
+
+ 28_testing_javascript/
+
+
+ ─ 29_debugging_javascript/
+
+ 
