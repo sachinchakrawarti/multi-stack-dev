@@ -58,4 +58,7 @@
 
  ─ 29_debugging_javascript/
 
+ 30_javascript_performance/
+
+
  
