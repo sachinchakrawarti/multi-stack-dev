@@ -31,3 +31,6 @@
 
 
 21_fetch_api/
+
+
+22_regular_expressions/
