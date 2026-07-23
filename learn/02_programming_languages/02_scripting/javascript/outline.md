@@ -45,3 +45,9 @@
 
 
  25_prototypes_and_prototype_chain/
+
+
+ 26_object_oriented_programming/
+
+
+ 27_design_patterns_basics/
