@@ -1,3 +1,0 @@
-﻿# React Features
-
-Key features of React include: Components, JSX, State...

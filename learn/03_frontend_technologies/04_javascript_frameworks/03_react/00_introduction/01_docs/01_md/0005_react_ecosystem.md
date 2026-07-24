@@ -1,3 +1,0 @@
-﻿# React Ecosystem
-
-Tools and libraries around React...

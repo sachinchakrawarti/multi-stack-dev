@@ -1,3 +1,0 @@
-﻿# Best Practices
-
-React best practices for beginners...

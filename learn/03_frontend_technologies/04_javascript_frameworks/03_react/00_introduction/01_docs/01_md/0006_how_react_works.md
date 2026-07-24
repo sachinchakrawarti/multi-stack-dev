@@ -1,3 +1,0 @@
-﻿# How React Works
-
-React uses a virtual DOM to update efficiently...
