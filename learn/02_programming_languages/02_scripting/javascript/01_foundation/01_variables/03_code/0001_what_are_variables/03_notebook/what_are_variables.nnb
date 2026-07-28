@@ -1,0 +1,302 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# What Are Variables"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Learning Objectives",
+        "",
+        "- Understand variables",
+        "- Learn var, let and const",
+        "- Store values"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Introduction",
+        "",
+        "Variables are named containers used to store data."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "console.log(\"Welcome to JavaScript Variables\");"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## What is a Variable?"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "let name = \"Sachin\";",
+        "console.log(name);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Why Do We Need Variables?"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "let age = 25;",
+        "console.log(age);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Declaring Variables"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "let city = \"Delhi\";",
+        "console.log(city);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## The var Keyword"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "var country = \"India\";",
+        "console.log(country);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## The let Keyword"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "let language = \"JavaScript\";",
+        "console.log(language);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## The const Keyword"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "const PI = 3.14159;",
+        "console.log(PI);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Variable Naming Rules"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "let firstName = \"John\";",
+        "let _age = 20;",
+        "let $salary = 5000;",
+        "",
+        "console.log(firstName);",
+        "console.log(_age);",
+        "console.log($salary);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Invalid Variable Names"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "// let 1name = \"John\";",
+        "// let first-name = \"John\";",
+        "// let let = 10;"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Reassigning Variables"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "let score = 10;",
+        "score = 20;",
+        "",
+        "console.log(score);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Constants Cannot Be Reassigned"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "const COUNTRY = \"India\";",
+        "console.log(COUNTRY);",
+        "",
+        "// COUNTRY = \"USA\";"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Best Practices"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "let studentName = \"Alice\";",
+        "let totalMarks = 450;",
+        "let isPassed = true;",
+        "",
+        "console.log(studentName);",
+        "console.log(totalMarks);",
+        "console.log(isPassed);"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Exercise"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "// Create these variables:",
+        "//",
+        "// yourName",
+        "// yourAge",
+        "// yourCity",
+        "// yourCountry",
+        "//",
+        "// Print all values."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Summary",
+        "",
+        "- Variables store values.",
+        "- Prefer let and const.",
+        "- Avoid var in modern JavaScript."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Practice Questions",
+        "",
+        "1. What is a variable?",
+        "2. Difference between var, let and const?",
+        "3. Why use const?",
+        "4. What are naming rules?"
+      ]
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Node.js",
+      "language": "javascript",
+      "name": "javascript"
+    },
+    "language_info": {
+      "name": "javascript",
+      "file_extension": ".js",
+      "mimetype": "application/javascript"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 4
+}
