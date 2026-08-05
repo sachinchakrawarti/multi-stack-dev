@@ -1,0 +1,87 @@
+Python Repository Reorganization Backup Information
+================================================
+
+Date: 2026-08-01 09:28:00
+Original directory: D:\Sachin Chakrawarti\Learn\Done\multi-stack-dev\learn\02_programming_languages\02_scripting\python
+
+This reorganization was performed using the 'By Category' structure.
+
+If you need to revert any changes, use the mapping below to move folders back.
+
+CATEGORY MAPPING (New -> Original):
+
+01_fundamentals/00_introduction -> 00_introduction
+01_fundamentals/01_variables -> 01_variables
+01_fundamentals/02_data_types -> 02_data_types
+01_fundamentals/03_operators -> 03_operators
+01_fundamentals/04_input_output -> 04_input_output
+01_fundamentals/05_type_casting -> 05_type_casting
+01_fundamentals/06_strings -> 06_strings
+02_data_structures/07_lists -> 07_lists
+02_data_structures/08_tuples -> 08_tuples
+02_data_structures/09_sets -> 09_sets
+02_data_structures/10_dictionaries -> 10_dictionaries
+03_control_flow/11_conditional_statements -> 11_conditional_statements
+03_control_flow/12_loops -> 12_loops
+04_functions_modules/13_functions -> 13_functions
+04_functions_modules/14_modules_packages -> 14_modules_packages
+04_functions_modules/15_file_handling -> 15_file_handling
+05_advanced_concepts/16_exception_handling -> 16_exception_handling
+05_advanced_concepts/17_object_oriented_programming -> 17_object_oriented_programming
+05_advanced_concepts/18_iterators_generators -> 18_iterators_generators
+05_advanced_concepts/19_decorators -> 19_decorators
+05_advanced_concepts/20_lambda_map_filter_reduce -> 20_lambda_map_filter_reduce
+05_advanced_concepts/21_datetime -> 21_datetime
+06_tools_libraries/22_regular_expressions -> 22_regular_expressions
+06_tools_libraries/23_json -> 23_json
+06_tools_libraries/24_virtual_environment -> 24_virtual_environment
+06_tools_libraries/25_pip_package_management -> 25_pip_package_management
+06_tools_libraries/26_testing -> 26_testing
+06_tools_libraries/27_logging -> 27_logging
+08_specialized_topics/28_database_programming -> 28_database_programming
+08_specialized_topics/29_multithreading -> 29_multithreading
+08_specialized_topics/30_multiprocessing -> 30_multiprocessing
+08_specialized_topics/31_network_programming -> 31_network_programming
+09_applications/32_api_development -> 32_api_development
+09_applications/33_web_scraping -> 33_web_scraping
+09_applications/34_gui_development -> 34_gui_development
+09_applications/35_data_analysis -> 35_data_analysis
+09_applications/36_data_visualization -> 36_data_visualization
+09_applications/37_machine_learning -> 37_machine_learning
+09_applications/38_deep_learning -> 38_deep_learning
+09_applications/39_web_development -> 39_web_development
+09_applications/40_automation_scripting -> 40_automation_scripting
+10_professional/41_design_patterns -> 41_design_patterns
+10_professional/42_performance_optimization -> 42_performance_optimization
+10_professional/43_security_best_practices -> 43_security_best_practices
+11_resources/44_projects_beginner -> 44_projects_beginner
+11_resources/45_projects_intermediate -> 45_projects_intermediate
+11_resources/46_projects_advanced -> 46_projects_advanced
+11_resources/47_interview_preparation -> 47_interview_preparation
+11_resources/48_cheat_sheets -> 48_cheat_sheets
+11_resources/49_faq -> 49_faq
+
+PYTHON LIBRARIES CREATED:
+
+07_python_libraries/lib_numpy/ - NumPy - Numerical computing with arrays and matrices
+07_python_libraries/lib_scipy/ - SciPy - Scientific computing and algorithms
+07_python_libraries/lib_sympy/ - SymPy - Symbolic mathematics and algebra
+07_python_libraries/lib_pandas/ - Pandas - Data manipulation and analysis
+07_python_libraries/lib_matplotlib/ - Matplotlib - 2D and 3D visualization
+07_python_libraries/lib_seaborn/ - Seaborn - Statistical data visualization
+07_python_libraries/lib_plotly/ - Plotly - Interactive web-based visualization
+07_python_libraries/lib_statsmodels/ - Statsmodels - Statistical modeling and testing
+07_python_libraries/lib_scikit_image/ - Scikit-image - Image processing and computer vision
+07_python_libraries/lib_sklearn/ - Scikit-learn - Machine learning algorithms
+07_python_libraries/lib_tensorflow/ - TensorFlow - Deep learning framework
+07_python_libraries/lib_pytorch/ - PyTorch - Deep learning framework
+07_python_libraries/lib_keras/ - Keras - High-level neural networks API
+07_python_libraries/lib_opencv/ - OpenCV - Computer vision and image processing
+
+To revert a specific folder:
+  shutil.move('new_path', 'original_path')
+
+To revert everything, you can use this mapping in reverse.
+
+---
+*This file was auto-generated before reorganization.*
