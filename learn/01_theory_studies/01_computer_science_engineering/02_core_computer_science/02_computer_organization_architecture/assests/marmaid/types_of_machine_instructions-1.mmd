@@ -1,0 +1,69 @@
+flowchart LR
+    subgraph Core["🎯 CORE"]
+        MI["MACHINE<br>INSTRUCTIONS"]
+    end
+    
+    subgraph Type1["📦 Data Transfer"]
+        D1["General<br>LOAD/STORE/MOVE"]
+        D2["Stack<br>PUSH/POP"]
+        D3["I/O<br>IN/OUT"]
+    end
+    
+    subgraph Type2["🧮 Arithmetic"]
+        A1["Integer<br>ADD/SUB/MUL"]
+        A2["Float<br>FADD/FSUB"]
+        A3["Advanced<br>IMUL/IDIV"]
+    end
+    
+    subgraph Type3["🎯 Logical"]
+        L1["Boolean<br>AND/OR/XOR"]
+        L2["Bit Ops<br>TEST/SET"]
+        L3["BCD<br>AAA/DAA"]
+    end
+    
+    subgraph Type4["🔄 Shift/Rotate"]
+        S1["Logical<br>SHL/SHR"]
+        S2["Arithmetic<br>SAL/SAR"]
+        S3["Rotate<br>ROL/ROR"]
+    end
+    
+    subgraph Type5["🎮 Control"]
+        C1["Jump<br>JMP/JE/JNE"]
+        C2["Call<br>CALL/RET"]
+        C3["Loop<br>LOOP/REP"]
+    end
+    
+    subgraph Type6["⚖️ Compare"]
+        M1["Arithmetic<br>CMP"]
+        M2["Logical<br>TEST"]
+        M3["String<br>CMPS"]
+    end
+    
+    subgraph Type7["💾 I/O"]
+        I1["Input<br>IN"]
+        I2["Output<br>OUT"]
+        I3["Control<br>WAIT/HLT"]
+    end
+    
+    subgraph Type8["⚙️ Processor"]
+        P1["Flags<br>CLC/STC"]
+        P2["Debug<br>INT 3/HLT"]
+        P3["System<br>INT/IRET"]
+    end
+    
+    MI --> Type1
+    MI --> Type2
+    MI --> Type3
+    MI --> Type4
+    MI --> Type5
+    MI --> Type6
+    MI --> Type7
+    MI --> Type8
+    
+    classDef core fill:#e94560,color:#fff,font-size:20px,font-weight:bold
+    classDef types fill:#16213e,color:#fff,stroke:#e94560,stroke-width:2px
+    classDef sub fill:#0f3460,color:#fff,stroke:#533483,stroke-width:1px
+    
+    class MI core
+    class Type1,Type2,Type3,Type4,Type5,Type6,Type7,Type8 types
+    class D1,D2,D3,A1,A2,A3,L1,L2,L3,S1,S2,S3,C1,C2,C3,M1,M2,M3,I1,I2,I3,P1,P2,P3 sub

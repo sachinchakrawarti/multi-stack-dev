@@ -1,0 +1,91 @@
+flowchart TB
+    Title["📦 DATA TRANSFER INSTRUCTIONS<br>Complete Reference for COA"]
+    
+    Title --> DT["DATA TRANSFER"]
+    
+    DT --> GP["🔷 GENERAL PURPOSE"]
+    DT --> ST["📚 STACK OPERATIONS"]
+    DT --> IO["💾 I/O OPERATIONS"]
+    DT --> SP["🔹 SPECIAL TRANSFERS"]
+    DT --> STG["📝 STRING OPERATIONS"]
+    
+    %% General Purpose Instructions
+    GP --> GP1["LOAD Instructions"]
+    GP --> GP2["STORE Instructions"]
+    GP --> GP3["MOVE Instructions"]
+    GP --> GP4["Exchange Instructions"]
+    
+    GP1 --> GP1a["• LDA - Load Accumulator<br>• LDX - Load Index Register<br>• LDI - Load Immediate<br>• LEA - Load Effective Address<br>• LDS - Load DS Register<br>• LES - Load ES Register<br>• LFS - Load FS Register<br>• LGS - Load GS Register<br>• LSS - Load SS Register<br>• MOV - General Move"]
+    
+    GP2 --> GP2a["• STA - Store Accumulator<br>• STX - Store Index Register<br>• STI - Store Immediate<br>• STOS - Store String<br>• MOVS - Move String<br>• CMPS - Compare String"]
+    
+    GP3 --> GP3a["• MOV - Move Data<br>• MOVZX - Move with Zero Extend<br>• MOVSX - Move with Sign Extend<br>• MOVSXD - Move with Sign Extend Double"]
+    
+    GP4 --> GP4a["• XCHG - Exchange Register/Memory<br>• XCHG8 - Exchange Byte<br>• XCHG16 - Exchange Word<br>• XCHG32 - Exchange Double Word<br>• XCHG64 - Exchange Quad Word"]
+    
+    %% Stack Operations
+    ST --> ST1["PUSH Operations"]
+    ST --> ST2["POP Operations"]
+    ST --> ST3["Special Stack"]
+    
+    ST1 --> ST1a["• PUSH - Push to Stack<br>• PUSHA - Push All Registers<br>• PUSHAD - Push All Double Registers<br>• PUSHF - Push Flags<br>• PUSHFD - Push Double Flags<br>• PUSHQ - Push Quad Word"]
+    
+    ST2 --> ST2a["• POP - Pop from Stack<br>• POPA - Pop All Registers<br>• POPAD - Pop All Double Registers<br>• POPF - Pop Flags<br>• POPFD - Pop Double Flags<br>• POPQ - Pop Quad Word"]
+    
+    ST3 --> ST3a["• ENTER - Create Stack Frame<br>• LEAVE - Destroy Stack Frame<br>• FRAME - Frame Pointer Setup"]
+    
+    %% I/O Operations
+    IO --> IO1["Input Operations"]
+    IO --> IO2["Output Operations"]
+    IO --> IO3["String I/O"]
+    
+    IO1 --> IO1a["• IN - Input from Port<br>• INB - Input Byte<br>• INW - Input Word<br>• IND - Input Double Word<br>• INS - Input String"]
+    
+    IO2 --> IO2a["• OUT - Output to Port<br>• OUTB - Output Byte<br>• OUTW - Output Word<br>• OUTD - Output Double Word<br>• OUTS - Output String"]
+    
+    IO3 --> IO3a["• MOVS - Move String<br>• CMPS - Compare String<br>• SCAS - Scan String<br>• LODS - Load String<br>• STOS - Store String"]
+    
+    %% Special Transfers
+    SP --> SP1["Address Transfers"]
+    SP --> SP2["Segment Transfers"]
+    SP --> SP3["Control Transfers"]
+    
+    SP1 --> SP1a["• LEA - Load Effective Address<br>• LDS - Load DS with Pointer<br>• LES - Load ES with Pointer<br>• LFS - Load FS with Pointer<br>• LGS - Load GS with Pointer<br>• LSS - Load SS with Pointer"]
+    
+    SP2 --> SP2a["• MOV Sreg - Move to Segment<br>• MOV Sreg,rm - Move from Segment<br>• ARPL - Adjust RPL Field<br>• LAR - Load Access Rights<br>• LSL - Load Segment Limit<br>• VERR - Verify Read Access<br>• VERW - Verify Write Access"]
+    
+    SP3 --> SP3a["• MOV CR - Move to Control Register<br>• MOV DR - Move to Debug Register<br>• MOV TR - Move to Test Register"]
+    
+    %% String Operations
+    STG --> STG1["String Move"]
+    STG --> STG2["String Compare"]
+    STG --> STG3["String Scan"]
+    STG --> STG4["String Load/Store"]
+    
+    STG1 --> STG1a["• MOVS - Move String<br>• MOVSB - Move String Byte<br>• MOVSW - Move String Word<br>• MOVSD - Move String Double<br>• REP MOVS - Repeat Move"]
+    
+    STG2 --> STG2a["• CMPS - Compare String<br>• CMPSB - Compare String Byte<br>• CMPSW - Compare String Word<br>• CMPSD - Compare String Double<br>• REPE CMPS - Repeat Compare"]
+    
+    STG3 --> STG3a["• SCAS - Scan String<br>• SCASB - Scan String Byte<br>• SCASW - Scan String Word<br>• SCASD - Scan String Double<br>• REPNE SCAS - Scan until match"]
+    
+    STG4 --> STG4a["• LODS - Load String<br>• LODSB - Load String Byte<br>• LODSW - Load String Word<br>• LODSD - Load String Double<br>• STOS - Store String<br>• STOSB - Store String Byte<br>• STOSW - Store String Word<br>• STOSD - Store String Double"]
+    
+    %% Legend
+    Title --> LGD["📌 LEGEND"]
+    LGD --> LGD1["• 🔷 = General Purpose<br>• 📚 = Stack Operations<br>• 💾 = I/O Operations<br>• 🔹 = Special Transfers<br>• 📝 = String Operations"]
+    
+    %% Styling
+    classDef title fill:#1a1a2e,color:#fff,stroke:#e94560,stroke-width:4px,font-size:20px,font-weight:bold
+    classDef main fill:#16213e,color:#fff,stroke:#0f3460,stroke-width:3px,font-size:16px,font-weight:bold
+    classDef category fill:#0f3460,color:#fff,stroke:#533483,stroke-width:2px,font-size:14px,font-weight:bold
+    classDef sub fill:#533483,color:#fff,stroke:#e94560,stroke-width:2px,font-size:13px,font-weight:bold
+    classDef leaf fill:#6a2c70,color:#fff,stroke:#b83b5e,stroke-width:1px,font-size:12px
+    classDef leaf2 fill:#b83b5e,color:#fff,stroke:#f08a5d,stroke-width:1px,font-size:11px
+    classDef legend fill:#1a1a2e,color:#fff,stroke:#f08a5d,stroke-width:2px,font-size:12px
+    
+    class Title title
+    class DT,LGD main
+    class GP,ST,IO,SP,STG category
+    class GP1,GP2,GP3,GP4,ST1,ST2,ST3,IO1,IO2,IO3,SP1,SP2,SP3,STG1,STG2,STG3,STG4 sub
+    class GP1a,GP2a,GP3a,GP4a,ST1a,ST2a,ST3a,IO1a,IO2a,IO3a,SP1a,SP2a,SP3a,STG1a,STG2a,STG3a,STG4a leaf
+    class LGD1 legend
