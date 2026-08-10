@@ -1,0 +1,28 @@
+02_computer_organization_architecture/
+│
+├── 001_machine_instructions_n_addressing_modes/
+│   │
+│   ├── 01_machine_instructions.md
+│   ├── 02_instruction_set.md
+│   ├── 03_instruction_format.md
+│   ├── 04_instruction_types.md
+│   ├── 05_instruction_cycle.md
+│   ├── 06_instruction_execution.md
+│   │
+│   ├── 07_addressing_modes.md
+│   ├── 08_immediate_addressing.md
+│   ├── 09_direct_addressing.md
+│   ├── 10_indirect_addressing.md
+│   ├── 11_register_addressing.md
+│   ├── 12_register_indirect_addressing.md
+│   ├── 13_indexed_addressing.md
+│   ├── 14_relative_addressing.md
+│   │
+│   ├── 15_effective_address.md
+│   ├── 16_instruction_length.md
+│   ├── 17_addressing_modes_comparison.md
+│   │
+│   ├── 18_gate_formulas.md
+│   ├── 19_gate_concepts.md
+│   ├── 20_gate_previous_year_questions.md
+│   └── 21_quick_revision.md
