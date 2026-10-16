@@ -1,4 +1,4 @@
-﻿"""Notebook -> script converter."""
+"""nootbook_script.py - Convert notebook -> plain Python script."""
 import json
 from pathlib import Path
 
@@ -26,5 +26,7 @@ def convert_notebook_to_script(nb_path, out_path=None):
 
 if __name__ == "__main__":
     here = Path(__file__).parent
-    convert_notebook_to_script(str(here / "dna_sequence_analyzer.ipynb"),
-                               str(here / "dna_sequence_analyzer_script.py"))
+    convert_notebook_to_script(
+        str(here / "dna_sequence_analyzer.ipynb"),
+        str(here / "dna_sequence_analyzer_script.py"),
+    )
