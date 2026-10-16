@@ -1,0 +1,31 @@
+============================================================
+DNA SEQUENCE ANALYSIS REPORT
+============================================================
+ID          : sample_seq
+Description : sample_seq Synthetic sample DNA
+Length      : 195 bp
+GC content  : 56.41 %
+AT content  : 43.59 %
+Mol. weight : 60891.72 Da
+
+Nucleotide counts:
+  A:    45  (23.08%)
+  T:    40  (20.51%)
+  G:    70  (35.90%)
+  C:    40  (20.51%)
+  N:     0  ( 0.00%)
+
+Rev comp (60): CTATCGGGCACCCTTTCAGCGGCCCATTACAATGGCCATCTATCGGGCACCCTTTCAGCG...
+mRNA     (60): AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAGAUGGCCAUUGUAAUGGGCCGC...
+Protein  (60): MAIVMGR*KGAR*MAIVMGR*KGAR*MAIVMGR*KGAR*MAIVMGR*KGAR*MAIVMGR*...
+
+ORFs (>= 30 bp): 0
+
+Protein properties (frame 1):
+  Length           : 55 aa
+  Mol. weight      : 5875.43 Da
+  Isoelectric pt   : 12.0
+  Aromaticity      : 0.0
+  Instability idx  : -2.118
+  GRAVY            : 0.2182
+============================================================

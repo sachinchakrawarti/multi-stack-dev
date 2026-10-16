@@ -1,0 +1,15 @@
+LOCUS       sample_seq               195 bp    DNA              UNK 01-JAN-1980
+DEFINITION  Synthetic sample DNA.
+ACCESSION   sample_seq
+VERSION     sample_seq
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+ORIGIN
+        1 atggccattg taatgggccg ctgaaagggt gcccgataga tggccattgt aatgggccgc
+       61 tgaaagggtg cccgatagat ggccattgta atgggccgct gaaagggtgc ccgatagatg
+      121 gccattgtaa tgggccgctg aaagggtgcc cgatagatgg ccattgtaat gggccgctga
+      181 aagggtgccc gatag
+//
